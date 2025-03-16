@@ -1,5 +1,7 @@
+import { PIXEL_SIZE } from "@/utils/constants";
+
 const sizes = {
-  pixelSize: 3,
+  pixelSize: PIXEL_SIZE,
   // calendar: {
   //   maxHeight: 357,
   // },
