@@ -5,9 +5,11 @@ import { StyleSheetManager, ThemeProvider } from "styled-components";
 import Background from "@/components/Background";
 import DummyText from "@/components/DummyText";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
+import FocusToggleButton from "@/components/FocusToggleButton";
 import Metadata from "@/components/Metadata";
 import PixelGrid from "@/components/PixelGrid";
 import Screen from "@/components/Screen";
+import { FocusProvider } from "@/contexts/FocusContext";
 import GlobalStyle from "@/styles/GlobalStyle";
 import themes, { ThemeName } from "@/styles/themes";
 import { DEFAULT_THEME, PIXEL_SIZE } from "@/utils/constants";
@@ -32,15 +34,19 @@ const App = () => {
           <Metadata />
           <StyleSheetManager enableVendorPrefixes>
             <ThemeProvider theme={themes[themeName] || themes[DEFAULT_THEME]}>
-              <GlobalStyle />
-              {/* <LazyMotion features={motionFeatures} strict> */}
-              <Background>
-                <Screen>
-                  <DummyText />
-                </Screen>
-              </Background>
-              <PixelGrid pixelSize={PIXEL_SIZE * 4} />
-              {/* </LazyMotion> */}
+              <FocusProvider>
+                <GlobalStyle />
+                {/* <LazyMotion features={motionFeatures} strict> */}
+                <FocusToggleButton />
+                <Background>
+                  <Screen>
+                    <DummyText />
+                  </Screen>
+                </Background>
+
+                <PixelGrid pixelSize={PIXEL_SIZE * 4} />
+                {/* </LazyMotion> */}
+              </FocusProvider>
             </ThemeProvider>
           </StyleSheetManager>
         </HelmetProvider>
