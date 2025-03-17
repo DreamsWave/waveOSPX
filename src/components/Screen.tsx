@@ -1,7 +1,10 @@
 import useFocus from "@/hooks/useFocus";
-import { MONITOR_RESOLUTION } from "@/utils/constants";
-import { px } from "@/utils/functions";
+import { memo } from "react";
 import styled from "styled-components";
+
+const mediaQuery = (width: number, height: number) => {
+  return `@media (max-width: ${width}px) or (max-height: ${height}px)`;
+};
 
 const ScreenWrapper = styled.div<{ $isFocused: boolean }>`
   position: absolute;
@@ -9,13 +12,18 @@ const ScreenWrapper = styled.div<{ $isFocused: boolean }>`
   left: 50%;
   transform: translate(-50%, -50%)
     scale(${({ $isFocused }) => ($isFocused ? 1 : 0.95)});
-  background: #f5f7fa;
-  width: ${px(MONITOR_RESOLUTION.width)};
-  height: ${px(MONITOR_RESOLUTION.height)};
+  background: ${({ theme }) => theme.colors.background};
+  color: ${({ theme }) => theme.colors.text};
+  width: ${({ theme }) => theme.sizes.monitor.screen.width}px;
+  height: ${({ theme }) => theme.sizes.monitor.screen.height}px;
   transition: all 0.5s ease-in-out;
   filter: blur(${({ $isFocused }) => ($isFocused ? 0 : "1px")});
 
-  @media (max-width: 1024px) or (max-height: 768px) {
+  ${({ theme }) =>
+    mediaQuery(
+      theme.sizes.monitor.screen.width,
+      theme.sizes.monitor.screen.height
+    )} {
     height: 100vh;
     width: 100vw;
     top: 0;
@@ -34,7 +42,7 @@ const ScreenContent = styled.div`
 type Props = {
   children: React.ReactNode;
 };
-export const Screen = ({ children }: Props) => {
+export const Screen = memo(({ children }: Props) => {
   const { isFocused } = useFocus();
 
   return (
@@ -42,6 +50,6 @@ export const Screen = ({ children }: Props) => {
       <ScreenContent>{children}</ScreenContent>
     </ScreenWrapper>
   );
-};
+});
 
 export default Screen;

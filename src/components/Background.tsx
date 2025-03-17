@@ -1,16 +1,20 @@
 import MainBackgroundImage from "@/assets/images/main-background.png";
 import useFocus from "@/hooks/useFocus";
-import React, { useEffect } from "react";
+import React, { memo } from "react";
 import styled from "styled-components";
 
-const BackgroundBase = styled.div<{ $isFocused: boolean }>`
-  background-color: lightblue;
+const BackgroundStyled = styled.div<{ $isFocused: boolean }>`
+  background-color: ${({ theme }) => theme.colors.background};
   width: 100%;
   height: 100vh;
   position: relative;
   background-image: url(${MainBackgroundImage});
-  background-size: ${({ $isFocused }) =>
-    $isFocused ? `2100px 1158px` : `${2100 * 0.95}px ${1158 * 0.95}px`};
+  background-size: ${({ $isFocused, theme }) =>
+    $isFocused
+      ? `${theme.sizes.monitor.image.width}px ${theme.sizes.monitor.image.height}px`
+      : `${theme.sizes.monitor.image.width * 0.95}px ${
+          theme.sizes.monitor.image.height * 0.95
+        }px`};
   background-position: center;
   background-repeat: no-repeat;
   transition: all 0.5s ease-in-out;
@@ -21,12 +25,9 @@ type Props = {
   children: React.ReactNode;
 };
 
-const Background = ({ children }: Props) => {
+const Background = memo(({ children }: Props) => {
   const { isFocused } = useFocus();
-  useEffect(() => {
-    console.log("isFocused", isFocused);
-  }, [isFocused]);
-  return <BackgroundBase $isFocused={isFocused}>{children}</BackgroundBase>;
-};
+  return <BackgroundStyled $isFocused={isFocused}>{children}</BackgroundStyled>;
+});
 
 export default Background;

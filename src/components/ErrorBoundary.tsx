@@ -12,29 +12,22 @@ export class ErrorBoundary extends Component<
   React.PropsWithChildren<ErrorBoundaryProps>,
   ErrorBoundaryState
 > {
-  public constructor(props: React.PropsWithChildren<ErrorBoundaryProps>) {
-    super(props);
-    this.state = { hasError: false };
+  state = { hasError: false, error: null };
+
+  static getDerivedStateFromError(error: Error) {
+    return { hasError: true, error };
   }
 
-  public override shouldComponentUpdate(): boolean {
-    return false;
+  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+    console.error("ErrorBoundary caught:", error, errorInfo);
   }
 
-  public static getDerivedStateFromError(): ErrorBoundaryState {
-    return { hasError: true };
-  }
-
-  public override render(): React.ReactNode {
+  render() {
     const {
-      props: { children, FallbackRender },
-      state: { hasError },
-    } = this;
-
-    if (hasError && !FallbackRender && !("__nextDevClientId" in window)) {
-      window.location.reload();
-    }
-
+      children,
+      FallbackRender = <div>Something went wrong. Please try refreshing.</div>,
+    } = this.props;
+    const { hasError } = this.state;
     return hasError ? FallbackRender : children;
   }
 }

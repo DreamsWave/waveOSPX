@@ -4,7 +4,9 @@ import { useContext } from "react";
 const useFocus = () => {
   const context = useContext(FocusContext);
   if (context === undefined) {
-    throw new Error("useFocus must be used within a FocusProvider");
+    throw new Error(
+      "useFocus must be used within a FocusProvider. Ensure the component is wrapped in <FocusProvider>."
+    );
   }
   return context;
 };
