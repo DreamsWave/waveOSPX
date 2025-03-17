@@ -8,21 +8,22 @@ const mediaQuery = (width: number, height: number) => {
 
 const ScreenWrapper = styled.div<{ $isFocused: boolean }>`
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%)
-    scale(${({ $isFocused }) => ($isFocused ? 1 : 0.95)});
+  top: ${({ theme }) =>
+    theme.sizes.monitor.screen.position.yPX * theme.sizes.pixelSize + 10}px;
+  left: ${({ theme }) =>
+    theme.sizes.monitor.screen.position.xPX * theme.sizes.pixelSize + 10}px;
+  scale: ${({ $isFocused }) => ($isFocused ? 1 : 0.95)};
   background: ${({ theme }) => theme.colors.background};
   color: ${({ theme }) => theme.colors.text};
-  width: ${({ theme }) => theme.sizes.monitor.screen.width}px;
-  height: ${({ theme }) => theme.sizes.monitor.screen.height}px;
-  transition: all 0.5s ease-in-out;
+  width: ${({ theme }) => theme.sizes.monitor.screen.resolution.width}px;
+  height: ${({ theme }) => theme.sizes.monitor.screen.resolution.height}px;
+  transition: filter 0.5s ease, scale 0.5s ease-in-out;
   filter: blur(${({ $isFocused }) => ($isFocused ? 0 : "1px")});
 
   ${({ theme }) =>
     mediaQuery(
-      theme.sizes.monitor.screen.width,
-      theme.sizes.monitor.screen.height
+      theme.sizes.monitor.screen.resolution.width,
+      theme.sizes.monitor.screen.resolution.height
     )} {
     height: 100vh;
     width: 100vw;

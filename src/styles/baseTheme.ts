@@ -7,9 +7,12 @@ export const baseColors = {
 export const baseSizes = {
   pixelSize: 3,
   monitor: {
-    screen: { height: 768, width: 1020 },
-    image: { width: 2100, height: 1158 },
+    screen: {
+      resolution: { height: 770, width: 1020 },
+      position: { xPX: 180, yPX: 65 },
+    },
   },
+  backgroundImageSize: { width: 2100, height: 1158 },
   zIndex: { top: 1000, middle: 500 },
   gridLineWidth: 0.5,
 };
