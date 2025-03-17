@@ -8,6 +8,11 @@ export const px = (size: number = 1): RuleSet => css`
   ${({ theme }) => `${theme.sizes.pixelSize * size}px`}
 `;
 
+export const getScreenMediaQuery = (): RuleSet => css`
+  ${({ theme }) =>
+    `@media (max-width: ${theme.sizes.monitor.screen.resolution.width}px) or (max-height: ${theme.sizes.monitor.screen.resolution.height}px)`}
+`;
+
 export const debounce = <T extends (...args: unknown[]) => unknown>(
   fn: T,
   ms: number
