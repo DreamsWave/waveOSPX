@@ -1,6 +1,11 @@
 import Background from "@/components/Background";
 import Screen from "@/components/Screen";
 import useFocus from "@/hooks/useFocus";
+import useReducedMotion from "@/hooks/useReducedMotion";
+import {
+  BACKGROUND_SCROLL_SPEED_X,
+  BACKGROUND_SCROLL_SPEED_Y,
+} from "@/utils/constants";
 import { motion, useMotionValue } from "motion/react";
 import { memo, useEffect } from "react";
 import { isMobile } from "react-device-detect";
@@ -22,6 +27,7 @@ type Props = {
 const Camera = memo(({ children }: Props) => {
   const { isFocused } = useFocus();
   const theme = useTheme();
+  const { reducedMotion } = useReducedMotion();
 
   // Motion values to track background position (inverse of camera)
   const backgroundX = useMotionValue(0);
@@ -33,7 +39,7 @@ const Camera = memo(({ children }: Props) => {
       window.innerWidth <= theme.sizes.monitor.screen.resolution.width &&
       window.innerHeight <= theme.sizes.monitor.screen.resolution.height;
 
-    if (isMobile || isSmallScreen()) {
+    if (isMobile || isSmallScreen() || reducedMotion) {
       // Reset motion values to 0 and skip animation
       backgroundX.set(0);
       backgroundY.set(0);
@@ -50,8 +56,8 @@ const Camera = memo(({ children }: Props) => {
       const offsetY = (clientY - centerY) / centerY;
 
       // Move background opposite to mouse (e.g., -10px to 10px)
-      backgroundX.set(offsetX * -10); // Inverse direction
-      backgroundY.set(offsetY * -10);
+      backgroundX.set(offsetX * BACKGROUND_SCROLL_SPEED_X); // Inverse direction
+      backgroundY.set(offsetY * BACKGROUND_SCROLL_SPEED_Y);
     };
 
     window.addEventListener("mousemove", handleMouseMove);
@@ -61,6 +67,7 @@ const Camera = memo(({ children }: Props) => {
     backgroundY,
     theme.sizes.monitor.screen.resolution.height,
     theme.sizes.monitor.screen.resolution.width,
+    reducedMotion,
   ]);
 
   return (

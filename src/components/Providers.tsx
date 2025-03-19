@@ -1,5 +1,6 @@
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { FocusProvider } from "@/contexts/FocusContext";
+import { ReducedMotionProvider } from "@/contexts/ReducedMotionContext";
 import { ThemeProviderWrapper } from "@/contexts/ThemeContext";
 import { useThemeContext } from "@/hooks/useThemeContext";
 import GlobalStyle from "@/styles/GlobalStyle";
@@ -25,13 +26,15 @@ type Props = {
 export const Providers = ({ children }: Props) => {
   return (
     <ErrorBoundary>
-      <HelmetProvider>
-        <ThemeProviderWrapper>
-          <StyleSheetManager enableVendorPrefixes>
-            <ThemeContent>{children}</ThemeContent>
-          </StyleSheetManager>
-        </ThemeProviderWrapper>
-      </HelmetProvider>
+      <ReducedMotionProvider>
+        <HelmetProvider>
+          <ThemeProviderWrapper>
+            <StyleSheetManager enableVendorPrefixes>
+              <ThemeContent>{children}</ThemeContent>
+            </StyleSheetManager>
+          </ThemeProviderWrapper>
+        </HelmetProvider>
+      </ReducedMotionProvider>
     </ErrorBoundary>
   );
 };

@@ -1,5 +1,6 @@
 import FocusToggleButton from "@/components/Debug/FocusToggleButton";
 import PixelGrid from "@/components/Debug/PixelGrid";
+import ReducedMotionToggleButton from "@/components/Debug/ReducedMotionToggleButton";
 import ThemeToggleButton from "@/components/Debug/ThemeToggleButton";
 import styled from "styled-components";
 
@@ -21,6 +22,7 @@ const DebugButtons = () => {
       <PixelGrid />
       <ThemeToggleButton />
       <FocusToggleButton />
+      <ReducedMotionToggleButton />
     </DebugButtonsStyled>
   );
 };
