@@ -1,7 +1,12 @@
 export const baseColors = {
   background: "#ffffff",
   text: "#000000",
-  gridLine: "#ff0000",
+  debug: {
+    background: "rgba(0, 0, 0, 0.2)",
+    backgroundHover: "rgba(0, 0, 0, 0.3)",
+    text: "#fff",
+    pixelGridLineColor: "#ff0000",
+  },
 };
 
 export const baseSizes = {
@@ -14,7 +19,11 @@ export const baseSizes = {
   },
   backgroundImageSize: { width: 2100, height: 1158 },
   zIndex: { top: 1000, middle: 500 },
-  gridLineWidth: 0.5,
+  debug: {
+    pixelGridLineWidth: 0.5,
+    buttonSize: 15,
+    menuWidth: 150,
+  },
 };
 
 export const baseFormats = {

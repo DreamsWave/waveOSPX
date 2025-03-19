@@ -1,10 +1,16 @@
 import baseTheme from "@/styles/baseTheme";
-import colors from "@/styles/darkTheme/colors";
-import formats from "@/styles/darkTheme/formats";
-import sizes from "@/styles/darkTheme/sizes";
 import { type DefaultTheme } from "styled-components";
 
-const darkTheme: DefaultTheme = {
+const colors = {
+  background: "#f5f7fa",
+  text: "#48474d",
+};
+
+const formats = {};
+
+const sizes = {};
+
+const lightTheme: DefaultTheme = {
   ...baseTheme,
   colors: {
     ...baseTheme.colors,
@@ -18,7 +24,7 @@ const darkTheme: DefaultTheme = {
     ...baseTheme.sizes,
     ...sizes,
   },
-  name: "Dark",
+  name: "Light",
 };
 
-export default darkTheme;
+export default lightTheme;

@@ -1,8 +1,8 @@
 import Camera from "@/components/Camera";
-import Debug from "@/components/Debug";
-import DummyText from "@/components/Debug/DummyText";
+import DummyText from "@/components/DummyText";
 import Metadata from "@/components/Metadata";
 import Providers from "@/components/Providers";
+import Debug from "@/components/system/Debug";
 import { memo } from "react";
 
 const App = memo(() => {

@@ -1,17 +1,9 @@
-import ToggleButton from "@/components/Debug/ToggleButton";
+import { StyledCanvas } from "@/components/system/Debug/styles";
+import ToggleButton from "@/components/system/Debug/ToggleButton";
 import useDebug from "@/hooks/useDebug";
 import { debounce } from "@/utils/functions";
 import { memo, useCallback, useEffect, useRef } from "react";
-import styled, { useTheme } from "styled-components";
-
-const StyledCanvas = styled.canvas<{ $isVisible: boolean }>`
-  display: block;
-  position: fixed;
-  top: 0;
-  left: 0;
-  visibility: ${({ $isVisible }) => ($isVisible ? "visible" : "hidden")};
-  z-index: -1;
-`;
+import { useTheme } from "styled-components";
 
 type Props = {
   cellSize?: number;
@@ -34,8 +26,8 @@ const PixelGrid = memo(({ cellSize: propCellSize }: Props) => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.strokeStyle = theme.colors.gridLine;
-    ctx.lineWidth = theme.sizes.gridLineWidth;
+    ctx.strokeStyle = theme.colors.debug.pixelGridLineColor;
+    ctx.lineWidth = theme.sizes.debug.pixelGridLineWidth;
 
     const pixelsX = Math.ceil(canvas.width / pixelSize);
     const pixelsY = Math.ceil(canvas.height / pixelSize);

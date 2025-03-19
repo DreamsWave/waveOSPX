@@ -1,4 +1,4 @@
-import ToggleButton from "@/components/Debug/ToggleButton";
+import ToggleButton from "@/components/system/Debug/ToggleButton";
 import useSettings from "@/hooks/useSettings";
 
 const ReducedMotionToggleButton = () => {
