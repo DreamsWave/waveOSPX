@@ -2,10 +2,10 @@ import FocusToggleButton from "@/components/Debug/FocusToggleButton";
 import PixelGrid from "@/components/Debug/PixelGrid";
 import ReducedMotionToggleButton from "@/components/Debug/ReducedMotionToggleButton";
 import ThemeToggleButton from "@/components/Debug/ThemeToggleButton";
-import { useState } from "react";
+import useDebug from "@/hooks/useDebug";
 import styled from "styled-components";
 
-const DebugStyled = styled.div<{ $isVisible: boolean }>`
+const StyledDebug = styled.div<{ $isVisible: boolean }>`
   position: fixed;
   top: 0;
   right: 0;
@@ -15,7 +15,7 @@ const DebugStyled = styled.div<{ $isVisible: boolean }>`
   align-items: end;
 `;
 
-const DebugButtonStyled = styled.button`
+const StyledDebugButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -32,7 +32,7 @@ const DebugButtonStyled = styled.button`
   }
 `;
 
-const DebugMenuStyled = styled.div<{ $isVisible: boolean }>`
+const StyledDebugMenu = styled.div<{ $isVisible: boolean }>`
   display: ${({ $isVisible }) => ($isVisible ? "flex" : "none")};
   flex-direction: column;
   align-items: end;
@@ -42,23 +42,18 @@ const DebugMenuStyled = styled.div<{ $isVisible: boolean }>`
 `;
 
 const Debug = () => {
-  const isDebugVisible = import.meta.env.DEV;
-  const [isMenuVisible, setIsMenuVisible] = useState(false);
-
-  const toggleDebugMenu = () => {
-    setIsMenuVisible((prev) => !prev);
-  };
+  const { enabled, isDebugMenuVisible, toggleDebugMenu } = useDebug();
 
   return (
-    <DebugStyled $isVisible={isDebugVisible}>
-      <DebugButtonStyled onClick={toggleDebugMenu}>D</DebugButtonStyled>
-      <DebugMenuStyled $isVisible={isMenuVisible}>
+    <StyledDebug $isVisible={enabled}>
+      <StyledDebugButton onClick={toggleDebugMenu}>D</StyledDebugButton>
+      <StyledDebugMenu $isVisible={isDebugMenuVisible}>
         <PixelGrid />
         <ThemeToggleButton />
         <FocusToggleButton />
         <ReducedMotionToggleButton />
-      </DebugMenuStyled>
-    </DebugStyled>
+      </StyledDebugMenu>
+    </StyledDebug>
   );
 };
 

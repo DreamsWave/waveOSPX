@@ -1,9 +1,10 @@
-import StyledDebugButton from "@/components/Debug/StyledDebugButton";
+import ToggleButton from "@/components/Debug/ToggleButton";
+import useDebug from "@/hooks/useDebug";
 import { debounce } from "@/utils/functions";
-import { memo, useCallback, useEffect, useRef, useState } from "react";
+import { memo, useCallback, useEffect, useRef } from "react";
 import styled, { useTheme } from "styled-components";
 
-const CanvasStyled = styled.canvas<{ $isVisible: boolean }>`
+const StyledCanvas = styled.canvas<{ $isVisible: boolean }>`
   display: block;
   position: fixed;
   top: 0;
@@ -12,12 +13,17 @@ const CanvasStyled = styled.canvas<{ $isVisible: boolean }>`
   z-index: -1;
 `;
 
-type Props = { cellSize?: number };
+type Props = {
+  cellSize?: number;
+};
 
-export const PixelGrid = memo(({ cellSize = 2 }: Props) => {
+const PixelGrid = memo(({ cellSize: propCellSize }: Props) => {
+  const {
+    pixelGrid: { cellSize: reduxCellSize, enabled },
+    togglePixelGrid,
+  } = useDebug();
   const theme = useTheme();
-  const pixelSize = theme.sizes.pixelSize * cellSize;
-  const [isVisible, setIsVisible] = useState(false);
+  const pixelSize = theme.sizes.pixelSize * (propCellSize ?? reduxCellSize);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const redraw = useCallback(() => {
@@ -48,19 +54,21 @@ export const PixelGrid = memo(({ cellSize = 2 }: Props) => {
   }, [pixelSize, theme]);
 
   useEffect(() => {
-    if (!isVisible) return;
+    if (!enabled) return;
     redraw();
     const handleResize = debounce(() => requestAnimationFrame(redraw), 200);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, [isVisible, redraw]);
+  }, [enabled, redraw]);
 
   return (
     <>
-      <StyledDebugButton onClick={() => setIsVisible((prev) => !prev)}>
-        pixel grid: {isVisible ? "on" : "off"}
-      </StyledDebugButton>
-      <CanvasStyled $isVisible={isVisible} ref={canvasRef} />
+      <ToggleButton
+        label="pixel grid"
+        value={enabled}
+        onToggle={togglePixelGrid}
+      />
+      <StyledCanvas $isVisible={enabled} ref={canvasRef} />
     </>
   );
 });

@@ -1,13 +1,10 @@
-import StyledDebugButton from "@/components/Debug/StyledDebugButton";
-import useFocus from "@/hooks/useFocus";
+import ToggleButton from "@/components/Debug/ToggleButton";
+import useCamera from "@/hooks/useCamera";
 
-export const FocusToggleButton = () => {
-  const { isFocused, toggleFocus } = useFocus();
-
+const FocusToggleButton = () => {
+  const { isFocused, toggleFocus } = useCamera();
   return (
-    <StyledDebugButton onClick={toggleFocus}>
-      focus: {isFocused ? "on" : "off"}
-    </StyledDebugButton>
+    <ToggleButton label="focus" value={isFocused} onToggle={toggleFocus} />
   );
 };
 

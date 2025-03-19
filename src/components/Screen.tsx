@@ -2,7 +2,7 @@ import { getScreenMediaQuery } from "@/utils/functions";
 import { memo } from "react";
 import styled from "styled-components";
 
-const ScreenWrapper = styled.div<{ $isFocused: boolean }>`
+const StyledScreenWrapper = styled.div<{ $isFocused: boolean }>`
   position: absolute;
   top: ${({ theme }) =>
     theme.sizes.monitor.screen.position.yPX * theme.sizes.pixelSize}px;
@@ -27,7 +27,7 @@ const ScreenWrapper = styled.div<{ $isFocused: boolean }>`
   }
 `;
 
-const ScreenContent = styled.div`
+const StyledScreenContent = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
@@ -41,9 +41,9 @@ type Props = {
 
 export const Screen = memo(({ children, isFocused }: Props) => {
   return (
-    <ScreenWrapper $isFocused={isFocused}>
-      <ScreenContent>{children}</ScreenContent>
-    </ScreenWrapper>
+    <StyledScreenWrapper $isFocused={isFocused}>
+      <StyledScreenContent>{children}</StyledScreenContent>
+    </StyledScreenWrapper>
   );
 });
 

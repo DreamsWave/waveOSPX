@@ -4,7 +4,7 @@ import { motion, MotionValue } from "motion/react";
 import { memo } from "react";
 import styled from "styled-components";
 
-const BackgroundStyled = styled(motion.div)`
+const StyledBackground = styled(motion.div)`
   position: absolute;
   top: 50%;
   left: 50%;
@@ -20,7 +20,7 @@ const BackgroundStyled = styled(motion.div)`
   }
 `;
 
-const BackgroundImage = styled.img<{ $isFocused: boolean }>`
+const StyledBackgroundImage = styled.img<{ $isFocused: boolean }>`
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -38,10 +38,10 @@ type Props = {
 
 const Background = memo(({ children, isFocused, x, y }: Props) => {
   return (
-    <BackgroundStyled style={{ x, y, translate: "-50% -50%" }}>
-      <BackgroundImage src={MainBackgroundImage} $isFocused={isFocused} />
+    <StyledBackground style={{ x, y, translate: "-50% -50%" }}>
+      <StyledBackgroundImage src={MainBackgroundImage} $isFocused={isFocused} />
       {children}
-    </BackgroundStyled>
+    </StyledBackground>
   );
 });
 

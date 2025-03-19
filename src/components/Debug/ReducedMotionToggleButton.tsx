@@ -1,13 +1,14 @@
-import StyledDebugButton from "@/components/Debug/StyledDebugButton";
-import useReducedMotion from "@/hooks/useReducedMotion";
+import ToggleButton from "@/components/Debug/ToggleButton";
+import useSettings from "@/hooks/useSettings";
 
 const ReducedMotionToggleButton = () => {
-  const { reducedMotion, toggleReducedMotion } = useReducedMotion();
-
+  const { reducedMotion, toggleReducedMotion } = useSettings();
   return (
-    <StyledDebugButton onClick={toggleReducedMotion}>
-      reduced motion: {reducedMotion ? "on" : "off"}
-    </StyledDebugButton>
+    <ToggleButton
+      label="reduced motion"
+      value={reducedMotion}
+      onToggle={toggleReducedMotion}
+    />
   );
 };
 
