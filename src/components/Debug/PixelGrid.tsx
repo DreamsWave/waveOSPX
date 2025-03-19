@@ -58,7 +58,7 @@ export const PixelGrid = memo(({ cellSize = 2 }: Props) => {
   return (
     <>
       <StyledDebugButton onClick={() => setIsVisible((prev) => !prev)}>
-        G
+        pixel grid: {isVisible ? "on" : "off"}
       </StyledDebugButton>
       <CanvasStyled $isVisible={isVisible} ref={canvasRef} />
     </>

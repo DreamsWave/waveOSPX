@@ -6,7 +6,7 @@ export const FocusToggleButton = () => {
 
   return (
     <StyledDebugButton onClick={toggleFocus}>
-      {isFocused ? "F" : "UF"}
+      focus: {isFocused ? "on" : "off"}
     </StyledDebugButton>
   );
 };

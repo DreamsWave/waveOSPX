@@ -6,7 +6,7 @@ const ReducedMotionToggleButton = () => {
 
   return (
     <StyledDebugButton onClick={toggleReducedMotion}>
-      {reducedMotion ? "RM: ON" : "RM: OFF"}
+      reduced motion: {reducedMotion ? "on" : "off"}
     </StyledDebugButton>
   );
 };

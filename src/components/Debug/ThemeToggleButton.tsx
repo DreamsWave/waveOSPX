@@ -9,7 +9,7 @@ const ThemeToggleButton = () => {
         setTheme(theme === "darkTheme" ? "lightTheme" : "darkTheme")
       }
     >
-      T: {theme === "darkTheme" ? "D" : "L"}
+      theme: {theme === "darkTheme" ? "dark" : "light"}
     </StyledDebugButton>
   );
 };

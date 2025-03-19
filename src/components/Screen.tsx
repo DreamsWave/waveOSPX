@@ -14,14 +14,14 @@ const ScreenWrapper = styled.div<{ $isFocused: boolean }>`
   height: ${({ theme }) => theme.sizes.monitor.screen.resolution.height}px;
   transition: filter 0.5s ease, scale 0.5s ease-in-out;
   filter: blur(${({ $isFocused }) => ($isFocused ? 0 : "1px")});
-  transform: scale(${({ $isFocused }) => ($isFocused ? 1 : 0.95)});
+  scale: ${({ $isFocused }) => ($isFocused ? 1 : 0.95)};
 
   ${getScreenMediaQuery()} {
     width: 100vw;
     height: 100vh;
     top: 0;
     left: 0;
-    transform: none;
+    scale: 1;
     position: fixed;
     z-index: 1;
   }

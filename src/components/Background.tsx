@@ -16,6 +16,7 @@ const BackgroundStyled = styled(motion.div)`
     translate: 0 !important;
     top: 0;
     left: 0;
+    transform: translate(0, 0) !important;
   }
 `;
 

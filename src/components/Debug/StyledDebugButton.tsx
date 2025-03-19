@@ -2,12 +2,16 @@ import styled from "styled-components";
 
 const StyledDebugButton = styled.button`
   display: flex;
-  width: fit-content;
+  width: 100%;
   padding: 0;
   margin: 0;
-  background: #000;
+  background: transparent;
   color: #fff;
   cursor: pointer;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.1);
+  }
 `;
 
 export default StyledDebugButton;

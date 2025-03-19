@@ -1,5 +1,5 @@
 import Camera from "@/components/Camera";
-import DebugButtons from "@/components/Debug/DebugButtons";
+import Debug from "@/components/Debug";
 import DummyText from "@/components/Debug/DummyText";
 import Metadata from "@/components/Metadata";
 import Providers from "@/components/Providers";
@@ -9,7 +9,7 @@ const App = memo(() => {
   return (
     <Providers>
       <Metadata />
-      <DebugButtons />
+      <Debug />
       <Camera>
         <DummyText repeat={200} />
       </Camera>
