@@ -13,7 +13,13 @@ export const getScreenMediaQuery = (): RuleSet => css`
     `@media (max-width: ${theme.sizes.monitor.screen.resolution.width}px) or (max-height: ${theme.sizes.monitor.screen.resolution.height}px)`}
 `;
 
-export const debounce = <T extends (...args: unknown[]) => unknown>(
+/**
+ * Debounces a function, delaying its execution until after a specified wait time.
+ * @param fn - The function to debounce
+ * @param ms - Delay in milliseconds
+ * @returns A debounced version of the function
+ */
+export const debounce = <T extends (...args: Parameters<T>) => ReturnType<T>>(
   fn: T,
   ms: number
 ): ((...args: Parameters<T>) => void) => {
@@ -21,5 +27,25 @@ export const debounce = <T extends (...args: unknown[]) => unknown>(
   return (...args: Parameters<T>) => {
     clearTimeout(timeoutId);
     timeoutId = setTimeout(() => fn(...args), ms);
+  };
+};
+
+/**
+ * Throttles a function, limiting its execution to once every specified interval.
+ * @param fn - The function to throttle
+ * @param ms - Interval in milliseconds
+ * @returns A throttled version of the function
+ */
+export const throttle = <T extends (...args: Parameters<T>) => ReturnType<T>>(
+  fn: T,
+  ms: number
+): ((...args: Parameters<T>) => void) => {
+  let lastCall = 0;
+  return (...args: Parameters<T>) => {
+    const now = Date.now();
+    if (now - lastCall >= ms) {
+      fn(...args);
+      lastCall = now;
+    }
   };
 };

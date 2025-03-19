@@ -1,4 +1,5 @@
 import ErrorBoundary from "@/components/ErrorBoundary";
+import { BackgroundProvider } from "@/contexts/BackgroundContext";
 import { RootState, store } from "@/store";
 import GlobalStyle from "@/styles/GlobalStyle";
 import themes from "@/styles/themes";
@@ -26,7 +27,9 @@ const Providers = ({ children }: Props) => {
       <Provider store={store}>
         <HelmetProvider>
           <StyleSheetManager enableVendorPrefixes>
-            <ThemeContent>{children}</ThemeContent>
+            <ThemeContent>
+              <BackgroundProvider>{children}</BackgroundProvider>
+            </ThemeContent>
           </StyleSheetManager>
         </HelmetProvider>
       </Provider>

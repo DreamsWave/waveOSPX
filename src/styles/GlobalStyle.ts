@@ -6,9 +6,8 @@ const GlobalStyle = styled.createGlobalStyle`
     font-family: "Monocraft";
     font-weight: normal;
     font-style: normal;
-    font-display: swap;
-    src: url(${Monocraft});
-    src: url(${Monocraft}) format("embedded-opentype");
+    font-display: swap; /* Fallback to system font while loading */
+    src: url(${Monocraft}) format("opentype"); /* Correct format for .otf */
   }
 
   *,
