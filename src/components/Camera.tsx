@@ -1,4 +1,4 @@
-import { useBackground } from "@/contexts/BackgroundContext";
+import { useBackground } from "@/contexts/background";
 import useSettings from "@/hooks/useSettings";
 import {
   BACKGROUND_SCROLL_SPEED_X,

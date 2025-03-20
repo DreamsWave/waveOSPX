@@ -1,5 +1,5 @@
 import ErrorBoundary from "@/components/ErrorBoundary";
-import { BackgroundProvider } from "@/contexts/BackgroundContext";
+import { BackgroundProvider } from "@/contexts/background";
 import { RootState, store } from "@/store";
 import GlobalStyle from "@/styles/GlobalStyle";
 import themes from "@/styles/themes";
