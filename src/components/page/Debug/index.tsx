@@ -6,10 +6,23 @@ import useDebug from "@/hooks/useDebug";
 import { useHotkeys } from "react-hotkeys-hook";
 
 const Debug = () => {
-  const { enabled, isDebugMenuVisible, toggleDebugMenu } = useDebug();
+  const { enabled, isDebugMenuVisible, toggleDebugMenu, toggleDebug } =
+    useDebug();
 
-  // Hotkeys: Shift + D to toggle debug mode
-  useHotkeys("shift+d", toggleDebugMenu);
+  // Hotkeys: Shift + D to toggle debug mode (enables/disables debug tools)
+  useHotkeys(
+    "shift+d",
+    () => {
+      if (!enabled) {
+        toggleDebug();
+        toggleDebugMenu();
+      } else {
+        toggleDebugMenu();
+      }
+    },
+    { enabled: true },
+    [enabled, toggleDebug, toggleDebugMenu]
+  );
 
   const tools = getDebugTools();
 
