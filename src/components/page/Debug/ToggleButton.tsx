@@ -1,4 +1,4 @@
-import { StyledDebugMenuButton } from "@/components/system/Debug/styles";
+import { StyledDebugMenuButton } from "@/components/page/Debug/styles";
 
 type ToggleButtonProps<T = boolean> = {
   label: string;

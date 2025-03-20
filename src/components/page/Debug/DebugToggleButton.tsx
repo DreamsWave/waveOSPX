@@ -1,5 +1,5 @@
-import ToggleButton from "@/components/system/Debug/ToggleButton";
-import { DebugToggleType } from "@/components/system/Debug/types";
+import ToggleButton from "@/components/page/Debug/ToggleButton";
+import { DebugToggleType } from "@/components/page/Debug/types";
 import useCamera from "@/hooks/useCamera";
 import useDebug from "@/hooks/useDebug";
 import useSettings from "@/hooks/useSettings";

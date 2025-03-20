@@ -1,4 +1,4 @@
-import ErrorBoundary from "@/components/ErrorBoundary";
+import ErrorBoundary from "@/components/page/ErrorBoundary";
 import { BackgroundProvider } from "@/contexts/background";
 import { RootState, store } from "@/store";
 import GlobalStyle from "@/styles/GlobalStyle";

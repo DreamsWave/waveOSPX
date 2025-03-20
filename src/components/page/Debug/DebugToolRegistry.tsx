@@ -1,5 +1,5 @@
-import DebugToggleButton from "@/components/system/Debug/DebugToggleButton";
-import { DebugTool } from "@/components/system/Debug/types";
+import DebugToggleButton from "@/components/page/Debug/DebugToggleButton";
+import { DebugTool } from "@/components/page/Debug/types";
 
 const debugTools: DebugTool[] = [];
 

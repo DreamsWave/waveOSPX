@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
-export const StyledDebug = styled.div<{ $isVisible: boolean }>`
+export const StyledDebug = styled.div`
   position: fixed;
   top: 0;
   right: 0;
   z-index: ${({ theme }) => theme.sizes.zIndex?.top || 1000};
-  display: ${({ $isVisible }) => ($isVisible ? "flex" : "none")};
+  display: flex;
   flex-direction: column;
   align-items: end;
 `;
@@ -27,8 +27,8 @@ export const StyledDebugButton = styled.button`
   }
 `;
 
-export const StyledDebugMenu = styled.ul<{ $isVisible: boolean }>`
-  display: ${({ $isVisible }) => ($isVisible ? "flex" : "none")};
+export const StyledDebugMenu = styled.ul`
+  display: flex;
   flex-direction: column;
   align-items: end;
   gap: 5px;

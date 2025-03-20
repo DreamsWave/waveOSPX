@@ -1,17 +1,16 @@
 import useDebug from "@/hooks/useDebug";
-import { debounce } from "@/utils/functions";
 import { motion, MotionValue } from "motion/react";
 import { memo, useCallback, useEffect, useMemo, useRef } from "react";
+import { useHotkeys } from "react-hotkeys-hook";
 import styled, { useTheme } from "styled-components";
 
-const StyledCanvas = styled(motion.canvas)<{ $isVisible: boolean }>`
+const StyledCanvas = styled(motion.canvas)`
   position: absolute;
   top: 50%;
   left: 50%;
   translate: -50% -50%;
   width: ${({ theme }) => theme.sizes.backgroundImageSize.width}px;
   height: ${({ theme }) => theme.sizes.backgroundImageSize.height}px;
-  visibility: ${({ $isVisible }) => ($isVisible ? "visible" : "hidden")};
   z-index: ${({ theme }) => theme.sizes.zIndex.middle};
 `;
 
@@ -23,18 +22,11 @@ type Props = {
   y: MotionValue<number>;
 };
 
-/**
- * Renders a pixel grid overlay that moves with the background.
- * @param cellSize - Optional custom cell size overriding the Redux state
- * @param lineColor - Optional custom line color
- * @param lineWidth - Optional custom line width
- * @param x - Horizontal motion value from Framer Motion
- * @param y - Vertical motion value from Framer Motion
- */
 const PixelGridCanvas = memo(
   ({ cellSize: propCellSize, lineColor, lineWidth, x, y }: Props) => {
     const {
       pixelGrid: { cellSize: reduxCellSize, enabled },
+      togglePixelGrid,
     } = useDebug();
     const theme = useTheme();
     const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -78,16 +70,14 @@ const PixelGridCanvas = memo(
     }, [pixelSize, theme, lineColor, lineWidth]);
 
     useEffect(() => {
-      if (!enabled) return;
-      redraw();
-      const handleResize = debounce(() => requestAnimationFrame(redraw), 200);
-      window.addEventListener("resize", handleResize);
-      return () => window.removeEventListener("resize", handleResize);
+      if (enabled) redraw();
     }, [enabled, redraw]);
 
-    return (
-      <StyledCanvas $isVisible={enabled} ref={canvasRef} style={{ x, y }} />
-    );
+    useHotkeys("shift+g", togglePixelGrid);
+
+    if (!enabled) return null;
+
+    return <StyledCanvas ref={canvasRef} style={{ x, y }} />;
   }
 );
 
