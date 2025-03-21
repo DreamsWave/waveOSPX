@@ -7,6 +7,21 @@ export const baseColors = {
     text: "#fff",
     pixelGridLineColor: "#ff0000",
   },
+  pc: {
+    desktop: {
+      background: "#f0f0f0",
+      text: "#000000",
+    },
+    window: {
+      background: "#1a1e22",
+      text: "#ebf0f6",
+      titleBar: {
+        background: "rgb(17, 21, 24)",
+        backgroundHover: "#2c323a",
+        text: "#ebf0f6",
+      },
+    },
+  },
 };
 
 export const baseSizes = {

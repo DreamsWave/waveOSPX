@@ -1,10 +1,10 @@
-import { launchApplication } from "@/features/applications/launchApplication";
+import { launchApplication } from "@/features/pc/applications/launchApplication";
 
 const StartMenu = () => {
   return (
     <div>
       start menu
-      <button onClick={() => launchApplication("TextEditor")}>
+      <button onClick={() => launchApplication("textEditor")}>
         launch text editor
       </button>
     </div>

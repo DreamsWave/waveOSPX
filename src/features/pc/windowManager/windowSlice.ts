@@ -1,76 +1,79 @@
-import { Window } from "@/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface WindowState {
-  windows: Window[];
+export interface WindowState {
+  id: string;
+  title: string;
+  position: { x: number; y: number };
+  size: { width: number; height: number };
+  isMinimized: boolean;
+  isMaximized: boolean;
+  application: "textEditor" | "musicPlayer";
+  processId?: string;
 }
 
-const initialState: WindowState = {
+interface WindowsState {
+  windows: WindowState[];
+  focusedWindowId: string | null;
+}
+
+const initialState: WindowsState = {
   windows: [],
+  focusedWindowId: null,
 };
 
 const windowSlice = createSlice({
-  name: "window",
+  name: "windows",
   initialState,
   reducers: {
-    addWindow: (state, action: PayloadAction<Window>) => {
-      const newWindow: Window = action.payload;
-      state = { ...state, windows: [...state.windows, newWindow] };
+    addWindow: (state, action: PayloadAction<WindowState>) => {
+      state.windows.push(action.payload);
+      state.focusedWindowId = action.payload.id;
     },
-    removeWindow: (state, action: PayloadAction<string>) => {
-      state = {
-        ...state,
-        windows: state.windows.filter((window) => window.id !== action.payload),
-      };
-    },
-    updateWindow: (state, action: PayloadAction<Window>) => {
-      const updatedWindow: Window = action.payload;
-      state = {
-        ...state,
-        windows: state.windows.map((window) =>
-          window.id === updatedWindow.id ? updatedWindow : window
-        ),
-      };
+    setFocusedWindow: (state, action: PayloadAction<string>) => {
+      state.focusedWindowId = action.payload;
     },
     minimizeWindow: (state, action: PayloadAction<string>) => {
-      state = {
-        ...state,
-        windows: state.windows.map((window) =>
-          window.id === action.payload
-            ? { ...window, isMinimized: true }
-            : window
-        ),
-      };
+      const window = state.windows.find((w) => w.id === action.payload);
+      if (window) window.isMinimized = true;
     },
     maximizeWindow: (state, action: PayloadAction<string>) => {
-      state = {
-        ...state,
-        windows: state.windows.map((window) =>
-          window.id === action.payload
-            ? { ...window, isMaximized: true }
-            : window
-        ),
-      };
+      const window = state.windows.find((w) => w.id === action.payload);
+      if (window) window.isMaximized = !window.isMaximized;
     },
-    restoreWindow: (state, action: PayloadAction<string>) => {
-      state = {
-        ...state,
-        windows: state.windows.map((window) =>
-          window.id === action.payload
-            ? { ...window, isMinimized: false, isMaximized: false }
-            : window
-        ),
-      };
+    updateWindowPosition: (
+      state,
+      action: PayloadAction<{ id: string; x: number; y: number }>
+    ) => {
+      const window = state.windows.find((w) => w.id === action.payload.id);
+      if (window)
+        window.position = { x: action.payload.x, y: action.payload.y };
+    },
+    updateWindowSize: (
+      state,
+      action: PayloadAction<{ id: string; width: number; height: number }>
+    ) => {
+      const window = state.windows.find((w) => w.id === action.payload.id);
+      if (window)
+        window.size = {
+          width: action.payload.width,
+          height: action.payload.height,
+        };
+    },
+    removeWindow: (state, action: PayloadAction<string>) => {
+      state.windows = state.windows.filter((w) => w.id !== action.payload);
+      if (state.focusedWindowId === action.payload)
+        state.focusedWindowId = null;
     },
   },
 });
 
 export const {
   addWindow,
-  removeWindow,
-  updateWindow,
+  setFocusedWindow,
   minimizeWindow,
   maximizeWindow,
-  restoreWindow,
+  updateWindowPosition,
+  updateWindowSize,
+  removeWindow,
 } = windowSlice.actions;
 export default windowSlice.reducer;

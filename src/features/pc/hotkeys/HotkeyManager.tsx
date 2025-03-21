@@ -1,9 +1,9 @@
-import { launchApplication } from "@/features/applications/launchApplication";
 import {
   toggleDebug,
   toggleDebugMenu,
   togglePixelGrid,
 } from "@/features/debug/debugSlice";
+import { launchApplication } from "@/features/pc/applications/launchApplication";
 import {
   DEBUG_HOTKEY,
   TEXT_EDITOR_HOTKEY,

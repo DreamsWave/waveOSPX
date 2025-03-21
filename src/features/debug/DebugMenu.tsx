@@ -5,13 +5,14 @@ import {
   StyledDebugMenuItem,
 } from "@/features/debug/styles";
 import { toggleMode } from "@/features/mode/modeSlice";
+import { launchApplication } from "@/features/pc/applications/launchApplication";
 import { toggleReducedMotion } from "@/features/settings/settingsSlice";
 import { switchToNextTheme } from "@/features/theme/themeSlice";
-import { RootState } from "@/store";
-import { useDispatch, useSelector } from "react-redux";
+import { RootState, useAppDispatch } from "@/store";
+import { useSelector } from "react-redux";
 
 const DebugMenu = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const debug = useSelector((state: RootState) => state.debug);
   const theme = useSelector((state: RootState) => state.theme);
   const mode = useSelector((state: RootState) => state.mode);
@@ -41,32 +42,15 @@ const DebugMenu = () => {
           reducedMotion: {String(settings.reducedMotion)}
         </StyledDebugMenuButton>
       </StyledDebugMenuItem>
+      <StyledDebugMenuItem>
+        <StyledDebugMenuButton
+          onClick={() => dispatch(launchApplication("musicPlayer"))}
+        >
+          open window
+        </StyledDebugMenuButton>
+      </StyledDebugMenuItem>
     </StyledDebugMenu>
   );
 };
 
 export default DebugMenu;
-
-// import { StyledDebugMenu, StyledDebugMenuItem } from "@/features/debug/styles";
-// import { DebugTool } from "@/features/debug/types";
-
-// const DebugMenu = ({
-//   tools,
-//   isVisible,
-// }: {
-//   tools: DebugTool[];
-//   isVisible: boolean;
-// }) => {
-//   if (!isVisible) return null;
-//   return (
-//     <StyledDebugMenu>
-//       {tools.map((tool) => (
-//         <StyledDebugMenuItem key={tool.label}>
-//           {tool.component}
-//         </StyledDebugMenuItem>
-//       ))}
-//     </StyledDebugMenu>
-//   );
-// };
-
-// export default DebugMenu;
