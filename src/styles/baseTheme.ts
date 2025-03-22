@@ -31,10 +31,22 @@ export const baseColors = {
       },
     },
   },
+  phone: {
+    background: "#abaebe",
+    text: "#3a4568",
+    border: "#434549",
+  },
 };
 
 export const baseSizes = {
   pixelSize: 3,
+  fontSizes: {
+    xs: 4,
+    sm: 5,
+    base: 6,
+    lg: 7,
+    xl: 8,
+  },
   monitor: {
     screen: {
       resolution: { height: 770, width: 1020 },
