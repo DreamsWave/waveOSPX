@@ -8,17 +8,26 @@ export const baseColors = {
     pixelGridLineColor: "#ff0000",
   },
   pc: {
+    border: "#434549",
     desktop: {
-      background: "#f0f0f0",
-      text: "#000000",
+      background: "#abaebe",
+      text: "#3a4568",
+      shortcut: {
+        text: "#3a4568",
+      },
     },
+    taskbar: {
+      background: "#bac7db",
+      text: "#615f84",
+    },
+
     window: {
-      background: "#1a1e22",
-      text: "#ebf0f6",
+      background: "#bac7db",
+      text: "#615f84",
       titleBar: {
-        background: "rgb(17, 21, 24)",
+        background: "#8690b2",
         backgroundHover: "#2c323a",
-        text: "#ebf0f6",
+        text: "#f5f7fa",
       },
     },
   },
@@ -30,6 +39,23 @@ export const baseSizes = {
     screen: {
       resolution: { height: 770, width: 1020 },
       position: { xPX: 180, yPX: 65 },
+    },
+  },
+  pc: {
+    desktop: {
+      grid: {
+        gapXPX: 2,
+        gapYPX: 11,
+        paddingPX: 4,
+      },
+      shortcut: {
+        iconSizePX: 32,
+        fontSize: "14px",
+      },
+    },
+    taskbar: {
+      heightPX: 17,
+      borderWidthPX: 1,
     },
   },
   backgroundImageSize: { width: 2100, height: 1158 },

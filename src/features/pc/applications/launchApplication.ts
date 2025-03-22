@@ -10,6 +10,7 @@ import { v4 as uuidv4 } from "uuid";
 export const launchApplication =
   (appType: WindowState["application"], mode: Mode = "pc") =>
   (dispatch: Dispatch) => {
+    console.log("launch: ", appType);
     if (mode === "phone") return;
 
     const windowId = uuidv4();

@@ -9,11 +9,12 @@ import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
-const StyledWindowManager = styled.div`
+const StyledWindowManager = styled.div<{ $isVisible: boolean }>`
   position: relative;
   width: 100%;
   height: 100%;
   overflow: hidden;
+  z-index: ${({ $isVisible }) => ($isVisible ? 10 : -1)};
 `;
 
 const WindowManager = () => {
@@ -22,7 +23,7 @@ const WindowManager = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   return (
-    <StyledWindowManager ref={containerRef}>
+    <StyledWindowManager ref={containerRef} $isVisible={!!windows.length}>
       {windows.map((window) => (
         <Window
           key={window.id}
