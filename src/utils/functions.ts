@@ -18,3 +18,10 @@ export const getFontSize = (
 ): RuleSet => css`
   ${({ theme }) => `${theme.sizes.fontSizes[type] * theme.sizes.pixelSize}px`}
 `;
+
+export const getFormattedTime = (): string => {
+  return new Date().toLocaleTimeString("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+};

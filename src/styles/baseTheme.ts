@@ -19,6 +19,15 @@ export const baseColors = {
     taskbar: {
       background: "#bac7db",
       text: "#615f84",
+      separator: "#8690b2",
+      startMenuButton: {
+        background: "#8690b2",
+        // backgroundHover: "#8690b2",
+        text: "#f5f7fa",
+      },
+      time: {
+        color: "#615f84",
+      },
     },
 
     window: {
