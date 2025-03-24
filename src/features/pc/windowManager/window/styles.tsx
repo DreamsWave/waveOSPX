@@ -23,5 +23,6 @@ export const StyledWindowContent = styled.div`
       ${({ theme }) =>
         theme.sizes.pc.window.titleBar.heightPX * theme.sizes.pixelSize}px
   );
+  width: 100%;
   overflow: auto;
 `;

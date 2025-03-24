@@ -1,4 +1,5 @@
 import MusicPlayerIcon from "@/assets/icons/music-player-64-64-x3.png";
+import TextEditorIcon from "@/assets/pc/icons/apps/text-editor.png";
 import { Mode } from "@/features/mode/modeSlice";
 import { startProcess } from "@/features/pc/processManager/processSlice";
 import {
@@ -24,7 +25,7 @@ export const launchApplication =
       isMaximized: false,
       application: appType,
       processId: appType === "musicPlayer" ? windowId : undefined,
-      icon: appType === "musicPlayer" ? MusicPlayerIcon : "",
+      icon: appType === "musicPlayer" ? MusicPlayerIcon : TextEditorIcon,
     };
 
     dispatch(addWindow(newWindow));
