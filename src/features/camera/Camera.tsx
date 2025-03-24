@@ -1,11 +1,8 @@
 import { useBackground } from "@/features/background/backgroundContext";
+import { THROTTLE_DELAY_MS } from "@/features/camera/constants";
+import { getDynamicScrollSpeed } from "@/features/camera/functions";
 import { StyledCamera } from "@/features/camera/styles";
 import { RootState } from "@/store";
-import {
-  BACKGROUND_SCROLL_SPEED_X,
-  BACKGROUND_SCROLL_SPEED_Y,
-  THROTTLE_DELAY_MS,
-} from "@/utils/constants";
 import { useMouse, useThrottle, useWindowSize } from "@uidotdev/usehooks";
 import { memo, useEffect, useMemo } from "react";
 import { isMobile } from "react-device-detect";
@@ -21,11 +18,9 @@ const Camera = memo(() => {
   const [mousePosition] = useMouse();
   const { width, height } = useWindowSize();
 
-  // Throttle mouse coordinates separately for performance
   const throttledX = useThrottle(mousePosition.x ?? 0, THROTTLE_DELAY_MS);
   const throttledY = useThrottle(mousePosition.y ?? 0, THROTTLE_DELAY_MS);
 
-  // Compute isSmallScreen reactively based on window size
   const isSmallScreen = useMemo(
     () =>
       width != null &&
@@ -35,7 +30,11 @@ const Camera = memo(() => {
     [width, height, monitor.screen.resolution]
   );
 
-  // Effect to set background to 0 under specific conditions
+  const scrollSpeeds = useMemo(() => {
+    if (!width || !height) return { speedX: 2, speedY: 2 }; // Fallback to base speed
+    return getDynamicScrollSpeed(width, height, throttledX, throttledY);
+  }, [width, height, throttledX, throttledY]);
+
   useEffect(() => {
     if (reducedMotion || isMobile || isSmallScreen) {
       backgroundX.set(0);
@@ -43,21 +42,16 @@ const Camera = memo(() => {
     }
   }, [reducedMotion, isSmallScreen, backgroundX, backgroundY]);
 
-  // Effect to update background position based on throttled mouse movement
   useEffect(() => {
-    if (
-      reducedMotion ||
-      isMobile ||
-      isSmallScreen ||
-      width == null ||
-      height == null
-    ) {
-      return;
-    }
+    if (reducedMotion || isMobile || isSmallScreen || !width || !height) return;
+
     const centerX = width / 2;
     const centerY = height / 2;
-    const rawX = ((throttledX - centerX) / centerX) * BACKGROUND_SCROLL_SPEED_X;
-    const rawY = ((throttledY - centerY) / centerY) * BACKGROUND_SCROLL_SPEED_Y;
+    const { speedX, speedY } = scrollSpeeds;
+
+    const rawX = ((throttledX - centerX) / centerX) * -speedX;
+    const rawY = ((throttledY - centerY) / centerY) * -speedY;
+
     const clampedX = clampBackgroundPosition(
       backgroundImageSize.width,
       backgroundImageSize.height,
@@ -70,8 +64,9 @@ const Camera = memo(() => {
       rawY,
       "y"
     );
-    backgroundX.set(clampedX);
-    backgroundY.set(clampedY);
+
+    backgroundX.set(Math.round(clampedX));
+    backgroundY.set(Math.round(clampedY));
   }, [
     throttledX,
     throttledY,
@@ -79,32 +74,32 @@ const Camera = memo(() => {
     height,
     reducedMotion,
     isSmallScreen,
+    scrollSpeeds,
     backgroundX,
     backgroundY,
     clampBackgroundPosition,
     backgroundImageSize,
   ]);
 
-  // Effect to clamp background position on window resize
   useEffect(() => {
-    if (width != null && height != null) {
-      backgroundX.set(
-        clampBackgroundPosition(
-          backgroundImageSize.width,
-          backgroundImageSize.height,
-          backgroundX.get(),
-          "x"
-        )
-      );
-      backgroundY.set(
-        clampBackgroundPosition(
-          backgroundImageSize.width,
-          backgroundImageSize.height,
-          backgroundY.get(),
-          "y"
-        )
-      );
-    }
+    if (!width || !height) return;
+
+    backgroundX.set(
+      clampBackgroundPosition(
+        backgroundImageSize.width,
+        backgroundImageSize.height,
+        backgroundX.get(),
+        "x"
+      )
+    );
+    backgroundY.set(
+      clampBackgroundPosition(
+        backgroundImageSize.width,
+        backgroundImageSize.height,
+        backgroundY.get(),
+        "y"
+      )
+    );
   }, [
     width,
     height,
@@ -113,52 +108,6 @@ const Camera = memo(() => {
     clampBackgroundPosition,
     backgroundImageSize,
   ]);
-
-  // // Hotkeys for manual background movement
-  // useHotkeys("ArrowLeft", () => {
-  //   const newX = backgroundX.get() - BACKGROUND_SCROLL_SPEED_X;
-  //   backgroundX.set(
-  //     clampBackgroundPosition(
-  //       backgroundImageSize.width,
-  //       backgroundImageSize.height,
-  //       newX,
-  //       "x"
-  //     )
-  //   );
-  // });
-  // useHotkeys("ArrowRight", () => {
-  //   const newX = backgroundX.get() + BACKGROUND_SCROLL_SPEED_X;
-  //   backgroundX.set(
-  //     clampBackgroundPosition(
-  //       backgroundImageSize.width,
-  //       backgroundImageSize.height,
-  //       newX,
-  //       "x"
-  //     )
-  //   );
-  // });
-  // useHotkeys("ArrowUp", () => {
-  //   const newY = backgroundY.get() - BACKGROUND_SCROLL_SPEED_Y;
-  //   backgroundY.set(
-  //     clampBackgroundPosition(
-  //       backgroundImageSize.width,
-  //       backgroundImageSize.height,
-  //       newY,
-  //       "y"
-  //     )
-  //   );
-  // });
-  // useHotkeys("ArrowDown", () => {
-  //   const newY = backgroundY.get() + BACKGROUND_SCROLL_SPEED_Y;
-  //   backgroundY.set(
-  //     clampBackgroundPosition(
-  //       backgroundImageSize.width,
-  //       backgroundImageSize.height,
-  //       newY,
-  //       "y"
-  //     )
-  //   );
-  // });
 
   return <StyledCamera />;
 });

@@ -49,7 +49,7 @@ export const baseSizes = {
   },
   monitor: {
     screen: {
-      resolution: { height: 770, width: 1020 },
+      resolution: { height: 768, width: 1020 },
       position: { xPX: 180, yPX: 65 },
     },
   },
