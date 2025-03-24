@@ -1,11 +1,17 @@
+import WindowTextureSVG from "@/assets/pc/textures/window/window.svg";
 import MusicPlayer from "@/features/pc/applications/musicPlayer/MusicPlayer";
-import { StyledWindow } from "@/features/pc/windowManager/window/styles";
+import {
+  StyledWindow,
+  StyledWindowContent,
+} from "@/features/pc/windowManager/window/styles";
+import Titlebar from "@/features/pc/windowManager/window/titlebar";
 import {
   maximizeWindow,
   updateWindowPosition,
   updateWindowSize,
   WindowState,
 } from "@/features/pc/windowManager/windowSlice";
+import NinePatch from "@/shared/components/NinePatch";
 import { RootState } from "@/store";
 import { memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,7 +21,6 @@ import {
   type RndDragEvent,
   type RndResizeCallback,
 } from "react-rnd";
-import Titlebar from "./titlebar";
 
 type Props = {
   windowState: WindowState;
@@ -119,21 +124,25 @@ const Window = memo(
           $isFocused={isFocused}
           $isMinimized={windowState.isMinimized}
         >
-          <Titlebar
-            id={windowState.id}
-            title={windowState.title}
-            onMinimize={onMinimize}
-            onMaximize={handleMaximize}
-            onClose={onClose}
-            isMaximized={windowState.isMaximized}
-          />
-          <div style={{ height: "calc(100% - 30px)", overflow: "auto" }}>
-            {windowState.application === "musicPlayer" ? (
-              <MusicPlayer windowId={windowState.id} />
-            ) : (
-              <div>{windowState.title} Content</div>
-            )}
-          </div>
+          <NinePatch texture={WindowTextureSVG} patchMargin={1}>
+            <Titlebar
+              id={windowState.id}
+              title={windowState.title}
+              onMinimize={onMinimize}
+              onMaximize={handleMaximize}
+              onClose={onClose}
+              isMaximized={windowState.isMaximized}
+              isFocused={isFocused}
+              icon={windowState.icon}
+            />
+            <StyledWindowContent>
+              {windowState.application === "musicPlayer" ? (
+                <MusicPlayer windowId={windowState.id} />
+              ) : (
+                <div>{windowState.title} Content</div>
+              )}
+            </StyledWindowContent>
+          </NinePatch>
         </StyledWindow>
       </Rnd>
     );

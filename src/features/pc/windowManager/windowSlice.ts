@@ -9,6 +9,7 @@ export interface WindowState {
   isMaximized: boolean;
   application: "textEditor" | "musicPlayer";
   processId?: string;
+  icon?: string;
 }
 
 interface WindowsState {

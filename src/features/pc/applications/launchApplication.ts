@@ -1,3 +1,4 @@
+import MusicPlayerIcon from "@/assets/icons/music-player-64-64-x3.png";
 import { Mode } from "@/features/mode/modeSlice";
 import { startProcess } from "@/features/pc/processManager/processSlice";
 import {
@@ -18,11 +19,12 @@ export const launchApplication =
       id: windowId,
       title: appType === "musicPlayer" ? "Music Player" : appType,
       position: { x: 100, y: 100 },
-      size: { width: 300, height: 200 },
+      size: { width: 500, height: 400 },
       isMinimized: false,
       isMaximized: false,
       application: appType,
       processId: appType === "musicPlayer" ? windowId : undefined,
+      icon: appType === "musicPlayer" ? MusicPlayerIcon : "",
     };
 
     dispatch(addWindow(newWindow));

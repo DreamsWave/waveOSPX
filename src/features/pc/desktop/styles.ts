@@ -50,6 +50,4 @@ export const StyledShortcutsGridItem = styled.li`
   height: min-content;
   outline-offset: ${px(-1)};
   padding: ${px(1)};
-
-  /* background: rgba(0, 0, 0, 0.1); // temp */
 `;

@@ -24,9 +24,11 @@ export const baseColors = {
     window: {
       background: "#bac7db",
       text: "#615f84",
+      outline: "#434549",
+      outlineFocused: "#828b98",
       titleBar: {
-        background: "#8690b2",
-        backgroundHover: "#2c323a",
+        background: "#a7b1d1",
+        backgroundFocused: "#8690b2",
         text: "#f5f7fa",
       },
     },
@@ -68,6 +70,9 @@ export const baseSizes = {
     taskbar: {
       heightPX: 17,
       borderWidthPX: 1,
+    },
+    window: {
+      titleBar: { heightPX: 11 },
     },
   },
   backgroundImageSize: { width: 2100, height: 1158 },

@@ -3,8 +3,10 @@ import styled from "styled-components";
 
 const NinePatchBase = styled.div<{ $texture: string; $patchMargin?: number }>`
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
-  height: auto;
+  height: 100%;
   width: 100%;
   border-style: solid;
   border-color: #000;
@@ -15,10 +17,10 @@ const NinePatchBase = styled.div<{ $texture: string; $patchMargin?: number }>`
 
 type NinePatchProps = {
   texture: string;
-  patchMargin: number;
+  patchMargin?: number;
   children: React.ReactNode;
 };
-function NinePatch({ texture, patchMargin, children }: NinePatchProps) {
+function NinePatch({ texture, patchMargin = 0, children }: NinePatchProps) {
   return (
     <NinePatchBase $texture={texture} $patchMargin={patchMargin}>
       {children}
