@@ -23,7 +23,7 @@ export const StyledTaskbarButtonContent = styled.div`
   flex-wrap: nowrap;
 `;
 
-export const StyledTaskbarButtonLabel = styled.span`
+export const StyledTaskbarButtonTitle = styled.span`
   white-space: nowrap;
   text-overflow: ellipsis;
   padding-top: ${px(1)};

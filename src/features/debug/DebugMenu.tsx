@@ -5,7 +5,7 @@ import {
   StyledDebugMenuItem,
 } from "@/features/debug/styles";
 import { toggleMode } from "@/features/mode/modeSlice";
-import { launchApplication } from "@/features/pc/applications/launchApplication";
+import { launchApplication } from "@/features/pc/process/functions";
 import { toggleReducedMotion } from "@/features/settings/settingsSlice";
 import { switchToNextTheme } from "@/features/theme/themeSlice";
 import { RootState, useAppDispatch } from "@/store";

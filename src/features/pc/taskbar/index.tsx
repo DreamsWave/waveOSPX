@@ -1,3 +1,7 @@
+import {
+  minimizeProcess,
+  setFocusedProcess,
+} from "@/features/pc/process/processSlice";
 import StartMenuButton from "@/features/pc/taskbar/StartMenuButton";
 import {
   StyledTaskbar,
@@ -6,62 +10,31 @@ import {
 } from "@/features/pc/taskbar/styles";
 import SystemTray from "@/features/pc/taskbar/systemTray";
 import TaskbarButton from "@/features/pc/taskbar/taskbarButton";
-import {
-  minimizeWindow,
-  setFocusedWindow,
-  updateWindowPosition,
-  updateWindowSize,
-  WindowState,
-} from "@/features/pc/windowManager/windowSlice";
 import { RootState } from "@/store";
 import { useDispatch, useSelector } from "react-redux";
 
 const Taskbar = () => {
   const dispatch = useDispatch();
-  const { windows, focusedWindowId } = useSelector(
-    (state: RootState) => state.windows
+  const processes = useSelector(
+    (state: RootState) => state.processes.processes
+  );
+  const focusedProcessId = useSelector(
+    (state: RootState) => state.processes.focusedProcessId
   );
 
-  const handleMinimizeWindow = (windowState: WindowState) => {
-    dispatch(minimizeWindow(windowState.id));
-    dispatch(updateWindowSize({ id: windowState.id, height: 0, width: 0 }));
-    dispatch(updateWindowPosition({ id: windowState.id, x: 0, y: 0 }));
-    setAvailableFocus();
-  };
+  const handleTaskbarClick = (id: string) => {
+    const process = processes[id];
+    if (!process) return;
 
-  const handleUnMinimizeWindow = (windowState: WindowState) => {
-    dispatch(
-      updateWindowSize({
-        id: windowState.id,
-        width: windowState.size.width,
-        height: windowState.size.height,
-      })
-    );
-    dispatch(
-      updateWindowPosition({
-        id: windowState.id,
-        x: windowState.position.x,
-        y: windowState.position.y,
-      })
-    );
-    dispatch(setFocusedWindow(windowState.id));
-  };
-
-  const setAvailableFocus = () => {
-    const notMinimizedWindows = windows.filter((w) => !w.isMinimized);
-    if (notMinimizedWindows.length) {
-      dispatch(
-        setFocusedWindow(notMinimizedWindows[notMinimizedWindows.length - 1].id)
-      );
-    }
-  };
-
-  // implement
-  const handleClick = (windowState: WindowState) => {
-    if (windowState.isMinimized) {
-      handleMinimizeWindow(windowState);
+    if (process.minimized) {
+      dispatch(minimizeProcess(id));
+      dispatch(setFocusedProcess(id));
+    } else if (process.id === focusedProcessId) {
+      // If focused and not minimized, minimize it
+      dispatch(minimizeProcess(id));
     } else {
-      handleUnMinimizeWindow(windowState);
+      // If not focused, bring it to the front
+      dispatch(setFocusedProcess(id));
     }
   };
 
@@ -70,13 +43,14 @@ const Taskbar = () => {
       <StartMenuButton />
       <StyledTaskbarSeparator />
       <StyledTaskbarAppButtons>
-        {windows.map((window) => (
+        {Object.values(processes).map((process) => (
           <TaskbarButton
-            key={window.id}
-            icon={window.icon}
-            label={window.title}
-            isActive={window.id === focusedWindowId}
-            onClick={() => handleClick(window)}
+            key={process.id}
+            isFocused={process.id === focusedProcessId}
+            isMinimized={process.minimized || false}
+            icon={process.icon}
+            title={process.title}
+            onClick={() => handleTaskbarClick(process.id)}
           />
         ))}
       </StyledTaskbarAppButtons>

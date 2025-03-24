@@ -11,7 +11,6 @@ export const StyledWindow = styled.section<{
       $isFocused
         ? theme.colors.pc.window.outline
         : theme.colors.pc.window.outlineFocused};
-  visibility: ${({ $isMinimized }) => ($isMinimized ? "none" : "block")};
   overflow: hidden;
   width: 100%;
   height: 100%;

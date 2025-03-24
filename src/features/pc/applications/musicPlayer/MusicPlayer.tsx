@@ -2,8 +2,10 @@ import { memo } from "react";
 import styled from "styled-components";
 
 const StyledMusicPlayer = styled.div`
-  padding: 10px;
-  color: ${({ theme }) => theme.colors.text};
+  height: 100%;
+  width: 100%;
+  background-color: #bac7db;
+  color: #615f84;
 `;
 
 type Props = {

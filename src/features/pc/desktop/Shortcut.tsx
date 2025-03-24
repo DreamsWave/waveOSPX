@@ -63,7 +63,7 @@ const StyledFigCaption = styled.figcaption`
 
 const Shortcut = ({ label = "", icon, action }: Props) => {
   return (
-    <StyledShortcutButton onClick={() => action && action()}>
+    <StyledShortcutButton onClick={action}>
       <StyledFigure>
         <StyledFigurePicture>
           <StyledFigureImage src={icon} alt={`${label} icon`} />

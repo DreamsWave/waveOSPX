@@ -1,8 +1,7 @@
 import cameraReducer from "@/features/camera/cameraSlice";
 import debugReducer from "@/features/debug/debugSlice";
 import modeReducer from "@/features/mode/modeSlice";
-import processReducer from "@/features/pc/processManager/processSlice";
-import windowReducer from "@/features/pc/windowManager/windowSlice";
+import processReducer from "@/features/pc/process/processSlice";
 import settingsReducer from "@/features/settings/settingsSlice";
 import themeReducer from "@/features/theme/themeSlice";
 import { configureStore } from "@reduxjs/toolkit";
@@ -15,7 +14,6 @@ export const store = configureStore({
     camera: cameraReducer,
     mode: modeReducer,
     theme: themeReducer,
-    windows: windowReducer,
     processes: processReducer,
   },
 });

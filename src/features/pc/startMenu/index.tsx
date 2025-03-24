@@ -1,14 +1,5 @@
-import { launchApplication } from "@/features/pc/applications/launchApplication";
-
 const StartMenu = () => {
-  return (
-    <div>
-      start menu
-      <button onClick={() => launchApplication("textEditor")}>
-        launch text editor
-      </button>
-    </div>
-  );
+  return <div>start menu</div>;
 };
 
 export default StartMenu;

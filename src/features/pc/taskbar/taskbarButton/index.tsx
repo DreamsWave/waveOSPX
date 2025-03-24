@@ -3,25 +3,28 @@ import TaskButtonTextureSVG from "@/assets/pc/textures/taskbar/button.svg";
 import {
   StyledTaskbarButton,
   StyledTaskbarButtonContent,
-  StyledTaskbarButtonLabel,
+  StyledTaskbarButtonTitle,
 } from "@/features/pc/taskbar/taskbarButton/styles";
 import NinePatch from "@/shared/components/NinePatch";
 import PxIcon from "@/shared/components/PxIcon";
 
 type Props = {
-  isActive?: boolean;
+  isFocused?: boolean;
+  isMinimized?: boolean;
   icon?: string;
-  label?: string;
+  title?: string;
   onClick?: () => void;
 };
 
 const TaskbarButton = ({
-  isActive = false,
+  isFocused = false,
+  isMinimized = false,
   icon = "",
-  label = "...",
+  title = "...",
   onClick,
   ...props
 }: Props) => {
+  const isActive = isFocused && !isMinimized;
   return (
     <StyledTaskbarButton onClick={onClick} {...props}>
       <NinePatch
@@ -30,9 +33,9 @@ const TaskbarButton = ({
       >
         <StyledTaskbarButtonContent>
           {icon && (
-            <PxIcon src={icon} height={6} width={6} alt={`${label} app icon`} />
+            <PxIcon src={icon} height={6} width={6} alt={`${title} app icon`} />
           )}
-          <StyledTaskbarButtonLabel>{label}</StyledTaskbarButtonLabel>
+          <StyledTaskbarButtonTitle>{title}</StyledTaskbarButtonTitle>
         </StyledTaskbarButtonContent>
       </NinePatch>
     </StyledTaskbarButton>

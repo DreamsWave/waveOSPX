@@ -7,7 +7,7 @@ import {
   StyledButton,
   StyledTitle,
   StyledTitlebar,
-} from "@/features/pc/windowManager/window/titlebar/styles";
+} from "@/features/pc/windows/window/titlebar/styles";
 import NinePatch from "@/shared/components/NinePatch";
 import PxIcon from "@/shared/components/PxIcon";
 import { memo } from "react";
@@ -19,7 +19,7 @@ type Props = {
   onMaximize: () => void;
   onClose: () => void;
   isMaximized: boolean;
-  isFocused?: boolean;
+  isFocused: boolean;
   icon?: string;
 };
 
@@ -31,8 +31,8 @@ const Titlebar = memo(
     onMaximize,
     onClose,
     isMaximized,
-    isFocused = false,
-    icon = "",
+    isFocused,
+    icon,
   }: Props) => {
     return (
       <StyledTitlebar

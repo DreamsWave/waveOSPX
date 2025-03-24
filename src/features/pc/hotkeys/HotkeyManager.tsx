@@ -3,12 +3,12 @@ import {
   toggleDebugMenu,
   togglePixelGrid,
 } from "@/features/debug/debugSlice";
-import { launchApplication } from "@/features/pc/applications/launchApplication";
 import {
   DEBUG_HOTKEY,
   TEXT_EDITOR_HOTKEY,
   TOGGLE_PIXEL_GRID_HOTKEY,
 } from "@/features/pc/hotkeys/constants";
+import { launchApplication } from "@/features/pc/process/functions";
 import { RootState } from "@/store";
 import { useHotkeys } from "react-hotkeys-hook";
 import { useDispatch, useSelector } from "react-redux";

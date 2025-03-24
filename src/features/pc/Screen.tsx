@@ -1,7 +1,7 @@
 import Desktop from "@/features/pc/desktop";
 import { StyledScreen } from "@/features/pc/styles";
 import Taskbar from "@/features/pc/taskbar";
-import WindowManager from "@/features/pc/windowManager/WindowManager";
+import Windows from "@/features/pc/windows";
 import { RootState } from "@/store";
 import { useRef } from "react";
 import { useSelector } from "react-redux";
@@ -12,7 +12,7 @@ export const Screen = () => {
   return (
     <StyledScreen ref={screenRef} $isFocused={currentMode === "pc"}>
       <Desktop />
-      <WindowManager containerRef={screenRef} />
+      <Windows containerRef={screenRef} />
       <Taskbar />
     </StyledScreen>
   );
