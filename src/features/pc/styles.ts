@@ -1,7 +1,7 @@
 import { getScreenMediaQuery } from "@/utils/functions";
 import styled from "styled-components";
 
-export const StyledScreen = styled.div<{ $isFocused: boolean }>`
+export const StyledScreen = styled.main<{ $isFocused: boolean }>`
   position: absolute;
   top: ${({ theme }) =>
     theme.sizes.monitor.screen.position.yPX * theme.sizes.pixelSize}px;
@@ -14,6 +14,7 @@ export const StyledScreen = styled.div<{ $isFocused: boolean }>`
   transition: filter 0.5s ease, scale 0.5s ease-in-out;
   filter: blur(${({ $isFocused }) => ($isFocused ? 0 : "1px")});
   scale: ${({ $isFocused }) => ($isFocused ? 1 : 0.95)};
+  overflow: hidden;
 
   ${getScreenMediaQuery()} {
     width: 100vw;
@@ -22,7 +23,7 @@ export const StyledScreen = styled.div<{ $isFocused: boolean }>`
     left: 0;
     scale: 1;
     position: fixed;
-    z-index: 1;
+    /* z-index: 1; */
   }
 `;
 

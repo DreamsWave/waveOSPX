@@ -1,7 +1,6 @@
 import { useBackground } from "@/features/background/backgroundContext";
 import { THROTTLE_DELAY_MS } from "@/features/camera/constants";
 import { getDynamicScrollSpeed } from "@/features/camera/functions";
-import { StyledCamera } from "@/features/camera/styles";
 import { RootState } from "@/store";
 import { useMouse, useThrottle, useWindowSize } from "@uidotdev/usehooks";
 import { memo, useEffect, useMemo } from "react";
@@ -109,7 +108,7 @@ const Camera = memo(() => {
     backgroundImageSize,
   ]);
 
-  return <StyledCamera />;
+  return null;
 });
 
 export default Camera;

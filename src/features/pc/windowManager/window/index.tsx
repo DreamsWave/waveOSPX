@@ -6,7 +6,6 @@ import {
 } from "@/features/pc/windowManager/window/styles";
 import Titlebar from "@/features/pc/windowManager/window/titlebar";
 import {
-  maximizeWindow,
   updateWindowPosition,
   updateWindowSize,
   WindowState,
@@ -25,13 +24,21 @@ import {
 type Props = {
   windowState: WindowState;
   containerRef: React.RefObject<HTMLDivElement | null>;
-  onFocus: () => void;
-  onMinimize: () => void;
-  onClose: () => void;
+  onFocus: (windowId: string) => void;
+  onMinimize: (windowId: string) => void;
+  onClose: (windowId: string) => void;
+  onMaximize: (windowId: string) => void;
 };
 
 const Window = memo(
-  ({ windowState, containerRef, onFocus, onMinimize, onClose }: Props) => {
+  ({
+    windowState,
+    containerRef,
+    onFocus,
+    onMinimize,
+    onClose,
+    onMaximize,
+  }: Props) => {
     const dispatch = useDispatch();
     const focusedWindowId = useSelector(
       (state: RootState) => state.windows.focusedWindowId
@@ -58,7 +65,7 @@ const Window = memo(
           })
         );
       }
-      onFocus();
+      onFocus(windowState.id);
     };
 
     const handleResizeStop: RndResizeCallback = (
@@ -90,16 +97,7 @@ const Window = memo(
           })
         );
       }
-      onFocus();
-    };
-
-    const handleMaximize = () => {
-      dispatch(maximizeWindow(windowState.id));
-      if (containerRef.current) {
-        const { width, height } = containerRef.current.getBoundingClientRect();
-        dispatch(updateWindowSize({ id: windowState.id, width, height }));
-        dispatch(updateWindowPosition({ id: windowState.id, x: 0, y: 0 }));
-      }
+      onFocus(windowState.id);
     };
 
     return (
@@ -128,9 +126,9 @@ const Window = memo(
             <Titlebar
               id={windowState.id}
               title={windowState.title}
-              onMinimize={onMinimize}
-              onMaximize={handleMaximize}
-              onClose={onClose}
+              onMinimize={() => onMinimize(windowState.id)}
+              onMaximize={() => onMaximize(windowState.id)}
+              onClose={() => onClose(windowState.id)}
               isMaximized={windowState.isMaximized}
               isFocused={isFocused}
               icon={windowState.icon}

@@ -1,25 +1,14 @@
 import { px } from "@/utils/functions";
 import styled from "styled-components";
 
-export const StyledDesktop = styled.div`
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background: ${({ theme }) => theme.colors.pc.desktop.background};
-`;
-
 export const StyledDesktopWrapper = styled.div`
   position: relative;
   height: 100%;
   width: 100%;
 `;
 
-export const StyledShortcutsGrid = styled.ol`
+export const StyledDesktop = styled.ol`
+  background: ${({ theme }) => theme.colors.pc.desktop.background};
   height: ${({ theme }) =>
     `calc(100% - ${
       theme.sizes.pc.taskbar.heightPX * theme.sizes.pixelSize
@@ -45,7 +34,7 @@ export const StyledShortcutsGrid = styled.ol`
   }
 `;
 
-export const StyledShortcutsGridItem = styled.li`
+export const StyledDesktopItem = styled.li`
   display: flex;
   height: min-content;
   outline-offset: ${px(-1)};

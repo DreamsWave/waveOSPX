@@ -1,40 +1,70 @@
 import Window from "@/features/pc/windowManager/window";
 import {
+  maximizeWindow,
   minimizeWindow,
   removeWindow,
   setFocusedWindow,
+  updateWindowPosition,
+  updateWindowSize,
 } from "@/features/pc/windowManager/windowSlice";
 import { RootState } from "@/store";
-import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import styled from "styled-components";
 
-const StyledWindowManager = styled.div<{ $isVisible: boolean }>`
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  z-index: ${({ $isVisible }) => ($isVisible ? 10 : -1)};
-`;
+type Props = {
+  containerRef: React.RefObject<HTMLDivElement | null>;
+};
 
-const WindowManager = () => {
+const WindowManager = ({ containerRef }: Props) => {
   const dispatch = useDispatch();
-  const windows = useSelector((state: RootState) => state.windows.windows);
-  const containerRef = useRef<HTMLDivElement | null>(null);
+  const { windows } = useSelector((state: RootState) => state.windows);
+
+  const handleWindowFocus = (windowId: string) => {
+    dispatch(setFocusedWindow(windowId));
+  };
+
+  const handleWindowMinimize = (windowId: string) => {
+    dispatch(minimizeWindow(windowId));
+    dispatch(updateWindowSize({ id: windowId, height: 0, width: 0 }));
+    dispatch(updateWindowPosition({ id: windowId, x: 0, y: 0 }));
+    setAvailableFocus();
+  };
+
+  const handleWindowClose = (windowId: string) => {
+    dispatch(removeWindow(windowId));
+  };
+
+  const handleWindowMaximize = (windowId: string) => {
+    dispatch(maximizeWindow(windowId));
+    if (containerRef.current) {
+      const { width, height } = containerRef.current.getBoundingClientRect();
+      dispatch(updateWindowSize({ id: windowId, width, height }));
+      dispatch(updateWindowPosition({ id: windowId, x: 0, y: 0 }));
+    }
+  };
+
+  const setAvailableFocus = () => {
+    const notMinimizedWindows = windows.filter((w) => !w.isMinimized);
+    if (notMinimizedWindows.length) {
+      dispatch(
+        setFocusedWindow(notMinimizedWindows[notMinimizedWindows.length - 1].id)
+      );
+    }
+  };
 
   return (
-    <StyledWindowManager ref={containerRef} $isVisible={!!windows.length}>
+    <>
       {windows.map((window) => (
         <Window
           key={window.id}
           windowState={window}
           containerRef={containerRef}
-          onFocus={() => dispatch(setFocusedWindow(window.id))}
-          onMinimize={() => dispatch(minimizeWindow(window.id))}
-          onClose={() => dispatch(removeWindow(window.id))}
+          onFocus={handleWindowFocus}
+          onMinimize={handleWindowMinimize}
+          onClose={handleWindowClose}
+          onMaximize={handleWindowMaximize}
         />
       ))}
-    </StyledWindowManager>
+    </>
   );
 };
 

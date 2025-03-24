@@ -1,7 +1,7 @@
-import PhoneButtonPress1Sound from "@/assets/sounds/phone/phone-button-press-1.wav";
-import PhoneButtonPress2Sound from "@/assets/sounds/phone/phone-button-press-2.wav";
-import PhoneButtonUnpressPress1Sound from "@/assets/sounds/phone/phone-button-unpress-1.wav";
-import PhoneButtonUnpressPress2Sound from "@/assets/sounds/phone/phone-button-unpress-2.wav";
+import PhoneButtonPress1Sound from "@/assets/phone/sounds/phone-button-press-1.wav";
+import PhoneButtonPress2Sound from "@/assets/phone/sounds/phone-button-press-2.wav";
+import PhoneButtonUnpressPress1Sound from "@/assets/phone/sounds/phone-button-unpress-1.wav";
+import PhoneButtonUnpressPress2Sound from "@/assets/phone/sounds/phone-button-unpress-2.wav";
 import { useCallback } from "react";
 
 const AudioVolume = 0.2;

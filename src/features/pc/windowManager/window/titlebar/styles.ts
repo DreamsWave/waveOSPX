@@ -1,7 +1,7 @@
 import { px } from "@/utils/functions";
 import styled from "styled-components";
 
-export const StyledTitlebar = styled.div<{
+export const StyledTitlebar = styled.header<{
   $isFocused: boolean;
   $isMaximized?: boolean;
 }>`

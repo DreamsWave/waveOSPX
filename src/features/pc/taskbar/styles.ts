@@ -1,7 +1,7 @@
 import { px } from "@/utils/functions";
 import styled from "styled-components";
 
-export const StyledTaskbar = styled.footer`
+export const StyledTaskbar = styled.nav`
   position: fixed;
   bottom: 0;
   left: 0;
@@ -15,6 +15,7 @@ export const StyledTaskbar = styled.footer`
   display: flex;
   gap: ${px(2)};
   padding: ${px(2)};
+  z-index: ${({ theme }) => theme.sizes.zIndex.highest};
 `;
 
 export const StyledTaskbarSeparator = styled.div`

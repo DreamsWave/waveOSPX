@@ -85,7 +85,7 @@ export const baseSizes = {
     },
   },
   backgroundImageSize: { width: 2100, height: 1158 },
-  zIndex: { top: 1000, middle: 500 },
+  zIndex: { highest: 9999, top: 1000, middle: 500 },
   debug: {
     pixelGridLineWidth: 0.5,
     buttonSize: 15,

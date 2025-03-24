@@ -12,16 +12,18 @@ type Props = {
   isActive?: boolean;
   icon?: string;
   label?: string;
+  onClick?: () => void;
 };
 
 const TaskbarButton = ({
   isActive = false,
   icon = "",
   label = "...",
+  onClick,
   ...props
 }: Props) => {
   return (
-    <StyledTaskbarButton {...props}>
+    <StyledTaskbarButton onClick={onClick} {...props}>
       <NinePatch
         texture={isActive ? TaskButtonActiveTextureSVG : TaskButtonTextureSVG}
         patchMargin={1}
