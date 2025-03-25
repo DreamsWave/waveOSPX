@@ -1,8 +1,8 @@
-import PhoneDPadPressedBottom from "@/assets/phone/textures/dpad/phone-dpad-pressed-bottom.svg";
-import PhoneDPadPressedLeft from "@/assets/phone/textures/dpad/phone-dpad-pressed-left.svg";
-import PhoneDPadPressedRight from "@/assets/phone/textures/dpad/phone-dpad-pressed-right.svg";
-import PhoneDPadPressedUp from "@/assets/phone/textures/dpad/phone-dpad-pressed-up.svg";
-import PhoneDPad from "@/assets/phone/textures/dpad/phone-dpad.svg";
+import PhoneDPadPressedBottom from "@/assets/textures/phone/dpad/phone-dpad-pressed-bottom.svg";
+import PhoneDPadPressedLeft from "@/assets/textures/phone/dpad/phone-dpad-pressed-left.svg";
+import PhoneDPadPressedRight from "@/assets/textures/phone/dpad/phone-dpad-pressed-right.svg";
+import PhoneDPadPressedUp from "@/assets/textures/phone/dpad/phone-dpad-pressed-up.svg";
+import PhoneDPad from "@/assets/textures/phone/dpad/phone-dpad.svg";
 import {
   DPadButton,
   DPadContainer,

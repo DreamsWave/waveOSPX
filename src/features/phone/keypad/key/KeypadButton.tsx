@@ -1,5 +1,5 @@
-import ButtonPressedSVG from "@/assets/phone/textures/button/button-pressed.svg";
-import ButtonSVG from "@/assets/phone/textures/button/button.svg";
+import ButtonPressedSVG from "@/assets/textures/phone/button/button-pressed.svg";
+import ButtonSVG from "@/assets/textures/phone/button/button.svg";
 import {
   KeypadButtonContainer,
   KeypadButtonContent,

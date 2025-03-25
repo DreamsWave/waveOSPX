@@ -1,4 +1,4 @@
-import TrayTextureSVG from "@/assets/pc/textures/taskbar/tray.svg";
+import TrayTextureSVG from "@/assets/textures/pc/tray.svg";
 import NinePatch from "@/shared/components/NinePatch";
 import { getFormattedTime, px } from "@/utils/functions";
 import { useEffect, useState } from "react";

@@ -1,5 +1,5 @@
-import TaskButtonActiveTextureSVG from "@/assets/pc/textures/taskbar/button-active.svg";
-import TaskButtonTextureSVG from "@/assets/pc/textures/taskbar/button.svg";
+import TaskButtonActiveTextureSVG from "@/assets/textures/pc/button-active.svg";
+import TaskButtonTextureSVG from "@/assets/textures/pc/button.svg";
 import {
   StyledTaskbarButton,
   StyledTaskbarButtonContent,
@@ -13,9 +13,6 @@ type Props = {
   isFocused?: boolean;
   isMinimized?: boolean;
   icon?: Icon;
-  iconSrc?: string;
-  iconHeight?: number;
-  iconWidth?: number;
   title?: string;
   onClick?: () => void;
 };
@@ -23,13 +20,7 @@ type Props = {
 const TaskbarButton = ({
   isFocused = false,
   isMinimized = false,
-  icon = {
-    name: "default-icon",
-    size: "sm",
-  },
-  iconSrc,
-  iconHeight,
-  iconWidth,
+  icon = { name: "default-icon", size: "xs" },
   title = "...",
   onClick,
   ...props
@@ -44,12 +35,13 @@ const TaskbarButton = ({
         <StyledTaskbarButtonContent>
           {icon && (
             <PxIcon
-              name={icon.name}
-              size="sm"
-              src={iconSrc}
-              height={iconHeight}
-              width={iconWidth}
-              alt={icon.alt ? icon.alt : `${title} app icon`}
+              icon={{
+                name: icon.name,
+                size: icon.size,
+                height: icon.height,
+                width: icon.width,
+                alt: icon.alt || `${title} icon`,
+              }}
             />
           )}
           {title && (

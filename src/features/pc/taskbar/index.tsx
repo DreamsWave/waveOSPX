@@ -52,6 +52,7 @@ const Taskbar = () => {
               name: process.icon.name,
               height: process.icon.height,
               width: process.icon.width,
+              size: "xs",
             }}
             title={process.title}
             onClick={() => handleTaskbarClick(process.id)}

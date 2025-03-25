@@ -1,9 +1,71 @@
+import { ICON_SIZE_MAP } from "@/constants/icons";
+import { IconExtension, IconSize } from "@/types/icons";
 import { css, DefaultTheme, RuleSet } from "styled-components";
 
-/**
- * Converts a size to pixels using theme's pixelSize or returns the size as-is if a string.
- * @param size - Number of pixel units
- */
+// Import all icons from src/assets/icons/
+const iconModules = import.meta.glob("/src/assets/icons/**/*.{png,svg}", {
+  eager: true,
+  query: "?url",
+  import: "default",
+});
+
+const ICON_CACHE = new Map<string, string>();
+
+// Build iconMap with size and single folder support, ensuring string URLs
+const iconMap: Record<string, string> = {};
+for (const [path, module] of Object.entries(iconModules)) {
+  const match = path.match(/\/src\/assets\/icons\/([^/]+)\/(.+)\.(png|svg)$/);
+  if (match) {
+    const [, folder, name] = match;
+    const key = folder === "single" ? name : `${folder}/${name}`;
+    // Coerce module to string: handle both string and { default: string } cases
+    iconMap[key] =
+      typeof module === "string"
+        ? module
+        : (module as { default: string }).default;
+  }
+}
+
+interface IconSourceOptions {
+  name: string;
+  size: IconSize;
+  variants?: Partial<Record<IconSize, string>>;
+  extension?: IconExtension;
+}
+
+const generateIconCacheKey = (options: IconSourceOptions): string => {
+  return `${options.name}-${options.size}-${options.extension || "png"}`;
+};
+
+export const getIconSource = ({
+  name,
+  size,
+  variants,
+  extension = "png",
+}: IconSourceOptions): string => {
+  const cacheKey = generateIconCacheKey({ name, size, extension });
+  if (ICON_CACHE.has(cacheKey)) {
+    return ICON_CACHE.get(cacheKey)!;
+  }
+
+  const variantFileName = variants?.[size] || name;
+  const sizeKey = `${ICON_SIZE_MAP[size]}/${variantFileName}`;
+  let iconSrc = iconMap[sizeKey] || iconMap[variantFileName]; // Check size folder or single
+
+  if (!iconSrc) {
+    console.error(`Icon not found: ${sizeKey}`);
+    iconSrc =
+      iconMap[`${ICON_SIZE_MAP[size]}/default-icon`] || iconMap["default-icon"];
+  }
+
+  if (iconSrc) {
+    ICON_CACHE.set(cacheKey, iconSrc);
+    return iconSrc;
+  }
+
+  throw new Error(`Default icon not found for size ${size}`);
+};
+
 export const px = (size: number = 1): RuleSet => css`
   ${({ theme }) => `${theme.sizes.pixelSize * size}px`}
 `;
@@ -24,78 +86,4 @@ export const getFormattedTime = (): string => {
     hour: "2-digit",
     minute: "2-digit",
   });
-};
-
-import { ICON_SIZE_MAP } from "@/constants/icons";
-import { Icon, IconExtension, IconSize } from "@/types/icons";
-
-interface IconSourceOptions {
-  name: Icon["name"];
-  size: IconSize;
-  extension?: IconExtension;
-}
-
-const ICON_CACHE = new Map<string, string>();
-
-/**
- * Generates a cache key for an icon
- */
-const generateIconCacheKey = (options: IconSourceOptions): string => {
-  return `${options.name}-${options.size}-${options.extension || "png"}`;
-};
-
-/**
- * Validates if the icon exists in the public directory
- */
-const validateIconPath = async (iconPath: string): Promise<boolean> => {
-  try {
-    const response = await fetch(iconPath, { method: "HEAD" });
-    return response.ok;
-  } catch {
-    return false;
-  }
-};
-
-/**
- * Gets the icon source URL with caching
- */
-export const getIconSource = async ({
-  name,
-  size,
-  extension = "png",
-}: IconSourceOptions): Promise<string> => {
-  const cacheKey = generateIconCacheKey({ name, size, extension });
-
-  // Check cache first
-  if (ICON_CACHE.has(cacheKey)) {
-    return ICON_CACHE.get(cacheKey)!;
-  }
-
-  // Construct the icon path using the size mapping
-  const iconPath = `/assets/icons/${ICON_SIZE_MAP[size]}/${name}.${extension}`;
-
-  try {
-    // Validate if the icon exists
-    const exists = await validateIconPath(iconPath);
-
-    if (!exists) {
-      throw new Error(`Icon not found: ${iconPath}`);
-    }
-
-    ICON_CACHE.set(cacheKey, iconPath);
-    return iconPath;
-  } catch (error) {
-    console.error(`Failed to load icon: ${name}`, error);
-
-    // Try fallback to default icon
-    if (name !== "default-icon") {
-      return getIconSource({
-        name: "default-icon",
-        size,
-        extension,
-      });
-    }
-
-    throw error;
-  }
 };

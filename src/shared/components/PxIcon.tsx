@@ -1,5 +1,5 @@
 import { ICON_DIMENSIONS } from "@/constants/icons";
-import { useIcon } from "@/hooks/useIcon";
+import useIcon from "@/hooks/useIcon";
 import { Icon, IconSize } from "@/types/icons";
 import React from "react";
 import styled, { useTheme } from "styled-components";
@@ -15,6 +15,7 @@ const IconContainer = styled.div<{ $height: number; $width: number }>`
 const StyledImage = styled.img<{ $height: number; $width: number }>`
   height: ${({ $height }) => $height}px;
   width: ${({ $width }) => $width}px;
+  image-rendering: pixelated;
 `;
 
 const IconPlaceholder = styled.div<{ $height: number; $width: number }>`
@@ -25,67 +26,69 @@ const IconPlaceholder = styled.div<{ $height: number; $width: number }>`
 `;
 
 interface PxIconProps {
-  src?: string;
-  name?: Icon["name"];
+  icon?: Icon;
   size?: IconSize;
-  alt?: string;
   className?: string;
-  height?: number;
-  width?: number;
 }
 
-const PxIcon = React.memo(
-  ({ name, size = "md", alt = "", className, ...props }: PxIconProps) => {
-    const theme = useTheme();
-    const pixelSize = theme.sizes.pixelSize;
-    const { src, isLoading, error } = useIcon({
-      name: name ?? "",
-      size,
-      extension: "png",
-    });
+const PxIcon = React.memo(({ icon, size, className }: PxIconProps) => {
+  const theme = useTheme();
+  const pixelSize = theme.sizes.pixelSize;
 
-    const dimensions = ICON_DIMENSIONS[size];
+  const effectiveIcon: Icon = icon || { name: "default-icon", size: "md" };
+  const effectiveSize =
+    size ||
+    effectiveIcon.size ||
+    (effectiveIcon.height && effectiveIcon.width ? "custom" : "md");
 
-    if (props.src && props.height && props.width)
-      return (
-        <StyledImage
-          src={props.src}
-          alt={alt}
-          $height={props.height * pixelSize}
-          $width={props.width * pixelSize}
-        />
-      );
+  const {
+    src: hookSrc,
+    isLoading,
+    error,
+  } = useIcon({
+    name: effectiveIcon.name || "default-icon",
+    size: effectiveSize === "custom" ? "md" : (effectiveSize as IconSize),
+    variants: effectiveIcon.variants,
+    extension: effectiveIcon.extension || "png",
+  });
 
-    if (isLoading || error || !src) {
-      return (
-        <IconPlaceholder
-          $height={
-            props.height ? props.height * pixelSize : dimensions * pixelSize
-          }
-          $width={
-            props.width ? props.width * pixelSize : dimensions * pixelSize
-          }
-          className={className}
-        />
-      );
-    }
+  const finalSrc = effectiveIcon.src || hookSrc;
 
+  const baseDimensions =
+    effectiveSize === "custom"
+      ? { height: effectiveIcon.height || 16, width: effectiveIcon.width || 16 }
+      : {
+          height: ICON_DIMENSIONS[effectiveSize as IconSize],
+          width: ICON_DIMENSIONS[effectiveSize as IconSize],
+        };
+  const scaledHeight = baseDimensions.height * pixelSize;
+  const scaledWidth = baseDimensions.width * pixelSize;
+
+  if (isLoading || error || !finalSrc) {
     return (
-      <IconContainer
-        $height={props.height ? props.height * pixelSize : dimensions}
-        $width={props.width ? props.width * pixelSize : dimensions}
+      <IconPlaceholder
+        $height={scaledHeight}
+        $width={scaledWidth}
         className={className}
-      >
-        <StyledImage
-          $height={props.height ? props.height * pixelSize : dimensions}
-          $width={props.width ? props.width * pixelSize : dimensions}
-          src={src}
-          alt={alt}
-        />
-      </IconContainer>
+      />
     );
   }
-);
+
+  return (
+    <IconContainer
+      $height={scaledHeight}
+      $width={scaledWidth}
+      className={className}
+    >
+      <StyledImage
+        $height={scaledHeight}
+        $width={scaledWidth}
+        src={finalSrc}
+        alt={effectiveIcon.alt || `${effectiveIcon.name || "icon"}`}
+      />
+    </IconContainer>
+  );
+});
 
 PxIcon.displayName = "PxIcon";
 

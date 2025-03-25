@@ -1,5 +1,5 @@
-import StartMenuButtonActiveIconSVG from "@/assets/icons/cute-face-wink.svg";
-import StartMenuButtonIconSVG from "@/assets/icons/cute-face.svg";
+import StartMenuButtonActiveIconSVG from "@/assets/icons/single/cute-face-wink.svg";
+import StartMenuButtonIconSVG from "@/assets/icons/single/cute-face.svg";
 import TaskbarButton from "@/features/pc/taskbar/taskbarButton";
 import { StyledTaskbarButton } from "@/features/pc/taskbar/taskbarButton/styles";
 import { Icon } from "@/types/icons";
@@ -32,9 +32,11 @@ const StartMenuButton = ({
   ...props
 }: Props) => {
   const [isActive, setIsActive] = useState(props.isActive ?? false);
-  const iconSrc = isActive
-    ? StartMenuButtonActiveIconSVG
-    : StartMenuButtonIconSVG;
+
+  const activeIcon: Icon = {
+    ...icon,
+    src: isActive ? StartMenuButtonActiveIconSVG : StartMenuButtonIconSVG,
+  };
 
   const toggleIsActive = () => {
     setIsActive((prev) => !prev);
@@ -44,10 +46,8 @@ const StartMenuButton = ({
     <TaskbarButton
       isFocused={isActive}
       isMinimized={false}
-      iconSrc={iconSrc}
+      icon={activeIcon}
       title={title}
-      iconHeight={icon.height}
-      iconWidth={icon.width}
       onClick={toggleIsActive}
     />
   );

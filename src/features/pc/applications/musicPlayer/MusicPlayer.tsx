@@ -37,13 +37,7 @@ const MusicPlayer = memo(({ windowId }: Props) => {
     <StyledMusicPlayer>
       <StyledAppTitle>Music Player</StyledAppTitle>
       <StyledContainer>
-        <PxIcon
-          alt="Music player logo"
-          size="lg"
-          name="music-player"
-          height={64}
-          width={64}
-        />
+        <PxIcon size="lg" icon={{ name: "music-player" }} />
         <p style={{ marginTop: 10 }}>Playing music for window {windowId}</p>
         {/* Add audio controls here if implementing playback */}
       </StyledContainer>

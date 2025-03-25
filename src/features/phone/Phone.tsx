@@ -1,4 +1,4 @@
-import PhoneSVG from "@/assets/phone/textures/phone.svg";
+import PhoneSVG from "@/assets/textures/phone/phone.svg";
 import PhoneForm from "@/features/phone/PhoneForm";
 import PhoneProvider from "@/features/phone/PhoneProvider";
 import { PhoneContainer, PhoneTexture } from "@/features/phone/styles";

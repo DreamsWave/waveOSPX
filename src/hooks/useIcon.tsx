@@ -1,10 +1,11 @@
 import { Icon, IconSize } from "@/types/icons";
 import { getIconSource } from "@/utils/functions";
-import { useEffect, useState } from "react";
+import { useMemo } from "react";
 
 interface UseIconProps {
-  name: Icon["name"];
+  name: string;
   size: IconSize;
+  variants?: Partial<Record<IconSize, string>>;
   extension?: Icon["extension"];
 }
 
@@ -14,50 +15,22 @@ interface UseIconResult {
   error: Error | null;
 }
 
-export const useIcon = ({
+const useIcon = ({
   name,
   size,
+  variants,
   extension,
 }: UseIconProps): UseIconResult => {
-  const [state, setState] = useState<UseIconResult>({
-    src: null,
-    isLoading: true,
-    error: null,
-  });
+  const result = useMemo(() => {
+    try {
+      const iconSrc = getIconSource({ name, size, variants, extension });
+      return { src: iconSrc, isLoading: false, error: null };
+    } catch (err) {
+      return { src: null, isLoading: false, error: err as Error };
+    }
+  }, [name, size, variants, extension]);
 
-  useEffect(() => {
-    let isMounted = true;
-
-    const loadIcon = async () => {
-      try {
-        setState((prev) => ({ ...prev, isLoading: true, error: null }));
-
-        const iconSrc = await getIconSource({ name, size, extension });
-
-        if (isMounted) {
-          setState({
-            src: iconSrc,
-            isLoading: false,
-            error: null,
-          });
-        }
-      } catch (err) {
-        if (isMounted) {
-          setState({
-            src: null,
-            isLoading: false,
-            error: err as Error,
-          });
-        }
-      }
-    };
-
-    loadIcon();
-
-    return () => {
-      isMounted = false;
-    };
-  }, [name, size, extension]);
-
-  return state;
+  return result;
 };
+
+export default useIcon;

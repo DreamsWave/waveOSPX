@@ -92,6 +92,7 @@ export const baseSizes = {
     menuWidth: 150,
   },
   iconSizes: {
+    xs: 8,
     sm: 16,
     md: 32,
     lg: 64,

@@ -31,13 +31,7 @@ const TextEditor = () => {
     <StyledTextEditor>
       <StyledAppTitle>Text editor</StyledAppTitle>
       <StyledContainer>
-        <PxIcon
-          alt="Text editor logo"
-          size="lg"
-          name="text-editor"
-          height={64}
-          width={64}
-        />
+        <PxIcon size="lg" icon={{ name: "text-editor" }} />
       </StyledContainer>
     </StyledTextEditor>
   );
