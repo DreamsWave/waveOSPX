@@ -91,6 +91,11 @@ export const baseSizes = {
     buttonSize: 15,
     menuWidth: 150,
   },
+  iconSizes: {
+    sm: 16,
+    md: 32,
+    lg: 64,
+  },
 };
 
 export const baseFormats = {

@@ -7,11 +7,15 @@ import {
 } from "@/features/pc/taskbar/taskbarButton/styles";
 import NinePatch from "@/shared/components/NinePatch";
 import PxIcon from "@/shared/components/PxIcon";
+import { Icon } from "@/types/icons";
 
 type Props = {
   isFocused?: boolean;
   isMinimized?: boolean;
-  icon?: string;
+  icon?: Icon;
+  iconSrc?: string;
+  iconHeight?: number;
+  iconWidth?: number;
   title?: string;
   onClick?: () => void;
 };
@@ -19,7 +23,13 @@ type Props = {
 const TaskbarButton = ({
   isFocused = false,
   isMinimized = false,
-  icon = "",
+  icon = {
+    name: "default-icon",
+    size: "sm",
+  },
+  iconSrc,
+  iconHeight,
+  iconWidth,
   title = "...",
   onClick,
   ...props
@@ -33,9 +43,18 @@ const TaskbarButton = ({
       >
         <StyledTaskbarButtonContent>
           {icon && (
-            <PxIcon src={icon} height={6} width={6} alt={`${title} app icon`} />
+            <PxIcon
+              name={icon.name}
+              size="sm"
+              src={iconSrc}
+              height={iconHeight}
+              width={iconWidth}
+              alt={icon.alt ? icon.alt : `${title} app icon`}
+            />
           )}
-          <StyledTaskbarButtonTitle>{title}</StyledTaskbarButtonTitle>
+          {title && (
+            <StyledTaskbarButtonTitle>{title}</StyledTaskbarButtonTitle>
+          )}
         </StyledTaskbarButtonContent>
       </NinePatch>
     </StyledTaskbarButton>

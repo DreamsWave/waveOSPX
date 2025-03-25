@@ -2,7 +2,6 @@ import {
   minimizeProcess,
   setFocusedProcess,
 } from "@/features/pc/process/processSlice";
-import StartMenuButton from "@/features/pc/taskbar/StartMenuButton";
 import {
   StyledTaskbar,
   StyledTaskbarAppButtons,
@@ -10,6 +9,7 @@ import {
 } from "@/features/pc/taskbar/styles";
 import SystemTray from "@/features/pc/taskbar/systemTray";
 import TaskbarButton from "@/features/pc/taskbar/taskbarButton";
+import StartMenuButton from "@/features/pc/taskbar/taskbarButton/StartMenuButton";
 import { RootState } from "@/store";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -48,12 +48,17 @@ const Taskbar = () => {
             key={process.id}
             isFocused={process.id === focusedProcessId}
             isMinimized={process.minimized || false}
-            icon={process.icon}
+            icon={{
+              name: process.icon.name,
+              height: process.icon.height,
+              width: process.icon.width,
+            }}
             title={process.title}
             onClick={() => handleTaskbarClick(process.id)}
           />
         ))}
       </StyledTaskbarAppButtons>
+      <StyledTaskbarSeparator />
       <SystemTray />
     </StyledTaskbar>
   );

@@ -1,3 +1,5 @@
+import TrayTextureSVG from "@/assets/pc/textures/taskbar/tray.svg";
+import NinePatch from "@/shared/components/NinePatch";
 import { getFormattedTime, px } from "@/utils/functions";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
@@ -13,6 +15,8 @@ const StyledTime = styled.span`
   font-size: ${px(5)};
   color: ${({ theme }) => theme.colors.pc.taskbar.time.color};
   font-family: ${({ theme }) => theme.formats.systemFont};
+  white-space: nowrap;
+  margin: 0 ${px(2)};
 `;
 
 const SystemTray = () => {
@@ -28,7 +32,9 @@ const SystemTray = () => {
 
   return (
     <StyledSystemTray>
-      <StyledTime>{currentTime}</StyledTime>
+      <NinePatch texture={TrayTextureSVG} patchMargin={1}>
+        <StyledTime>{currentTime}</StyledTime>
+      </NinePatch>
     </StyledSystemTray>
   );
 };

@@ -1,3 +1,4 @@
+import { Icon } from "@/types/icons";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { processDirectory } from "./directory";
 
@@ -10,7 +11,7 @@ export interface Process {
   size?: { width: number; height: number };
   backgroundColor?: string;
   defaultSize?: { width: number; height: number };
-  icon: string;
+  icon: Icon;
   singleton?: boolean;
   title: string;
   allowResizing?: boolean;

@@ -1,3 +1,4 @@
+import { Icon } from "@/types/icons";
 import { lazy } from "react";
 
 export type ProcessDefinition = {
@@ -5,7 +6,7 @@ export type ProcessDefinition = {
   Component: React.LazyExoticComponent<React.FC<any>>;
   backgroundColor?: string;
   defaultSize?: { width: number; height: number };
-  icon: string;
+  icon: Icon;
   libs?: string[];
   dependantLibs?: string[];
   lockAspectRatio?: boolean;
@@ -21,7 +22,9 @@ export const processDirectory: Record<string, ProcessDefinition> = {
     ),
     backgroundColor: "#000",
     defaultSize: { width: 500, height: 400 },
-    icon: "/assets/pc/icons/apps/music-player.png",
+    icon: {
+      name: "music-player",
+    },
     singleton: true,
     title: "Music Player",
   },
@@ -31,7 +34,7 @@ export const processDirectory: Record<string, ProcessDefinition> = {
     ),
     backgroundColor: "#000",
     defaultSize: { width: 500, height: 400 },
-    icon: "/assets/pc/icons/apps/text-editor.png",
+    icon: { name: "text-editor" },
     title: "Text Editor",
   },
 };

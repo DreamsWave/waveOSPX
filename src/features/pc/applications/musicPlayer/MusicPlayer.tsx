@@ -1,3 +1,4 @@
+import PxIcon from "@/shared/components/PxIcon";
 import { memo } from "react";
 import styled from "styled-components";
 
@@ -8,6 +9,25 @@ const StyledMusicPlayer = styled.div`
   color: #615f84;
 `;
 
+const StyledAppTitle = styled.h2`
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding: 0;
+  text-align: center;
+  text-transform: uppercase;
+  padding-top: 10px;
+  padding-bottom: 10px;
+`;
+
+const StyledContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 60%;
+`;
+
 type Props = {
   windowId: string;
 };
@@ -15,9 +35,18 @@ type Props = {
 const MusicPlayer = memo(({ windowId }: Props) => {
   return (
     <StyledMusicPlayer>
-      <h3>Music Player</h3>
-      <p>Playing music for window {windowId}</p>
-      {/* Add audio controls here if implementing playback */}
+      <StyledAppTitle>Music Player</StyledAppTitle>
+      <StyledContainer>
+        <PxIcon
+          alt="Music player logo"
+          size="lg"
+          name="music-player"
+          height={64}
+          width={64}
+        />
+        <p style={{ marginTop: 10 }}>Playing music for window {windowId}</p>
+        {/* Add audio controls here if implementing playback */}
+      </StyledContainer>
     </StyledMusicPlayer>
   );
 });

@@ -3,6 +3,7 @@ import WindowMaximizeIconSVG from "@/assets/pc/icons/window-maximize.svg";
 import WindowMinimizeIconSVG from "@/assets/pc/icons/window-minimize.svg";
 import WindowRestoreIconSVG from "@/assets/pc/icons/window-restore.svg";
 import ButtonTextureSVG from "@/assets/pc/textures/window/window.svg";
+import { WINDOW_APP_ICON_SIZE } from "@/features/pc/windows/constants";
 import {
   StyledButton,
   StyledTitle,
@@ -10,6 +11,7 @@ import {
 } from "@/features/pc/windows/window/titlebar/styles";
 import NinePatch from "@/shared/components/NinePatch";
 import PxIcon from "@/shared/components/PxIcon";
+import { Icon } from "@/types/icons";
 import { memo } from "react";
 
 type Props = {
@@ -20,7 +22,7 @@ type Props = {
   onClose: () => void;
   isMaximized: boolean;
   isFocused: boolean;
-  icon?: string;
+  icon?: Icon;
 };
 
 const Titlebar = memo(
@@ -41,7 +43,13 @@ const Titlebar = memo(
         $isMaximized={isMaximized}
       >
         {icon && (
-          <PxIcon src={icon} height={6} width={6} alt={`${title} app icon`} />
+          <PxIcon
+            name={icon.name}
+            size={WINDOW_APP_ICON_SIZE}
+            height={icon.height}
+            width={icon.width}
+            alt={icon.alt ? icon.alt : `${title} app icon`}
+          />
         )}
         <StyledTitle>{title}</StyledTitle>
         <div>

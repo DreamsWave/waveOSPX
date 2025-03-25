@@ -16,7 +16,7 @@ export const StyledTaskbarButtonContent = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: ${px(2)} ${px(2)};
-  min-width: ${px(30)};
+  /* min-width: ${px(30)}; */
   max-width: ${px(60)};
   gap: ${px(2)};
   overflow: hidden;

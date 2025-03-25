@@ -1,11 +1,9 @@
+import { ICON_DIMENSIONS } from "@/constants/icons";
+import { SHORTCUT_SIZE } from "@/features/pc/desktop/constants";
+import { useIcon } from "@/hooks/useIcon";
+import { Icon } from "@/types/icons";
 import { px } from "@/utils/functions";
 import styled from "styled-components";
-
-type Props = {
-  label?: string;
-  icon?: string;
-  action?: () => void;
-};
 
 const StyledShortcutButton = styled.button`
   background-color: transparent;
@@ -61,12 +59,37 @@ const StyledFigCaption = styled.figcaption`
     rgba(0, 0, 0, 0.4) 0px 1px 1px, rgba(0, 0, 0, 0.3) 0px 1px 1px;
 `;
 
+const IconPlaceholder = styled.div<{ $size: number }>`
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 50%;
+`;
+
+type Props = {
+  label?: string;
+  icon: Icon;
+  action?: () => void;
+};
+
 const Shortcut = ({ label = "", icon, action }: Props) => {
+  const { src, isLoading, error } = useIcon({
+    name: icon.name ?? "",
+    size: SHORTCUT_SIZE,
+    extension: "png",
+  });
+
+  const dimensions = ICON_DIMENSIONS[SHORTCUT_SIZE];
+
   return (
     <StyledShortcutButton onClick={action}>
       <StyledFigure>
         <StyledFigurePicture>
-          <StyledFigureImage src={icon} alt={`${label} icon`} />
+          {isLoading || error || !src ? (
+            <IconPlaceholder $size={dimensions} />
+          ) : (
+            <StyledFigureImage src={src} alt={`${label} icon`} />
+          )}
         </StyledFigurePicture>
         <StyledFigCaption>{label}</StyledFigCaption>
       </StyledFigure>

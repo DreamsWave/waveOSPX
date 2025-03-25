@@ -38,4 +38,7 @@ export const StyledTaskbarSeparator = styled.div`
 export const StyledTaskbarAppButtons = styled.div`
   display: flex;
   gap: ${px(1)};
+  overflow: hidden;
+  overflow-x: auto;
+  width: 100%;
 `;
