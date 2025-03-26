@@ -1,5 +1,5 @@
 import baseTheme from "@/styles/baseTheme";
-import { type DefaultTheme } from "styled-components";
+import type { DefaultTheme } from "styled-components";
 
 const colors = {
   background: "#2d3136",

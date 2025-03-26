@@ -1,4 +1,4 @@
-import { getFontSize, px } from "@/utils/functions";
+import { getFontSize } from "@/utils/functions";
 import styled, { css } from "styled-components";
 
 export const Chars = styled.span`
@@ -23,8 +23,8 @@ export const KeypadButtonContainer = styled.button<{ $isControl?: boolean }>`
   ${({ $isControl }) =>
     $isControl &&
     css`
-      height: ${px(15)};
-      width: ${px(20)};
+      height: ${({ theme }) => `${theme.s(15)}px`};
+      width: ${({ theme }) => `${theme.s(20)}px`};
     `}
 `;
 
@@ -35,8 +35,8 @@ export const KeypadButtonContent = styled.div<{
   display: inline-flex;
   justify-content: ${({ $isControl }) => ($isControl ? "center" : "start")};
   align-items: center;
-  gap: ${px(1)};
-  padding: ${({ $noPadding }) => ($noPadding ? 0 : px(1))};
+  gap: ${({ theme }) => `${theme.s(1)}px`};
+  padding: ${({ $noPadding, theme }) => `${$noPadding ? 0 : theme.s(1)}px`};
   height: 100%;
   width: 100%;
   cursor: pointer;

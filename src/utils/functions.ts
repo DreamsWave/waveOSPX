@@ -1,6 +1,6 @@
 import { ICON_SIZE_MAP } from "@/constants/icons";
-import { IconExtension, IconSize } from "@/types/icons";
-import { css, DefaultTheme, RuleSet } from "styled-components";
+import type { IconExtension, IconSize } from "@/types/icons";
+import { type DefaultTheme, type RuleSet, css } from "styled-components";
 
 // Import all icons from src/assets/icons/
 const iconModules = import.meta.glob("/src/assets/icons/**/*.{png,svg}", {
@@ -45,7 +45,10 @@ export const getIconSource = ({
 }: IconSourceOptions): string => {
   const cacheKey = generateIconCacheKey({ name, size, extension });
   if (ICON_CACHE.has(cacheKey)) {
-    return ICON_CACHE.get(cacheKey)!;
+    const cachedIcon = ICON_CACHE.get(cacheKey);
+    if (cachedIcon) {
+      return cachedIcon;
+    }
   }
 
   const variantFileName = variants?.[size] || name;
@@ -65,10 +68,6 @@ export const getIconSource = ({
 
   throw new Error(`Default icon not found for size ${size}`);
 };
-
-export const px = (size: number = 1): RuleSet => css`
-  ${({ theme }) => `${theme.sizes.pixelSize * size}px`}
-`;
 
 export const getScreenMediaQuery = (): RuleSet => css`
   ${({ theme }) =>

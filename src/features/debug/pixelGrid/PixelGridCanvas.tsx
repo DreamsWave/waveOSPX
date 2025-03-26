@@ -1,5 +1,5 @@
 import { useBackground } from "@/features/background/backgroundContext";
-import { RootState } from "@/store";
+import type { RootState } from "@/store";
 import { motion } from "motion/react";
 import { memo, useCallback, useEffect, useMemo, useRef } from "react";
 import { useSelector } from "react-redux";

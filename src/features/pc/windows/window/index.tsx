@@ -1,12 +1,12 @@
 import { processDirectory } from "@/features/pc/process/directory";
 import {
-  Process,
+  type Process,
   updateWindowPosition,
   updateWindowSize,
 } from "@/features/pc/process/processSlice";
 import { Suspense } from "react";
 import { useDispatch } from "react-redux";
-import { Rnd, RndDragEvent, RndResizeCallback } from "react-rnd";
+import { Rnd, type RndDragEvent, type RndResizeCallback } from "react-rnd";
 import { useTheme as useStyledTheme } from "styled-components";
 import { StyledWindow, StyledWindowContent } from "./styles";
 import Titlebar from "./titlebar";

@@ -1,4 +1,4 @@
-import { Icon, IconSize } from "@/types/icons";
+import type { Icon, IconSize } from "@/types/icons";
 import { getIconSource } from "@/utils/functions";
 import { useMemo } from "react";
 

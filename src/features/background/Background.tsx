@@ -4,7 +4,7 @@ import {
   StyledBackground,
   StyledBackgroundImage,
 } from "@/features/background/styles";
-import { RootState } from "@/store";
+import type { RootState } from "@/store";
 import { memo } from "react";
 import { useSelector } from "react-redux";
 

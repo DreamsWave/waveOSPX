@@ -1,8 +1,8 @@
 import {
   KEYPAD_LAYOUT,
+  type T9Key,
   T9_KEY_LABELS,
   T9_KEY_MAP,
-  T9Key,
 } from "@/features/phone/keypad/constants";
 import DPad from "@/features/phone/keypad/dpad";
 import Key from "@/features/phone/keypad/key";

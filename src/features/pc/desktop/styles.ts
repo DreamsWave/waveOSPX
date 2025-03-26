@@ -1,4 +1,3 @@
-import { px } from "@/utils/functions";
 import styled from "styled-components";
 
 export const StyledDesktopWrapper = styled.div`
@@ -10,19 +9,17 @@ export const StyledDesktopWrapper = styled.div`
 export const StyledDesktop = styled.ol`
   background: ${({ theme }) => theme.colors.pc.desktop.background};
   height: ${({ theme }) =>
-    `calc(100% - ${
-      theme.sizes.pc.taskbar.heightPX * theme.sizes.pixelSize
-    }px)`};
+    `calc(100% - ${theme.s(theme.sizes.pc.taskbar.heightPX)}px)`};
   width: 100%;
   position: relative;
   display: grid;
-  grid-template-columns: repeat(auto-fill, ${px(34)});
-  grid-template-rows: repeat(auto-fill, ${px(34)});
+  grid-template-columns: repeat(auto-fill, ${({ theme }) => theme.s(34)}px);
+  grid-template-rows: repeat(auto-fill, ${({ theme }) => theme.s(34)}px);
   gap: ${({ theme }) =>
-    `${theme.sizes.pc.desktop.grid.gapYPX * theme.sizes.pixelSize}px ${
-      theme.sizes.pc.desktop.grid.gapXPX * theme.sizes.pixelSize
-    }px`};
-  padding: ${({ theme }) => px(theme.sizes.pc.desktop.grid.paddingPX)};
+    `${theme.s(theme.sizes.pc.desktop.grid.gapYPX)}px ${theme.s(
+      theme.sizes.pc.desktop.grid.gapXPX
+    )}px`};
+  padding: ${({ theme }) => theme.s(theme.sizes.pc.desktop.grid.paddingPX)}px;
   place-content: flex-start;
 
   @media (max-width: 600px) {
@@ -37,6 +34,6 @@ export const StyledDesktop = styled.ol`
 export const StyledDesktopItem = styled.li`
   display: flex;
   height: min-content;
-  outline-offset: ${px(-1)};
-  padding: ${px(1)};
+  outline-offset: ${({ theme }) => `${theme.s(-1)}px`};
+  padding: ${({ theme }) => `${theme.s(1)}px`};
 `;

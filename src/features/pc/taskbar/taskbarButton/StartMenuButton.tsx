@@ -2,7 +2,7 @@ import StartMenuButtonActiveIconSVG from "@/assets/icons/single/cute-face-wink.s
 import StartMenuButtonIconSVG from "@/assets/icons/single/cute-face.svg";
 import TaskbarButton from "@/features/pc/taskbar/taskbarButton";
 import { StyledTaskbarButton } from "@/features/pc/taskbar/taskbarButton/styles";
-import { Icon } from "@/types/icons";
+import type { Icon } from "@/types/icons";
 import { useState } from "react";
 import styled from "styled-components";
 

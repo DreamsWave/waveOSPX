@@ -11,7 +11,7 @@ import {
 } from "@/features/pc/windows/window/titlebar/styles";
 import NinePatch from "@/shared/components/NinePatch";
 import PxIcon from "@/shared/components/PxIcon";
-import { Icon } from "@/types/icons";
+import type { Icon } from "@/types/icons";
 import { memo } from "react";
 
 type Props = {

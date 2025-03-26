@@ -1,6 +1,6 @@
-import { useTextInput } from "@/features/phone/keypad/useTextInput";
 import { PhoneContext } from "@/features/phone/PhoneContext";
-import { ReactNode } from "react";
+import { useTextInput } from "@/features/phone/keypad/useTextInput";
+import type { ReactNode } from "react";
 
 const PhoneProvider = ({ children }: { children: ReactNode }) => {
   const phoneInput = useTextInput();

@@ -6,6 +6,7 @@ declare module "styled-components" {
     formats: typeof baseFormats;
     name: string;
     sizes: typeof baseSizes;
+    s: (size: number) => number;
   }
   export function useTheme(): DefaultTheme;
 }

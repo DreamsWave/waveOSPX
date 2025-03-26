@@ -1,4 +1,4 @@
-import { useTextInput } from "@/features/phone/keypad/useTextInput";
+import type { useTextInput } from "@/features/phone/keypad/useTextInput";
 import { createContext, useContext } from "react";
 
 type PhoneInputContextType = ReturnType<typeof useTextInput>;

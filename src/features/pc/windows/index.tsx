@@ -5,7 +5,7 @@ import {
   setFocusedProcess,
 } from "@/features/pc/process/processSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../store";
+import type { RootState } from "../../../store";
 import Window from "./window";
 
 type Props = {

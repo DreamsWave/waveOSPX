@@ -6,11 +6,12 @@ export const StyledWindow = styled.section<{
 }>`
   position: absolute;
   background-color: ${({ theme }) => theme.colors.pc.window.background};
-  border: ${({ theme }) => theme.sizes.pixelSize}px solid
-    ${({ $isFocused, theme }) =>
+  border: ${({ theme, $isFocused }) =>
+    `${theme.s(1)}px solid ${
       $isFocused
         ? theme.colors.pc.window.outline
-        : theme.colors.pc.window.outlineFocused};
+        : theme.colors.pc.window.outlineFocused
+    }`};
   overflow: hidden;
   width: 100%;
   height: 100%;
@@ -19,8 +20,7 @@ export const StyledWindow = styled.section<{
 export const StyledWindowContent = styled.div`
   height: calc(
     100% -
-      ${({ theme }) =>
-        theme.sizes.pc.window.titleBar.heightPX * theme.sizes.pixelSize}px
+      ${({ theme }) => `${theme.s(theme.sizes.pc.window.titleBar.heightPX)}px`}
   );
   width: 100%;
   overflow: auto;

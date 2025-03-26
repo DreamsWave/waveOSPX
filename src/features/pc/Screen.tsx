@@ -2,7 +2,7 @@ import Desktop from "@/features/pc/desktop";
 import { StyledScreen } from "@/features/pc/styles";
 import Taskbar from "@/features/pc/taskbar";
 import Windows from "@/features/pc/windows";
-import { RootState } from "@/store";
+import type { RootState } from "@/store";
 import { useRef } from "react";
 import { useSelector } from "react-redux";
 

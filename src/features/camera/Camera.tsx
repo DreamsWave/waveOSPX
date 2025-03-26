@@ -1,7 +1,7 @@
 import { useBackground } from "@/features/background/backgroundContext";
 import { THROTTLE_DELAY_MS } from "@/features/camera/constants";
 import { getDynamicScrollSpeed } from "@/features/camera/functions";
-import { RootState } from "@/store";
+import type { RootState } from "@/store";
 import { useMouse, useThrottle, useWindowSize } from "@uidotdev/usehooks";
 import { memo, useEffect, useMemo } from "react";
 import { isMobile } from "react-device-detect";

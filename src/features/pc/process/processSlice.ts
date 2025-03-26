@@ -1,5 +1,5 @@
-import { Icon } from "@/types/icons";
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import type { Icon } from "@/types/icons";
+import { type PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { processDirectory } from "./directory";
 
 export interface Process {
@@ -64,10 +64,10 @@ const processSlice = createSlice({
           state.processes[existingPid].url = url;
           state.focusedProcessId = existingPid;
           // Update zIndex for existing process
-          Object.values(state.processes).forEach((p) => {
-            if (p.id === existingPid) p.zIndex = 1000;
-            else if (p.zIndex > 0) p.zIndex -= 1;
-          });
+          for (const process of Object.values(state.processes)) {
+            if (process.id === existingPid) process.zIndex = 1000;
+            else if (process.zIndex > 0) process.zIndex -= 1;
+          }
           return;
         }
       }
@@ -89,9 +89,9 @@ const processSlice = createSlice({
       };
       state.focusedProcessId = pid;
       // Ensure other processes' zIndex is lower
-      Object.values(state.processes).forEach((p) => {
-        if (p.id !== pid && p.zIndex >= 1000) p.zIndex -= 1;
-      });
+      for (const process of Object.values(state.processes)) {
+        if (process.id !== pid && process.zIndex >= 1000) process.zIndex -= 1;
+      }
     },
     closeProcess: (state, action: PayloadAction<string>) => {
       delete state.processes[action.payload];
@@ -132,13 +132,10 @@ const processSlice = createSlice({
     setFocusedProcess: (state, action: PayloadAction<string>) => {
       const newFocusedId = action.payload;
       state.focusedProcessId = newFocusedId;
-      Object.values(state.processes).forEach((process) => {
-        if (process.id === newFocusedId) {
-          process.zIndex = 1000; // Bring to front
-        } else if (process.zIndex >= 1000) {
-          process.zIndex -= 1; // Push others back
-        }
-      });
+      for (const process of Object.values(state.processes)) {
+        if (process.id === newFocusedId) process.zIndex = 1000;
+        else if (process.zIndex >= 1000) process.zIndex -= 1;
+      }
     },
   },
 });

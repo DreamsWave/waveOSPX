@@ -1,4 +1,10 @@
-import { createContext, FC, memo, PropsWithChildren, useContext } from "react";
+import {
+  type FC,
+  type PropsWithChildren,
+  createContext,
+  memo,
+  useContext,
+} from "react";
 
 const contextFactory = <T,>(
   useContextState: () => T,

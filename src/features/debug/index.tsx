@@ -1,7 +1,7 @@
 import DebugMenu from "@/features/debug/DebugMenu";
 import { toggleDebugMenu } from "@/features/debug/debugSlice";
 import { StyledDebug, StyledDebugButton } from "@/features/debug/styles";
-import { RootState } from "@/store";
+import type { RootState } from "@/store";
 import { useDispatch, useSelector } from "react-redux";
 
 const Debug = () => {

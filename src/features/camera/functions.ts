@@ -22,7 +22,7 @@ export const calculateCameraSpeed = (
   return (
     BASE_SPEED +
     SPEED_RANGE * SLOW_PHASE_FACTOR +
-    SPEED_RANGE * FAST_PHASE_FACTOR * Math.pow(remainingDistance, 2)
+    SPEED_RANGE * FAST_PHASE_FACTOR * remainingDistance ** 2
   );
 };
 

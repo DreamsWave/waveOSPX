@@ -1,7 +1,7 @@
 import { toggleReducedMotion } from "@/features/settings/settingsSlice";
 import { setTheme } from "@/features/theme/themeSlice";
-import { RootState } from "@/store";
-import { ThemeName } from "@/styles/themes";
+import type { RootState } from "@/store";
+import type { ThemeName } from "@/styles/themes";
 import { useDispatch, useSelector } from "react-redux";
 
 const useSettings = () => {

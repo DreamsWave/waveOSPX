@@ -113,6 +113,9 @@ const baseTheme = {
   colors: baseColors,
   sizes: baseSizes,
   formats: baseFormats,
+
+  // Utility function for scaling pixel values
+  s: (size: number) => baseSizes.pixelSize * size,
 };
 
 export default baseTheme;

@@ -1,25 +1,25 @@
-import { px } from "@/utils/functions";
 import styled from "styled-components";
 
 export const KeypadContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: ${px(2)};
+  gap: ${({ theme }) => theme.s(2)}px;
 `;
 
 export const ActionRow = styled.div`
   display: grid;
-  grid-template-columns: 1fr ${px(32)} 1fr;
-  margin-top: ${px(2)};
+  grid-template-columns: 1fr ${({ theme }) => theme.s(32)}px 1fr;
+  margin-top: ${({ theme }) => theme.s(2)}px;
 `;
 
 export const ActionColumn = styled.div<{ $side: "left" | "right" }>`
   display: flex;
   flex-direction: column;
-  width: ${px(18)};
-  gap: ${px(2)};
-  margin-left: ${({ $side = "left" }) => ($side === "left" ? px(2) : px(1))};
+  width: ${({ theme }) => theme.s(18)}px;
+  gap: ${({ theme }) => theme.s(2)}px;
+  margin-left: ${({ $side = "left", theme }) =>
+    $side === "left" ? theme.s(2) : theme.s(1)}px;
 `;
 
 export const NumericGrid = styled.div`

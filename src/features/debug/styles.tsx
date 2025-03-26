@@ -31,9 +31,9 @@ export const StyledDebugMenu = styled.ul`
   display: flex;
   flex-direction: column;
   align-items: end;
-  gap: 5px;
+  gap: ${({ theme }) => `${theme.s(2)}px`};
   background: ${({ theme }) => theme.colors.debug.background};
-  padding: 5px;
+  padding: ${({ theme }) => `${theme.s(2)}px`};
   width: ${({ theme }) => theme.sizes.debug.menuWidth}px;
 `;
 

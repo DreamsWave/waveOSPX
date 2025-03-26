@@ -8,7 +8,7 @@ import { toggleMode } from "@/features/mode/modeSlice";
 import { launchApplication } from "@/features/pc/process/functions";
 import { toggleReducedMotion } from "@/features/settings/settingsSlice";
 import { switchToNextTheme } from "@/features/theme/themeSlice";
-import { RootState, useAppDispatch } from "@/store";
+import { type RootState, useAppDispatch } from "@/store";
 import { useSelector } from "react-redux";
 
 const DebugMenu = () => {

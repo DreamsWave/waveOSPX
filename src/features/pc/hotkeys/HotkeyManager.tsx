@@ -9,7 +9,7 @@ import {
   TOGGLE_PIXEL_GRID_HOTKEY,
 } from "@/features/pc/hotkeys/constants";
 import { launchApplication } from "@/features/pc/process/functions";
-import { RootState } from "@/store";
+import type { RootState } from "@/store";
 import { useHotkeys } from "react-hotkeys-hook";
 import { useDispatch, useSelector } from "react-redux";
 

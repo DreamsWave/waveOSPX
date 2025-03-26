@@ -7,7 +7,7 @@ import {
 } from "@/features/pc/taskbar/taskbarButton/styles";
 import NinePatch from "@/shared/components/NinePatch";
 import PxIcon from "@/shared/components/PxIcon";
-import { Icon } from "@/types/icons";
+import type { Icon } from "@/types/icons";
 
 type Props = {
   isFocused?: boolean;

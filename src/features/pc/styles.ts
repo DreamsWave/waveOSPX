@@ -3,10 +3,8 @@ import styled from "styled-components";
 
 export const StyledScreen = styled.main<{ $isFocused: boolean }>`
   position: absolute;
-  top: ${({ theme }) =>
-    theme.sizes.monitor.screen.position.yPX * theme.sizes.pixelSize}px;
-  left: ${({ theme }) =>
-    theme.sizes.monitor.screen.position.xPX * theme.sizes.pixelSize}px;
+  top: ${({ theme }) => theme.s(theme.sizes.monitor.screen.position.yPX)}px;
+  left: ${({ theme }) => theme.s(theme.sizes.monitor.screen.position.xPX)}px;
   background: ${({ theme }) => theme.colors.background};
   color: ${({ theme }) => theme.colors.text};
   width: ${({ theme }) => theme.sizes.monitor.screen.resolution.width}px;
@@ -30,6 +28,5 @@ export const StyledScreen = styled.main<{ $isFocused: boolean }>`
 export const StyledDesktopView = styled.div`
   height: 100%;
   width: 100%;
-  padding-bottom: ${({ theme }) =>
-    theme.sizes.pc.taskbar.heightPX * theme.sizes.pixelSize}px;
+  padding-bottom: ${({ theme }) => theme.s(theme.sizes.pc.taskbar.heightPX)}px;
 `;

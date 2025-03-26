@@ -1,15 +1,14 @@
-import { px } from "@/utils/functions";
 import styled, { css } from "styled-components";
 
 export const DPadContainer = styled.div`
-  height: ${px(32)};
-  width: ${px(32)};
+  height: ${({ theme }) => theme.s(32)}px;
+  width: ${({ theme }) => theme.s(32)}px;
   position: relative;
 `;
 
 export const DPadTexture = styled.img`
-  height: ${px(32)};
-  width: ${px(32)};
+  height: ${({ theme }) => theme.s(32)}px;
+  width: ${({ theme }) => theme.s(32)}px;
   display: flex;
   position: absolute;
   top: 0;
@@ -31,30 +30,30 @@ export const DPadButton = styled.button<{
   background: none;
   cursor: pointer;
   position: absolute;
-  width: ${px(10)};
-  height: ${px(10)};
+  width: ${({ theme }) => theme.s(10)}px;
+  height: ${({ theme }) => theme.s(10)}px;
   ${({ $position }) =>
     $position === "up" &&
     css`
       top: 0;
-      left: ${px(10)};
+      left: ${({ theme }) => theme.s(10)}px;
     `}
   ${({ $position }) =>
     $position === "right" &&
     css`
-      top: ${px(10)};
+      top: ${({ theme }) => theme.s(10)}px;
       right: 0;
     `}
   ${({ $position }) =>
     $position === "down" &&
     css`
       bottom: 0;
-      left: ${px(10)};
+      left: ${({ theme }) => theme.s(10)}px;
     `}
   ${({ $position }) =>
     $position === "left" &&
     css`
-      top: ${px(10)};
+      top: ${({ theme }) => theme.s(10)}px;
       left: 0;
     `}
 `;

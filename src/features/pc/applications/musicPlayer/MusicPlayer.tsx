@@ -1,6 +1,6 @@
 import PxIcon from "@/shared/components/PxIcon";
 import { memo } from "react";
-import styled from "styled-components";
+import styled, { useTheme } from "styled-components";
 
 const StyledMusicPlayer = styled.div`
   height: 100%;
@@ -10,13 +10,13 @@ const StyledMusicPlayer = styled.div`
 `;
 
 const StyledAppTitle = styled.h2`
-  font-size: 1.5rem;
+  font-size: ${({ theme }) => `${theme.s(6)}px`};
   font-weight: 600;
   padding: 0;
   text-align: center;
   text-transform: uppercase;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: ${({ theme }) => `${theme.s(3)}px`};
+  padding-bottom: ${({ theme }) => `${theme.s(3)}px`};
 `;
 
 const StyledContainer = styled.div`
@@ -25,7 +25,7 @@ const StyledContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 60%;
+  height: ${({ theme }) => `${theme.s(70)}px`};
 `;
 
 type Props = {
@@ -33,12 +33,15 @@ type Props = {
 };
 
 const MusicPlayer = memo(({ windowId }: Props) => {
+  const theme = useTheme();
   return (
     <StyledMusicPlayer>
       <StyledAppTitle>Music Player</StyledAppTitle>
       <StyledContainer>
         <PxIcon size="lg" icon={{ name: "music-player" }} />
-        <p style={{ marginTop: 10 }}>Playing music for window {windowId}</p>
+        <p style={{ marginTop: `${theme.s(3)}px` }}>
+          Playing music for window {windowId}
+        </p>
         {/* Add audio controls here if implementing playback */}
       </StyledContainer>
     </StyledMusicPlayer>

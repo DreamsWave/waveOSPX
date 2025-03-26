@@ -1,6 +1,6 @@
-import themes, { ThemeName } from "@/styles/themes";
+import themes, { type ThemeName } from "@/styles/themes";
 import { DEFAULT_THEME, STORAGE_THEME_KEY } from "@/utils/constants";
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { type PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 const getInitialTheme = (): ThemeName => {
   try {

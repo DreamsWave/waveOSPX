@@ -1,28 +1,28 @@
 import { ICON_DIMENSIONS } from "@/constants/icons";
 import useIcon from "@/hooks/useIcon";
-import { Icon, IconSize } from "@/types/icons";
+import type { Icon, IconSize } from "@/types/icons";
 import React from "react";
 import styled, { useTheme } from "styled-components";
 
 const IconContainer = styled.div<{ $height: number; $width: number }>`
-  height: ${({ $height }) => $height}px;
-  width: ${({ $width }) => $width}px;
+  height: ${({ $height }) => `${$height}px`};
+  width: ${({ $width }) => `${$width}px`};
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
 const StyledImage = styled.img<{ $height: number; $width: number }>`
-  height: ${({ $height }) => $height}px;
-  width: ${({ $width }) => $width}px;
+  height: ${({ $height }) => `${$height}px`};
+  width: ${({ $width }) => `${$width}px`};
   image-rendering: pixelated;
 `;
 
 const IconPlaceholder = styled.div<{ $height: number; $width: number }>`
-  height: ${({ $height }) => $height}px;
-  width: ${({ $width }) => $width}px;
+  height: ${({ $height }) => `${$height}px`};
+  width: ${({ $width }) => `${$width}px`};
   background-color: gray;
-  border-radius: 4px;
+  border-radius: ${({ theme }) => `${theme.s(1)}px`};
 `;
 
 interface PxIconProps {
@@ -33,7 +33,6 @@ interface PxIconProps {
 
 const PxIcon = React.memo(({ icon, size, className }: PxIconProps) => {
   const theme = useTheme();
-  const pixelSize = theme.sizes.pixelSize;
 
   const effectiveIcon: Icon = icon || { name: "default-icon", size: "md" };
   const effectiveSize =
@@ -61,8 +60,9 @@ const PxIcon = React.memo(({ icon, size, className }: PxIconProps) => {
           height: ICON_DIMENSIONS[effectiveSize as IconSize],
           width: ICON_DIMENSIONS[effectiveSize as IconSize],
         };
-  const scaledHeight = baseDimensions.height * pixelSize;
-  const scaledWidth = baseDimensions.width * pixelSize;
+
+  const scaledHeight = theme.s(baseDimensions.height);
+  const scaledWidth = theme.s(baseDimensions.width);
 
   if (isLoading || error || !finalSrc) {
     return (

@@ -43,11 +43,7 @@ export default function Display({
 
   return (
     <PhoneDisplay>
-      <DisplayWrapper
-        role="textbox"
-        aria-label="Text display"
-        onClick={onClick}
-      >
+      <DisplayWrapper as="textarea" aria-label="Text display" onClick={onClick}>
         <DisplayContent>
           {isEditing ? (
             <Textarea

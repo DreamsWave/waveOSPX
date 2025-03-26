@@ -1,4 +1,3 @@
-import { px } from "@/utils/functions";
 import styled from "styled-components";
 
 const NinePatchBase = styled.div<{ $texture: string; $patchMargin?: number }>`
@@ -12,7 +11,8 @@ const NinePatchBase = styled.div<{ $texture: string; $patchMargin?: number }>`
   border-color: #000;
   border-image: url("${({ $texture }) => $texture}");
   border-image-slice: ${({ $patchMargin }) => $patchMargin} fill;
-  border-width: ${({ $patchMargin = 0 }) => px($patchMargin)};
+  border-width: ${({ $patchMargin = 0, theme }) =>
+    `${theme.s($patchMargin)}px`};
 `;
 
 type NinePatchProps = {

@@ -1,4 +1,4 @@
-import { getFontSize, px } from "@/utils/functions";
+import { getFontSize } from "@/utils/functions";
 import styled, { css } from "styled-components";
 
 const textStyles = css`
@@ -15,17 +15,17 @@ export const PhoneDisplay = styled.div`
   display: flex;
   z-index: 1;
   position: absolute;
-  top: ${px(17)};
-  left: ${px(10)};
-  height: ${px(83)};
-  width: ${px(68)};
+  top: ${({ theme }) => theme.s(17)}px;
+  left: ${({ theme }) => theme.s(10)}px;
+  height: ${({ theme }) => theme.s(83)}px;
+  width: ${({ theme }) => `${theme.s(68)}px`};
   flex-direction: column;
 `;
 
 export const DisplayWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.phone.background};
   flex: 1;
-  padding: ${px(4)};
+  padding: ${({ theme }) => theme.s(4)}px;
   overflow: hidden;
   display: flex;
   position: relative;
@@ -80,7 +80,7 @@ export const Cursor = styled.span`
     height: 100%;
     width: 2px;
     top: 0;
-    right: -2px;
+    right: ${({ theme }) => `${theme.s(-1)}px`};
     background-color: lightblue;
     animation: blink 1.5s step-end infinite;
     @keyframes blink {
@@ -101,7 +101,7 @@ export const DisplayControlIndicators = styled.div`
 export const DisplayControlIndicator = styled.button`
   font-family: "Monocraft", Courier, monospace;
   font-size: ${getFontSize("sm")};
-  padding: ${px(1)} ${px(3)};
+  padding: ${({ theme }) => theme.s(1)}px ${({ theme }) => theme.s(3)}px;
   color: ${({ theme }) => theme.colors.phone.text};
   background: transparent;
   border: none;

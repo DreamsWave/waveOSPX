@@ -1,3 +1,3 @@
-import { IconSize } from "@/types/icons";
+import type { IconSize } from "@/types/icons";
 
 export const SHORTCUT_SIZE: IconSize = "md";

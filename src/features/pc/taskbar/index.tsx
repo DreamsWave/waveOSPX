@@ -10,7 +10,7 @@ import {
 import SystemTray from "@/features/pc/taskbar/systemTray";
 import TaskbarButton from "@/features/pc/taskbar/taskbarButton";
 import StartMenuButton from "@/features/pc/taskbar/taskbarButton/StartMenuButton";
-import { RootState } from "@/store";
+import type { RootState } from "@/store";
 import { useDispatch, useSelector } from "react-redux";
 
 const Taskbar = () => {

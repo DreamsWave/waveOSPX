@@ -1,6 +1,6 @@
 import {
   INPUT_TIMEOUT_MS,
-  T9Key,
+  type T9Key,
   T9_KEY_MAP,
 } from "@/features/phone/keypad/constants";
 import { useReducer, useRef } from "react";

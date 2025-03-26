@@ -2,7 +2,7 @@ import PhoneSVG from "@/assets/textures/phone/phone.svg";
 import PhoneForm from "@/features/phone/PhoneForm";
 import PhoneProvider from "@/features/phone/PhoneProvider";
 import { PhoneContainer, PhoneTexture } from "@/features/phone/styles";
-import { RootState } from "@/store";
+import type { RootState } from "@/store";
 import { useSelector } from "react-redux";
 
 export default function Phone() {

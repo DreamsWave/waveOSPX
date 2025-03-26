@@ -1,4 +1,4 @@
-import { type ThemeName } from "@/styles/themes";
+import type { ThemeName } from "@/styles/themes";
 
 export const DEFAULT_THEME: ThemeName = "darkTheme";
 export const THEMES = {

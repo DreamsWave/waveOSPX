@@ -1,4 +1,4 @@
-import { RootState } from "@/store";
+import type { RootState } from "@/store";
 import GlobalStyle from "@/styles/GlobalStyle";
 import themes from "@/styles/themes";
 import { useSelector } from "react-redux";

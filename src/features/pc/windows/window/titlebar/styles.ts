@@ -1,11 +1,10 @@
-import { px } from "@/utils/functions";
 import styled from "styled-components";
 
 export const StyledTitlebar = styled.header<{
   $isFocused: boolean;
   $isMaximized?: boolean;
 }>`
-  height: ${px(11)};
+  height: ${({ theme }) => `${theme.s(11)}px`};
   width: 100%;
   background-color: ${({ theme, $isFocused }) =>
     $isFocused
@@ -14,26 +13,26 @@ export const StyledTitlebar = styled.header<{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 ${px(2)};
+  padding: 0 ${({ theme }) => `${theme.s(2)}px`};
   cursor: ${({ $isMaximized = false }) => ($isMaximized ? "default" : "move")};
 `;
 
 export const StyledTitle = styled.span`
   flex-grow: 1;
   text-align: left;
-  padding-top: ${px(1)};
-  padding-left: ${px(2)};
+  padding-top: ${({ theme }) => `${theme.s(1)}px`};
+  padding-left: ${({ theme }) => `${theme.s(2)}px`};
   color: ${({ theme }) => theme.colors.pc.window.titleBar.text || "#000"};
-  font-size: ${px(6)};
+  font-size: ${({ theme }) => `${theme.s(6)}px`};
 `;
 
 export const StyledButton = styled.button`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: ${px(7)};
-  height: ${px(7)};
-  margin-left: 5px;
+  width: ${({ theme }) => `${theme.s(7)}px`};
+  height: ${({ theme }) => `${theme.s(7)}px`};
+  margin-left: ${({ theme }) => `${theme.s(2)}px`};
   background: none;
   border: none;
   cursor: pointer;

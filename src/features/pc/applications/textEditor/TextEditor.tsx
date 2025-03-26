@@ -14,7 +14,7 @@ const StyledAppTitle = styled.h2`
   padding: 0;
   text-align: center;
   text-transform: uppercase;
-  padding-top: 10px;
+  padding-top: ${({ theme }) => `${theme.s(3)}px`};
 `;
 
 const StyledContainer = styled.div`

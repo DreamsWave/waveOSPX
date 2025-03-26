@@ -1,9 +1,13 @@
-import { Icon } from "@/types/icons";
+import type { Icon } from "@/types/icons";
 import { lazy } from "react";
 
+type WindowProps = {
+  windowId: string;
+  [key: string]: unknown;
+};
+
 export type ProcessDefinition = {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  Component: React.LazyExoticComponent<React.FC<any>>;
+  Component: React.LazyExoticComponent<React.ComponentType<WindowProps>>;
   backgroundColor?: string;
   defaultSize?: { width: number; height: number };
   icon: Icon;

@@ -1,26 +1,25 @@
-import { px } from "@/utils/functions";
 import styled from "styled-components";
 
 export const StyledTaskbar = styled.nav`
   position: fixed;
   bottom: 0;
   left: 0;
-  height: ${px(17)};
+  height: ${({ theme }) => `${theme.s(17)}px`};
   width: 100%;
   background: ${({ theme }) => theme.colors.pc.taskbar.background};
   border-top: ${({ theme }) =>
-    `${theme.sizes.pc.taskbar.borderWidthPX * theme.sizes.pixelSize}px solid ${
+    `${theme.s(theme.sizes.pc.taskbar.borderWidthPX)}px solid ${
       theme.colors.pc.border
     }`};
   display: flex;
-  gap: ${px(2)};
-  padding: ${px(2)};
+  gap: ${({ theme }) => `${theme.s(2)}px`};
+  padding: ${({ theme }) => `${theme.s(2)}px`};
   z-index: ${({ theme }) => theme.sizes.zIndex.highest};
 `;
 
 export const StyledTaskbarSeparator = styled.div`
   height: 100%;
-  width: ${px(1)};
+  width: ${({ theme }) => `${theme.s(1)}px`};
   position: relative;
 
   &:after {
@@ -29,15 +28,15 @@ export const StyledTaskbarSeparator = styled.div`
     top: 50%;
     left: 0;
     transform: translateY(-50%);
-    width: ${px(1)};
-    height: ${px(4)};
+    width: ${({ theme }) => `${theme.s(1)}px`};
+    height: ${({ theme }) => `${theme.s(4)}px`};
     background: ${({ theme }) => theme.colors.pc.taskbar.separator};
   }
 `;
 
 export const StyledTaskbarAppButtons = styled.div`
   display: flex;
-  gap: ${px(1)};
+  gap: ${({ theme }) => `${theme.s(1)}px`};
   overflow: hidden;
   overflow-x: auto;
   width: 100%;

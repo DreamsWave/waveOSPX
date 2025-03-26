@@ -1,12 +1,11 @@
-import { px } from "@/utils/functions";
 import styled from "styled-components";
 
 export const PhoneContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: ${px(88)};
-  height: ${px(258)};
+  width: ${({ theme }) => theme.s(88)}px;
+  height: ${({ theme }) => theme.s(258)}px;
   /* position: relative; */
   position: fixed;
   top: 50%;
@@ -15,8 +14,8 @@ export const PhoneContainer = styled.div`
 `;
 
 export const PhoneTexture = styled.img`
-  width: ${px(88)};
-  height: ${px(258)};
+  width: ${({ theme }) => theme.s(88)}px;
+  height: ${({ theme }) => theme.s(258)}px;
   display: flex;
   position: absolute;
   top: 0;
@@ -28,8 +27,8 @@ export const PhoneKeypad = styled.div`
   display: flex;
   z-index: 1;
   position: absolute;
-  top: ${px(142)};
-  left: ${px(5)};
-  height: ${px(100)};
-  width: ${px(78)};
+  top: ${({ theme }) => theme.s(142)}px;
+  left: ${({ theme }) => theme.s(5)}px;
+  height: ${({ theme }) => theme.s(100)}px;
+  width: ${({ theme }) => theme.s(78)}px;
 `;
