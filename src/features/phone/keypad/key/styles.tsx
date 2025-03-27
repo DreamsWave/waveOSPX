@@ -12,7 +12,7 @@ const buttonBaseStyles = css`
   background: transparent;
   border: none;
   cursor: pointer;
-  color: ${({ theme }) => theme.colors.phone.text};
+  color: ${({ theme }) => theme.phone.text};
   outline: none;
   font-family: "Monocraft";
   font-size: ${getFontSize("sm")};

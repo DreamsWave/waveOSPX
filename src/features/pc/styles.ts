@@ -3,12 +3,12 @@ import styled from "styled-components";
 
 export const StyledScreen = styled.main<{ $isFocused: boolean }>`
   position: absolute;
-  top: ${({ theme }) => theme.s(theme.sizes.monitor.screen.position.yPX)}px;
-  left: ${({ theme }) => theme.s(theme.sizes.monitor.screen.position.xPX)}px;
-  background: ${({ theme }) => theme.colors.background};
-  color: ${({ theme }) => theme.colors.text};
-  width: ${({ theme }) => theme.sizes.monitor.screen.resolution.width}px;
-  height: ${({ theme }) => theme.sizes.monitor.screen.resolution.height}px;
+  top: ${({ theme }) => theme.s(theme.pc.screen.position.y)}px;
+  left: ${({ theme }) => theme.s(theme.pc.screen.position.x)}px;
+  background: ${({ theme }) => theme.common.background};
+  color: ${({ theme }) => theme.common.text};
+  width: ${({ theme }) => theme.pc.screen.resolution.width}px;
+  height: ${({ theme }) => theme.pc.screen.resolution.height}px;
   transition: filter 0.5s ease, scale 0.5s ease-in-out;
   filter: blur(${({ $isFocused }) => ($isFocused ? 0 : "1px")});
   scale: ${({ $isFocused }) => ($isFocused ? 1 : 0.95)};
@@ -28,5 +28,5 @@ export const StyledScreen = styled.main<{ $isFocused: boolean }>`
 export const StyledDesktopView = styled.div`
   height: 100%;
   width: 100%;
-  padding-bottom: ${({ theme }) => theme.s(theme.sizes.pc.taskbar.heightPX)}px;
+  padding-bottom: ${({ theme }) => theme.s(theme.pc.taskbar.height)}px;
 `;

@@ -6,8 +6,8 @@ export const StyledTaskbarButton = styled.button`
   font-size: ${({ theme }) => `${theme.s(5)}px`};
   cursor: pointer;
   background: transparent;
-  color: ${({ theme }) => theme.colors.pc.taskbar.text};
-  border: ${({ theme }) => `${theme.s(1)}px solid ${theme.colors.pc.border}`};
+  color: ${({ theme }) => theme.pc.taskbar.text};
+  border: ${({ theme }) => `${theme.s(1)}px solid ${theme.pc.border}`};
 `;
 
 export const StyledTaskbarButtonContent = styled.div`

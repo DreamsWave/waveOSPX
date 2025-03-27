@@ -1,3 +1,6 @@
+import PhoneCallIconSVG from "@/assets/icons/single/phone/phone-call.svg";
+import PhoneOffIconSVG from "@/assets/icons/single/phone/phone-off.svg";
+import SelectIconSVG from "@/assets/icons/single/phone/select.svg";
 import Key from "@/features/phone/keypad/key";
 import { ActionColumn } from "@/features/phone/keypad/styles";
 import PxIcon from "@/shared/components/PxIcon";
@@ -6,14 +9,14 @@ import { useCallback } from "react";
 const ACTIONS_CONFIG = {
   left: [
     {
-      name: "select",
+      src: SelectIconSVG,
       action: "onBackspace",
       label: "Backspace",
       height: 1,
       width: 5,
     },
     {
-      name: "phone-off",
+      src: PhoneOffIconSVG,
       action: "onBackspace",
       label: "Cancel call",
       height: 7,
@@ -22,14 +25,14 @@ const ACTIONS_CONFIG = {
   ],
   right: [
     {
-      name: "select",
+      src: SelectIconSVG,
       action: "onSubmit",
       label: "Submit",
       height: 1,
       width: 5,
     },
     {
-      name: "phone-call",
+      src: PhoneCallIconSVG,
       action: "onSubmit",
       label: "Make call",
       height: 7,
@@ -57,7 +60,7 @@ export default function KeypadActions({
 
   return (
     <ActionColumn $side={side}>
-      {ACTIONS_CONFIG[side].map(({ name, action, label, height, width }) => (
+      {ACTIONS_CONFIG[side].map(({ src, action, label, height, width }) => (
         <Key
           key={label}
           type="control"
@@ -65,7 +68,7 @@ export default function KeypadActions({
           noPadding
           aria-label={label}
         >
-          <PxIcon icon={{ name, height, width, alt: `${label} icon` }} />
+          <PxIcon icon={{ src, height, width, alt: `${label} icon` }} />
         </Key>
       ))}
     </ActionColumn>

@@ -1,8 +1,8 @@
-import PxIcon from "@/shared/components/PxIcon";
+import Palette from "@/components/Palette";
 import { memo } from "react";
-import styled, { useTheme } from "styled-components";
+import styled from "styled-components";
 
-const StyledMusicPlayer = styled.div`
+const StyledPaletteViewer = styled.div`
   height: 100%;
   width: 100%;
   background-color: ${({ theme }) => theme.pc.window.background};
@@ -28,24 +28,15 @@ const StyledContainer = styled.div`
   height: ${({ theme }) => `${theme.s(70)}px`};
 `;
 
-type Props = {
-  windowId: string;
-};
-
-const MusicPlayer = memo(({ windowId }: Props) => {
-  const theme = useTheme();
+const PaletteViewer = memo(() => {
   return (
-    <StyledMusicPlayer>
+    <StyledPaletteViewer>
       <StyledAppTitle>Music Player</StyledAppTitle>
       <StyledContainer>
-        <PxIcon size="lg" icon={{ name: "music-player" }} />
-        <p style={{ marginTop: `${theme.s(3)}px` }}>
-          Playing music for window {windowId}
-        </p>
-        {/* Add audio controls here if implementing playback */}
+        <Palette />
       </StyledContainer>
-    </StyledMusicPlayer>
+    </StyledPaletteViewer>
   );
 });
 
-export default MusicPlayer;
+export default PaletteViewer;

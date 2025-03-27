@@ -13,7 +13,7 @@ const StyledSystemTray = styled.div`
 
 const StyledTime = styled.span`
   font-size: ${({ theme }) => theme.s(5)}px;
-  color: ${({ theme }) => theme.colors.pc.taskbar.time.color};
+  color: ${({ theme }) => theme.pc.taskbar.time.color};
   font-family: ${({ theme }) => theme.formats.systemFont};
   white-space: nowrap;
   margin: 0 ${({ theme }) => theme.s(2)}px;

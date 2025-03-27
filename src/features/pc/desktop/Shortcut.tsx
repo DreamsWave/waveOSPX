@@ -23,10 +23,8 @@ const StyledFigure = styled.figure`
 
 const StyledFigurePicture = styled.picture`
   cursor: inherit;
-  width: ${({ theme }) =>
-    theme.s(theme.sizes.pc.desktop.shortcut.iconSizePX)}px;
-  height: ${({ theme }) =>
-    theme.s(theme.sizes.pc.desktop.shortcut.iconSizePX)}px;
+  width: ${({ theme }) => theme.s(theme.pc.desktop.shortcut.iconSize)}px;
+  height: ${({ theme }) => theme.s(theme.pc.desktop.shortcut.iconSize)}px;
 `;
 
 const StyledFigCaption = styled.figcaption`

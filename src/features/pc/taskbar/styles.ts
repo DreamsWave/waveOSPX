@@ -6,15 +6,13 @@ export const StyledTaskbar = styled.nav`
   left: 0;
   height: ${({ theme }) => `${theme.s(17)}px`};
   width: 100%;
-  background: ${({ theme }) => theme.colors.pc.taskbar.background};
+  background: ${({ theme }) => theme.pc.taskbar.background};
   border-top: ${({ theme }) =>
-    `${theme.s(theme.sizes.pc.taskbar.borderWidthPX)}px solid ${
-      theme.colors.pc.border
-    }`};
+    `${theme.s(theme.pc.taskbar.borderWidth)}px solid ${theme.pc.border}`};
   display: flex;
   gap: ${({ theme }) => `${theme.s(2)}px`};
   padding: ${({ theme }) => `${theme.s(2)}px`};
-  z-index: ${({ theme }) => theme.sizes.zIndex.highest};
+  z-index: ${({ theme }) => theme.common.zIndex.highest};
 `;
 
 export const StyledTaskbarSeparator = styled.div`
@@ -30,7 +28,7 @@ export const StyledTaskbarSeparator = styled.div`
     transform: translateY(-50%);
     width: ${({ theme }) => `${theme.s(1)}px`};
     height: ${({ theme }) => `${theme.s(4)}px`};
-    background: ${({ theme }) => theme.colors.pc.taskbar.separator};
+    background: ${({ theme }) => theme.pc.taskbar.separator};
   }
 `;
 

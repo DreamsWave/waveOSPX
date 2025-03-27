@@ -71,13 +71,13 @@ export const getIconSource = ({
 
 export const getScreenMediaQuery = (): RuleSet => css`
   ${({ theme }) =>
-    `@media (max-width: ${theme.sizes.monitor.screen.resolution.width}px) or (max-height: ${theme.sizes.monitor.screen.resolution.height}px)`}
+    `@media (max-width: ${theme.pc.screen.resolution.width}px) or (max-height: ${theme.pc.screen.resolution.height}px)`}
 `;
 
 export const getFontSize = (
-  type: keyof DefaultTheme["sizes"]["fontSizes"] = "base"
+  type: keyof DefaultTheme["common"]["fontSizes"] = "base"
 ): RuleSet => css`
-  ${({ theme }) => `${theme.sizes.fontSizes[type] * theme.sizes.pixelSize}px`}
+  ${({ theme }) => `${theme.common.fontSizes[type] * theme.common.pixelSize}px`}
 `;
 
 export const getFormattedTime = (): string => {

@@ -5,12 +5,10 @@ export const StyledWindow = styled.section<{
   $isMinimized: boolean;
 }>`
   position: absolute;
-  background-color: ${({ theme }) => theme.colors.pc.window.background};
+  background-color: ${({ theme }) => theme.pc.window.background};
   border: ${({ theme, $isFocused }) =>
     `${theme.s(1)}px solid ${
-      $isFocused
-        ? theme.colors.pc.window.outline
-        : theme.colors.pc.window.outlineFocused
+      $isFocused ? theme.pc.window.outline : theme.pc.window.outlineFocused
     }`};
   overflow: hidden;
   width: 100%;
@@ -22,8 +20,7 @@ export const StyledWindow = styled.section<{
 
 export const StyledWindowContent = styled.div`
   height: calc(
-    100% -
-      ${({ theme }) => `${theme.s(theme.sizes.pc.window.titleBar.heightPX)}px`}
+    100% - ${({ theme }) => `${theme.s(theme.pc.window.titleBar.height)}px`}
   );
   width: 100%;
   overflow: auto;

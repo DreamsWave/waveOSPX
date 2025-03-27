@@ -8,9 +8,8 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 export const StyledStartMenuButton = styled(StyledTaskbarButton)`
-  background: ${({ theme }) =>
-    theme.colors.pc.taskbar.startMenuButton.background};
-  color: ${({ theme }) => theme.colors.pc.taskbar.startMenuButton.text};
+  background: ${({ theme }) => theme.pc.taskbar.startMenuButton.background};
+  color: ${({ theme }) => theme.pc.taskbar.startMenuButton.text};
 `;
 
 type Props = {

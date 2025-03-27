@@ -48,8 +48,7 @@ const Window = ({
   const baseProcessId = id.split("__")[0];
   const Component = processDirectory[baseProcessId]?.Component;
   const styledTheme = useStyledTheme();
-  const taskbarHeight =
-    styledTheme.sizes.pc.taskbar.heightPX * styledTheme.sizes.pixelSize;
+  const taskbarHeight = styledTheme.pc.taskbar.height * styledTheme.pixelSize;
 
   const handleDragStop = (_e: RndDragEvent, data: { x: number; y: number }) => {
     if (maximized) return; // Prevent dragging when maximized

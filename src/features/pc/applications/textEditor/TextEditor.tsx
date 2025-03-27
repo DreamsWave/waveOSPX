@@ -4,17 +4,18 @@ import styled from "styled-components";
 const StyledTextEditor = styled.div`
   height: 100%;
   width: 100%;
-  background-color: #bac7db;
-  color: #615f84;
+  background-color: ${({ theme }) => theme.pc.window.background};
+  color: ${({ theme }) => theme.pc.window.text};
 `;
 
 const StyledAppTitle = styled.h2`
-  font-size: 1.5rem;
+  font-size: ${({ theme }) => `${theme.s(theme.common.fontSizes.lg)}px`};
   font-weight: 600;
   padding: 0;
   text-align: center;
   text-transform: uppercase;
   padding-top: ${({ theme }) => `${theme.s(3)}px`};
+  padding-bottom: ${({ theme }) => `${theme.s(3)}px`};
 `;
 
 const StyledContainer = styled.div`
@@ -23,7 +24,7 @@ const StyledContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 60%;
+  height: ${({ theme }) => `${theme.s(70)}px`};
 `;
 
 const TextEditor = () => {

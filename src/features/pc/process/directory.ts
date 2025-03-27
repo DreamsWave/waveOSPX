@@ -41,4 +41,16 @@ export const processDirectory: Record<string, ProcessDefinition> = {
     icon: { name: "text-editor" },
     title: "Text Editor",
   },
+  paletteViewer: {
+    Component: lazy(
+      () => import("@/features/pc/applications/paletteViewer/PaletteViewer")
+    ),
+    backgroundColor: "#000",
+    defaultSize: { width: 500, height: 400 },
+    icon: {
+      name: "music-player",
+    },
+    singleton: true,
+    title: "Palette Viewer",
+  },
 };

@@ -40,7 +40,7 @@ const GlobalStyle = styled.createGlobalStyle`
   }
 
   html {
-    background-color: ${({ theme }) => theme.colors.background};
+    background-color: ${({ theme }) => theme.background};
     /* stylelint-disable value-no-vendor-prefix */
     height: -webkit-fill-available;
     height: -moz-available;

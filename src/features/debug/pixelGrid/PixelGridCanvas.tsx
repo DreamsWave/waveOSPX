@@ -10,9 +10,9 @@ const StyledCanvas = styled(motion.canvas)`
   top: 50%;
   left: 50%;
   translate: -50% -50%;
-  width: ${({ theme }) => theme.sizes.backgroundImageSize.width}px;
-  height: ${({ theme }) => theme.sizes.backgroundImageSize.height}px;
-  z-index: ${({ theme }) => theme.sizes.zIndex.middle};
+  width: ${({ theme }) => theme.common.backgroundImageSize.width}px;
+  height: ${({ theme }) => theme.common.backgroundImageSize.height}px;
+  z-index: ${({ theme }) => theme.common.zIndex.middle};
 `;
 
 type Props = {
@@ -31,8 +31,8 @@ const PixelGridCanvas = memo(
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
     const pixelSize = useMemo(
-      () => theme.sizes.pixelSize * (propCellSize ?? reduxCellSize),
-      [propCellSize, reduxCellSize, theme.sizes.pixelSize]
+      () => theme.common.pixelSize * (propCellSize ?? reduxCellSize),
+      [propCellSize, reduxCellSize, theme.common.pixelSize]
     );
 
     const redraw = useCallback(() => {
@@ -40,7 +40,7 @@ const PixelGridCanvas = memo(
       const ctx = canvas?.getContext("2d");
       if (!canvas || !ctx) return;
 
-      const { width, height } = theme.sizes.backgroundImageSize;
+      const { width, height } = theme.common.backgroundImageSize;
       if (canvas.width !== width || canvas.height !== height) {
         canvas.width = width;
         canvas.height = height;
@@ -48,8 +48,8 @@ const PixelGridCanvas = memo(
         ctx.clearRect(0, 0, canvas.width, canvas.height);
       }
 
-      ctx.strokeStyle = lineColor ?? theme.colors.debug.pixelGridLineColor;
-      ctx.lineWidth = lineWidth ?? theme.sizes.debug.pixelGridLineWidth;
+      ctx.strokeStyle = lineColor ?? theme.debug.pixelGridLineColor;
+      ctx.lineWidth = lineWidth ?? theme.debug.pixelGridLineWidth;
 
       const pixelsX = Math.ceil(canvas.width / pixelSize);
       const pixelsY = Math.ceil(canvas.height / pixelSize);

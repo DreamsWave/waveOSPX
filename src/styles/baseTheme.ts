@@ -1,129 +1,119 @@
-export const baseColors = {
-  background: "#ffffff",
-  text: "#000000",
+import type { DefaultTheme } from "styled-components";
+import { getColor } from "./colorUtils";
+
+const baseTheme: Omit<DefaultTheme, "name"> = {
+  pc: {
+    screen: {
+      resolution: { height: 768, width: 1020 },
+      position: { x: 180, y: 65 },
+    },
+    desktop: {
+      background: getColor("Gray", 5),
+      text: getColor("SoftBlue", 1),
+      shortcut: {
+        text: getColor("SoftBlue", 1),
+        iconSize: 32,
+        fontSize: 14,
+      },
+      grid: {
+        gapX: 2,
+        gapY: 11,
+        padding: 4,
+      },
+    },
+    taskbar: {
+      background: getColor("Gray", 6),
+      text: getColor("SoftBlue", 2),
+      separator: getColor("SoftBlue", 4),
+      height: 17,
+      borderWidth: 1,
+      startMenuButton: {
+        background: getColor("SoftBlue", 4),
+        text: getColor("Slate", 7),
+      },
+      time: {
+        color: getColor("SoftBlue", 2),
+      },
+    },
+    window: {
+      background: getColor("Gray", 6),
+      text: getColor("SoftBlue", 2),
+      outline: getColor("Slate", 2),
+      outlineFocused: getColor("Slate", 3),
+      titleBar: {
+        height: 11,
+        background: getColor("Slate", 4),
+        backgroundFocused: getColor("SoftBlue", 4),
+        text: getColor("Slate", 7),
+      },
+    },
+    startMenu: {
+      background: getColor("Gray", 6),
+      borderColor: getColor("Slate", 2),
+      borderWidth: 1,
+      text: getColor("Slate", 7),
+    },
+    border: getColor("Slate", 2),
+  },
+  phone: {
+    background: getColor("Slate", 7),
+    text: getColor("SoftBlue", 1),
+    border: getColor("Slate", 2),
+    displayControls: {
+      background: getColor("SoftBlue", 4),
+      text: getColor("Slate", 7),
+    },
+  },
+
+  // Common utilities and design tokens
+  common: {
+    // Base colors for general use
+    background: getColor("Slate", 7),
+    text: getColor("Slate", 2),
+
+    // System settings
+    pixelSize: 3,
+    fontSizes: {
+      xs: 4,
+      sm: 5,
+      base: 6,
+      lg: 7,
+      xl: 8,
+    },
+    iconSizes: {
+      xs: 8,
+      sm: 16,
+      md: 32,
+      lg: 64,
+    },
+    backgroundImageSize: { width: 2100, height: 1158 },
+    zIndex: { highest: 9999, top: 1000, middle: 500 },
+  },
+
+  // Debug settings
   debug: {
     background: "rgba(0, 0, 0, 0.2)",
     backgroundHover: "rgba(0, 0, 0, 0.3)",
     text: "#fff",
     pixelGridLineColor: "#ff0000",
-  },
-  pc: {
-    border: "#434549",
-    desktop: {
-      background: "#abaebe",
-      text: "#3a4568",
-      shortcut: {
-        text: "#3a4568",
-      },
-    },
-    taskbar: {
-      background: "#bac7db",
-      text: "#615f84",
-      separator: "#8690b2",
-      startMenuButton: {
-        background: "#8690b2",
-        // backgroundHover: "#8690b2",
-        text: "#f5f7fa",
-      },
-      time: {
-        color: "#615f84",
-      },
-    },
-
-    window: {
-      background: "#bac7db",
-      text: "#615f84",
-      outline: "#434549",
-      outlineFocused: "#828b98",
-      titleBar: {
-        background: "#a7b1d1",
-        backgroundFocused: "#8690b2",
-        text: "#f5f7fa",
-      },
-    },
-    startMenu: {
-      background: "#bac7db",
-      borderColor: "#434549",
-      text: "#f5f7fa",
-    },
-  },
-  phone: {
-    background: "#abaebe",
-    text: "#3a4568",
-    border: "#434549",
-  },
-};
-
-export const baseSizes = {
-  pixelSize: 3,
-  fontSizes: {
-    xs: 4,
-    sm: 5,
-    base: 6,
-    lg: 7,
-    xl: 8,
-  },
-  monitor: {
-    screen: {
-      resolution: { height: 768, width: 1020 },
-      position: { xPX: 180, yPX: 65 },
-    },
-  },
-  pc: {
-    desktop: {
-      grid: {
-        gapXPX: 2,
-        gapYPX: 11,
-        paddingPX: 4,
-      },
-      shortcut: {
-        iconSizePX: 32,
-        fontSize: "14px",
-      },
-    },
-    taskbar: {
-      heightPX: 17,
-      borderWidthPX: 1,
-    },
-    window: {
-      titleBar: { heightPX: 11 },
-    },
-    startMenu: {
-      borderWidth: 1,
-    },
-  },
-  backgroundImageSize: { width: 2100, height: 1158 },
-  zIndex: { highest: 9999, top: 1000, middle: 500 },
-  debug: {
     pixelGridLineWidth: 0.5,
     buttonSize: 15,
     menuWidth: 150,
   },
-  iconSizes: {
-    xs: 8,
-    sm: 16,
-    md: 32,
-    lg: 64,
+
+  // Formatting options
+  formats: {
+    dateModified: {
+      hour: "numeric",
+      hour12: false,
+      minute: "2-digit",
+    } as Intl.DateTimeFormatOptions,
+    systemFont:
+      "'Monocraft', 'Segoe UI', system-ui, Roboto, 'Helvetica Neue', sans-serif",
   },
-};
-
-export const baseFormats = {
-  dateModified: {
-    hour: "numeric",
-    hour12: false,
-    minute: "2-digit",
-  } as Intl.DateTimeFormatOptions,
-  systemFont:
-    "'Monocraft', 'Segoe UI', system-ui, Roboto, 'Helvetica Neue', sans-serif",
-};
-
-const baseTheme = {
-  colors: baseColors,
-  sizes: baseSizes,
-  formats: baseFormats,
 
   // Utility function for scaling pixel values
-  s: (size: number) => baseSizes.pixelSize * size,
+  s: (size: number) => baseTheme.common.pixelSize * size,
 };
 
 export default baseTheme;

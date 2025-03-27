@@ -4,7 +4,7 @@ export const StyledDebug = styled.div`
   position: fixed;
   top: 0;
   right: 0;
-  z-index: ${({ theme }) => theme.sizes.zIndex?.top || 1000};
+  z-index: ${({ theme }) => theme.common.zIndex.top};
   display: flex;
   flex-direction: column;
   align-items: end;
@@ -16,14 +16,14 @@ export const StyledDebugButton = styled.button`
   align-items: center;
   padding: 0;
   margin: 0;
-  width: ${({ theme }) => theme.sizes.debug.buttonSize}px;
-  height: ${({ theme }) => theme.sizes.debug.buttonSize}px;
-  background: ${({ theme }) => theme.colors.debug.background};
-  color: ${({ theme }) => theme.colors.debug.text};
+  width: ${({ theme }) => theme.debug.buttonSize}px;
+  height: ${({ theme }) => theme.debug.buttonSize}px;
+  background: ${({ theme }) => theme.debug.background};
+  color: ${({ theme }) => theme.debug.text};
   cursor: pointer;
 
   &:hover {
-    background: ${({ theme }) => theme.colors.debug.backgroundHover};
+    background: ${({ theme }) => theme.debug.backgroundHover};
   }
 `;
 
@@ -32,9 +32,9 @@ export const StyledDebugMenu = styled.ul`
   flex-direction: column;
   align-items: end;
   gap: ${({ theme }) => `${theme.s(2)}px`};
-  background: ${({ theme }) => theme.colors.debug.background};
+  background: ${({ theme }) => theme.debug.background};
   padding: ${({ theme }) => `${theme.s(2)}px`};
-  width: ${({ theme }) => theme.sizes.debug.menuWidth}px;
+  width: ${({ theme }) => theme.debug.menuWidth}px;
 `;
 
 export const StyledDebugMenuItem = styled.li`
@@ -47,7 +47,7 @@ export const StyledDebugMenuButton = styled(StyledDebugButton)`
   background: transparent;
 
   &:hover {
-    background: ${({ theme }) => theme.colors.debug.background};
+    background: ${({ theme }) => theme.debug.background};
   }
 `;
 

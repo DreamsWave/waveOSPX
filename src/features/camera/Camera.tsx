@@ -6,13 +6,14 @@ import { useMouse, useThrottle, useWindowSize } from "@uidotdev/usehooks";
 import { memo, useEffect, useMemo } from "react";
 import { isMobile } from "react-device-detect";
 import { useSelector } from "react-redux";
-import { useTheme as useStyledTheme } from "styled-components";
+import { useTheme } from "styled-components";
 
 const Camera = memo(() => {
   const { reducedMotion } = useSelector((state: RootState) => state.settings);
   const {
-    sizes: { monitor, backgroundImageSize },
-  } = useStyledTheme();
+    common: { backgroundImageSize },
+    pc: { screen },
+  } = useTheme();
   const { backgroundX, backgroundY, clampBackgroundPosition } = useBackground();
   const [mousePosition] = useMouse();
   const { width, height } = useWindowSize();
@@ -24,9 +25,9 @@ const Camera = memo(() => {
     () =>
       width != null &&
       height != null &&
-      width <= monitor.screen.resolution.width &&
-      height <= monitor.screen.resolution.height,
-    [width, height, monitor.screen.resolution]
+      width <= screen.resolution.width &&
+      height <= screen.resolution.height,
+    [width, height, screen.resolution]
   );
 
   const scrollSpeeds = useMemo(() => {

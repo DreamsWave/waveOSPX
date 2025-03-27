@@ -1,12 +1,12 @@
 import {
-  Cursor,
-  DisplayContent,
-  DisplayControlIndicator,
-  DisplayControlIndicators,
-  DisplayText,
-  DisplayWrapper,
-  PhoneDisplay,
-  Textarea,
+  StyledCursor,
+  StyledDisplayContent,
+  StyledDisplayControlIndicator,
+  StyledDisplayControlIndicators,
+  StyledDisplayText,
+  StyledDisplayWrapper,
+  StyledPhoneDisplay,
+  StyledTextarea,
 } from "@/features/phone/display/styles";
 import { useEffect, useRef } from "react";
 
@@ -38,18 +38,45 @@ export default function Display({
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
-    if (isEditing && textareaRef.current) textareaRef.current.focus();
-  }, [isEditing]);
+    if (isEditing && textareaRef.current) {
+      textareaRef.current.focus();
+      textareaRef.current.setSelectionRange(cursorPosition, cursorPosition);
+    }
+  }, [isEditing, cursorPosition]);
+
+  const handleClick = () => {
+    if (!isEditing) {
+      onClick();
+    }
+  };
+
+  const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const newValue = e.target.value;
+    const newCursorPosition = e.target.selectionStart;
+
+    // Create a new event with the same properties but with the cursor position preserved
+    const newEvent = {
+      ...e,
+      target: {
+        ...e.target,
+        value: newValue,
+        selectionStart: newCursorPosition,
+        selectionEnd: newCursorPosition,
+      },
+    } as React.ChangeEvent<HTMLTextAreaElement>;
+
+    onTextChange(newEvent);
+  };
 
   return (
-    <PhoneDisplay>
-      <DisplayWrapper as="textarea" aria-label="Text display" onClick={onClick}>
-        <DisplayContent>
+    <StyledPhoneDisplay>
+      <StyledDisplayWrapper onClick={handleClick}>
+        <StyledDisplayContent>
           {isEditing ? (
-            <Textarea
+            <StyledTextarea
               ref={textareaRef}
               value={text}
-              onChange={onTextChange}
+              onChange={handleTextChange}
               onBlur={onBlur}
               spellCheck={false}
               $isVisible={true}
@@ -57,32 +84,32 @@ export default function Display({
               aria-label="Editable text input"
             />
           ) : (
-            <DisplayText aria-label={`Text: ${text}`}>
+            <StyledDisplayText aria-label={`Text: ${text}`}>
               {text.slice(0, cursorPosition)}
-              <Cursor />
+              <StyledCursor />
               {text.slice(cursorPosition)}
-            </DisplayText>
+            </StyledDisplayText>
           )}
-        </DisplayContent>
-      </DisplayWrapper>
-      <DisplayControlIndicators>
-        <DisplayControlIndicator
+        </StyledDisplayContent>
+      </StyledDisplayWrapper>
+      <StyledDisplayControlIndicators>
+        <StyledDisplayControlIndicator
           onClick={onLeftAction}
           aria-label={leftActionLabel}
           tabIndex={0}
           onKeyDown={(e) => e.key === "Enter" && onLeftAction()}
         >
           {leftActionLabel}
-        </DisplayControlIndicator>
-        <DisplayControlIndicator
+        </StyledDisplayControlIndicator>
+        <StyledDisplayControlIndicator
           onClick={onRightAction}
           aria-label={rightActionLabel}
           tabIndex={0}
           onKeyDown={(e) => e.key === "Enter" && onRightAction()}
         >
           {rightActionLabel}
-        </DisplayControlIndicator>
-      </DisplayControlIndicators>
-    </PhoneDisplay>
+        </StyledDisplayControlIndicator>
+      </StyledDisplayControlIndicators>
+    </StyledPhoneDisplay>
   );
 }

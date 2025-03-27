@@ -1,6 +1,6 @@
+import { usePhoneInput } from "@/features/phone/PhoneContext";
 import Display from "@/features/phone/display";
 import Keypad from "@/features/phone/keypad";
-import { usePhoneInput } from "@/features/phone/PhoneContext";
 import { PhoneKeypad } from "@/features/phone/styles";
 import { useCallback, useEffect, useRef, useState } from "react";
 
@@ -37,6 +37,14 @@ export default function PhoneForm() {
     if (isEditing && textareaRef.current) textareaRef.current.focus();
   }, [isEditing]);
 
+  const handleTextChange = useCallback(
+    (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+      setText(e.target.value);
+      setCursorPosition(e.target.selectionStart);
+    },
+    [setText, setCursorPosition]
+  );
+
   return (
     <>
       <Display
@@ -45,7 +53,7 @@ export default function PhoneForm() {
         isEditing={isEditing}
         leftActionLabel="Backspace"
         rightActionLabel="Send"
-        onTextChange={(e) => setText(e.target.value)}
+        onTextChange={handleTextChange}
         onBlur={() => {
           setCursorPosition(text.length);
           setIsEditing(false);

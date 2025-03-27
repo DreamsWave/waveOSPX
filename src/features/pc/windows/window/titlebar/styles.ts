@@ -8,8 +8,8 @@ export const StyledTitlebar = styled.header<{
   width: 100%;
   background-color: ${({ theme, $isFocused }) =>
     $isFocused
-      ? theme.colors.pc.window.titleBar.backgroundFocused
-      : theme.colors.pc.window.titleBar.background};
+      ? theme.pc.window.titleBar.backgroundFocused
+      : theme.pc.window.titleBar.background};
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -22,7 +22,7 @@ export const StyledTitle = styled.span`
   text-align: left;
   padding-top: ${({ theme }) => `${theme.s(1)}px`};
   padding-left: ${({ theme }) => `${theme.s(2)}px`};
-  color: ${({ theme }) => theme.colors.pc.window.titleBar.text || "#000"};
+  color: ${({ theme }) => theme.pc.window.titleBar.text || "#000"};
   font-size: ${({ theme }) => `${theme.s(6)}px`};
 `;
 
@@ -36,10 +36,10 @@ export const StyledButton = styled.button`
   background: none;
   border: none;
   cursor: pointer;
-  color: ${({ theme }) => theme.colors.pc.window.titleBar.text || "#fff"};
+  color: ${({ theme }) => theme.pc.window.titleBar.text || "#fff"};
 
   &:hover {
     background-color: ${({ theme }) =>
-      theme.colors.pc.window.titleBar.background || "#ddd"};
+      theme.pc.window.titleBar.background || "#ddd"};
   }
 `;

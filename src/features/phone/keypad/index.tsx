@@ -1,3 +1,4 @@
+import KeypadActions from "@/features/phone/keypad/KeypadActions";
 import {
   KEYPAD_LAYOUT,
   type T9Key,
@@ -12,7 +13,6 @@ import {
   NumericGrid,
 } from "@/features/phone/keypad/styles";
 import React, { useCallback } from "react";
-import KeypadActions from "./KeypadActions";
 
 interface KeypadProps {
   onKeyPress: (key: T9Key) => void;

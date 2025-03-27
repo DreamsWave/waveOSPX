@@ -7,8 +7,8 @@ export const StyledBackground = styled(motion.div)`
   top: 50%;
   left: 50%;
   translate: -50% -50%;
-  width: ${({ theme }) => theme.sizes.backgroundImageSize.width}px;
-  height: ${({ theme }) => theme.sizes.backgroundImageSize.height}px;
+  width: ${({ theme }) => theme.common.backgroundImageSize.width}px;
+  height: ${({ theme }) => theme.common.backgroundImageSize.height}px;
 
   ${getScreenMediaQuery()} {
     translate: 0 !important;
