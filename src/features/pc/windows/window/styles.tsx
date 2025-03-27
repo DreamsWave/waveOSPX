@@ -15,6 +15,9 @@ export const StyledWindow = styled.section<{
   overflow: hidden;
   width: 100%;
   height: 100%;
+  &.window {
+    // This class is used for click detection
+  }
 `;
 
 export const StyledWindowContent = styled.div`

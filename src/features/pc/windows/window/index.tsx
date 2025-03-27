@@ -69,6 +69,10 @@ const Window = ({
     onFocus(id);
   };
 
+  const handleDragStart = () => {
+    onFocus(id);
+  };
+
   const handleResizeStop: RndResizeCallback = (
     _e,
     _direction,
@@ -121,6 +125,7 @@ const Window = ({
       maxWidth={containerBounds?.width}
       maxHeight={containerBounds?.height}
       onDragStop={handleDragStop}
+      onDragStart={handleDragStart}
       onResizeStop={handleResizeStop}
       dragHandleClassName="titlebar"
       enableResizing={allowResizing !== false && !maximized}
@@ -131,6 +136,8 @@ const Window = ({
         $isFocused={isFocused}
         $isMinimized={false} // Always false here since we return null when minimized
         style={{ backgroundColor }}
+        className="window"
+        onClick={() => onFocus(id)}
       >
         <Titlebar
           id={id}

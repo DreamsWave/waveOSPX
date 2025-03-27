@@ -1,4 +1,5 @@
 import Desktop from "@/features/pc/desktop";
+import StartMenu from "@/features/pc/startMenu";
 import { StyledScreen } from "@/features/pc/styles";
 import Taskbar from "@/features/pc/taskbar";
 import Windows from "@/features/pc/windows";
@@ -12,8 +13,9 @@ export const Screen = () => {
   return (
     <StyledScreen ref={screenRef} $isFocused={currentMode === "pc"}>
       <Desktop />
-      <Windows containerRef={screenRef} />
       <Taskbar />
+      <StartMenu />
+      <Windows containerRef={screenRef} />
     </StyledScreen>
   );
 };

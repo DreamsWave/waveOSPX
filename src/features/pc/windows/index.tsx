@@ -4,6 +4,7 @@ import {
   minimizeProcess,
   setFocusedProcess,
 } from "@/features/pc/process/processSlice";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../../../store";
 import Window from "./window";
@@ -24,6 +25,30 @@ const Windows = ({ containerRef }: Props) => {
   const handleWindowFocus = (id: string) => {
     dispatch(setFocusedProcess(id));
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      // Check if the click was on a window or its children
+      const target = event.target as HTMLElement;
+      const isClickOnWindow = target.closest(".window");
+
+      // If click is not on a window, clear focus
+      if (!isClickOnWindow) {
+        dispatch(setFocusedProcess(""));
+      }
+    };
+
+    const container = containerRef.current;
+    if (container) {
+      container.addEventListener("click", handleClickOutside);
+    }
+
+    return () => {
+      if (container) {
+        container.removeEventListener("click", handleClickOutside);
+      }
+    };
+  }, [containerRef, dispatch]);
 
   return (
     <>

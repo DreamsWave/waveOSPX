@@ -41,6 +41,11 @@ export const baseColors = {
         text: "#f5f7fa",
       },
     },
+    startMenu: {
+      background: "#bac7db",
+      borderColor: "#434549",
+      text: "#f5f7fa",
+    },
   },
   phone: {
     background: "#abaebe",
@@ -82,6 +87,9 @@ export const baseSizes = {
     },
     window: {
       titleBar: { heightPX: 11 },
+    },
+    startMenu: {
+      borderWidth: 1,
     },
   },
   backgroundImageSize: { width: 2100, height: 1158 },

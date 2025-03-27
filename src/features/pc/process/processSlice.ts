@@ -73,10 +73,98 @@ const processSlice = createSlice({
       }
 
       const pid = generatePid(id, url, state.processes);
+
+      // Calculate initial position based on last focused window or find a free spot
+      let initialPosition = { x: 100, y: 100 }; // Default position
+      const offset = 30; // Offset in pixels
+      const windowWidth = definition.defaultSize?.width || 500;
+      const windowHeight = definition.defaultSize?.height || 400;
+      const screenWidth = 1020; // From baseTheme.ts
+      const screenHeight = 768; // From baseTheme.ts
+
+      // Get all existing window positions with their IDs
+      const existingWindows = Object.values(state.processes)
+        .filter((p) => p.position)
+        .map((p) => ({
+          id: p.id,
+          position: p.position as { x: number; y: number },
+          size: p.size || { width: 500, height: 400 },
+        }));
+
+      // Find the rightmost and bottommost window positions
+      const rightmostX = Math.max(
+        100,
+        ...existingWindows.map((w) => w.position.x)
+      );
+      const bottommostY = Math.max(
+        100,
+        ...existingWindows.map((w) => w.position.y)
+      );
+
+      // Calculate new position with offset
+      let newX = rightmostX + offset;
+      let newY = bottommostY + offset;
+
+      // If the new position would go off screen, start a new row from the left
+      if (newX + windowWidth > screenWidth) {
+        newX = 100; // Reset to left side
+        newY = bottommostY + offset; // Move down one row
+      }
+
+      // If the new position would go off screen vertically, start from the top
+      if (newY + windowHeight > screenHeight) {
+        newX = 100; // Reset to left side
+        newY = 100; // Reset to top
+      }
+
+      // Check if this position would overlap with any existing window
+      const wouldOverlap = existingWindows.some((window) => {
+        return (
+          newX < window.position.x + window.size.width &&
+          newX + windowWidth > window.position.x &&
+          newY < window.position.y + window.size.height &&
+          newY + windowHeight > window.position.y
+        );
+      });
+
+      // If there would be an overlap, try to find a free spot
+      if (wouldOverlap) {
+        let found = false;
+        for (
+          let startY = 100;
+          startY < screenHeight - windowHeight && !found;
+          startY += offset
+        ) {
+          for (
+            let startX = 100;
+            startX < screenWidth - windowWidth && !found;
+            startX += offset
+          ) {
+            const isOverlapping = existingWindows.some((window) => {
+              return (
+                startX < window.position.x + window.size.width &&
+                startX + windowWidth > window.position.x &&
+                startY < window.position.y + window.size.height &&
+                startY + windowHeight > window.position.y
+              );
+            });
+
+            if (!isOverlapping) {
+              newX = startX;
+              newY = startY;
+              found = true;
+              break;
+            }
+          }
+        }
+      }
+
+      initialPosition = { x: newX, y: newY };
+
       state.processes[pid] = {
         id: pid,
         url,
-        position: { x: 100, y: 100 },
+        position: initialPosition,
         size: definition.defaultSize,
         backgroundColor: definition.backgroundColor,
         defaultSize: definition.defaultSize,
@@ -132,9 +220,26 @@ const processSlice = createSlice({
     setFocusedProcess: (state, action: PayloadAction<string>) => {
       const newFocusedId = action.payload;
       state.focusedProcessId = newFocusedId;
+
+      // If clearing focus (empty string), keep the last focused window on top
+      if (!newFocusedId) {
+        // Find the last focused window
+        const lastFocusedWindow = Object.values(state.processes).find(
+          (process) => process.id === state.focusedProcessId
+        );
+        if (lastFocusedWindow) {
+          lastFocusedWindow.zIndex = 1000;
+        }
+        return;
+      }
+
+      // For new focus, update z-indices
       for (const process of Object.values(state.processes)) {
-        if (process.id === newFocusedId) process.zIndex = 1000;
-        else if (process.zIndex >= 1000) process.zIndex -= 1;
+        if (process.id === newFocusedId) {
+          process.zIndex = 1000;
+        } else if (process.zIndex >= 1000) {
+          process.zIndex -= 1;
+        }
       }
     },
   },

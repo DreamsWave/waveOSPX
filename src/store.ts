@@ -2,6 +2,7 @@ import cameraReducer from "@/features/camera/cameraSlice";
 import debugReducer from "@/features/debug/debugSlice";
 import modeReducer from "@/features/mode/modeSlice";
 import processReducer from "@/features/pc/process/processSlice";
+import taskbarReducer from "@/features/pc/taskbar/slice";
 import settingsReducer from "@/features/settings/settingsSlice";
 import themeReducer from "@/features/theme/themeSlice";
 import { configureStore } from "@reduxjs/toolkit";
@@ -15,6 +16,7 @@ export const store = configureStore({
     mode: modeReducer,
     theme: themeReducer,
     processes: processReducer,
+    taskbar: taskbarReducer,
   },
 });
 

@@ -15,6 +15,7 @@ type Props = {
   icon?: Icon;
   title?: string;
   onClick?: () => void;
+  className?: string;
 };
 
 const TaskbarButton = ({
@@ -23,11 +24,12 @@ const TaskbarButton = ({
   icon = { name: "default-icon", size: "xs" },
   title = "...",
   onClick,
+  className,
   ...props
 }: Props) => {
   const isActive = isFocused && !isMinimized;
   return (
-    <StyledTaskbarButton onClick={onClick} {...props}>
+    <StyledTaskbarButton onClick={onClick} className={className} {...props}>
       <NinePatch
         texture={isActive ? TaskButtonActiveTextureSVG : TaskButtonTextureSVG}
         patchMargin={1}
@@ -41,6 +43,7 @@ const TaskbarButton = ({
                 height: icon.height,
                 width: icon.width,
                 alt: icon.alt || `${title} icon`,
+                src: icon.src,
               }}
             />
           )}
