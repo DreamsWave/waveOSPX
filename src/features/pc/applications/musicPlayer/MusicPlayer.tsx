@@ -3,7 +3,7 @@ import { memo } from "react";
 import styled, { useTheme } from "styled-components";
 
 const StyledMusicPlayer = styled.div`
-  height: 100%;
+  min-height: 100%;
   width: 100%;
   background-color: ${({ theme }) => theme.pc.window.background};
   color: ${({ theme }) => theme.pc.window.text};

@@ -56,7 +56,6 @@ declare module "styled-components" {
         borderWidth: number;
         text: string;
       };
-      border: string;
     };
 
     // Phone Component theming
@@ -74,6 +73,12 @@ declare module "styled-components" {
     common: {
       background: string;
       text: string;
+      border: {
+        color: string;
+        colorFocused: string;
+        width: number;
+      };
+
       pixelSize: number;
       fontSizes: {
         xs: number;
@@ -112,6 +117,7 @@ declare module "styled-components" {
 
     // Utility function for scaling pixel values
     s: (size: number) => number;
+    getBorder: (width?: number, color?: string) => string;
   }
 
   export function useTheme(): DefaultTheme;

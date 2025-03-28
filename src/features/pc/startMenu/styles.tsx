@@ -6,13 +6,13 @@ export const StartMenuContainer = styled.nav<{ $isOpen: boolean }>`
   left: ${({ theme }) => `${theme.s(1)}px`};
   background: ${({ theme }) => theme.pc.startMenu.background};
   border: ${({ theme }) =>
-    `${theme.s(theme.pc.startMenu.borderWidth)}px solid ${
+    theme.getBorder(
+      theme.pc.startMenu.borderWidth,
       theme.pc.startMenu.borderColor
-    }`};
+    )};
   padding: 8px;
   min-width: 200px;
   display: ${({ $isOpen }) => ($isOpen ? "block" : "none")};
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   z-index: ${({ theme }) => theme.common.zIndex.highest};
 `;
 
@@ -21,7 +21,6 @@ export const StartMenuItemContainer = styled.div`
   align-items: center;
   padding: 8px 12px;
   cursor: pointer;
-  border-radius: 4px;
   color: ${({ theme }) => theme.pc.startMenu.text};
 
   &:hover {

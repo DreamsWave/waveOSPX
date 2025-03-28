@@ -3,16 +3,22 @@ import styled from "styled-components";
 export const StyledWindow = styled.section<{
   $isFocused: boolean;
   $isMinimized: boolean;
+  $isMaximized: boolean;
 }>`
   position: absolute;
   background-color: ${({ theme }) => theme.pc.window.background};
-  border: ${({ theme, $isFocused }) =>
-    `${theme.s(1)}px solid ${
-      $isFocused ? theme.pc.window.outline : theme.pc.window.outlineFocused
-    }`};
+  border: ${({ theme, $isFocused, $isMaximized }) =>
+    $isMaximized
+      ? "none"
+      : $isFocused
+      ? theme.getBorder(1, theme.pc.window.outlineFocused)
+      : theme.getBorder(1, theme.pc.window.outline)};
   overflow: hidden;
   width: 100%;
   height: 100%;
+  max-width: 100vw;
+  box-sizing: border-box;
+
   &.window {
     // This class is used for click detection
   }

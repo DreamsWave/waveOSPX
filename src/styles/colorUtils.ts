@@ -57,3 +57,21 @@ export const getColorFamily = (family: ColorFamily): string[] => {
   const colorFamily = palette.colors.find((c) => c.name === family);
   return colorFamily?.shades || [];
 };
+
+// Helper function to determine if text should be light or dark based on background
+export const getTextColor = (
+  bgColor: string,
+  dark: string = getColor("Slate", 0),
+  light: string = getColor("Slate", 7)
+): string => {
+  // Simple algorithm - convert hex to RGB and check luminance
+  const hex = bgColor.replace("#", "");
+  const r = Number.parseInt(hex.substring(0, 2), 16);
+  const g = Number.parseInt(hex.substring(2, 4), 16);
+  const b = Number.parseInt(hex.substring(4, 6), 16);
+
+  // Calculate luminance using perceived brightness formula
+  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+
+  return luminance > 0.5 ? dark : light;
+};

@@ -15,6 +15,13 @@ export const StyledTitlebar = styled.header<{
   align-items: center;
   padding: 0 ${({ theme }) => `${theme.s(2)}px`};
   cursor: ${({ $isMaximized = false }) => ($isMaximized ? "default" : "move")};
+  position: relative;
+  z-index: 1;
+  pointer-events: auto;
+
+  > * {
+    pointer-events: none;
+  }
 `;
 
 export const StyledTitle = styled.span`
@@ -24,6 +31,7 @@ export const StyledTitle = styled.span`
   padding-left: ${({ theme }) => `${theme.s(2)}px`};
   color: ${({ theme }) => theme.pc.window.titleBar.text || "#000"};
   font-size: ${({ theme }) => `${theme.s(6)}px`};
+  cursor: move;
 `;
 
 export const StyledButton = styled.button`
@@ -37,9 +45,20 @@ export const StyledButton = styled.button`
   border: none;
   cursor: pointer;
   color: ${({ theme }) => theme.pc.window.titleBar.text || "#fff"};
+  z-index: 2;
+  position: relative;
+  pointer-events: auto;
 
   &:hover {
     background-color: ${({ theme }) =>
       theme.pc.window.titleBar.background || "#ddd"};
+  }
+
+  @media (max-width: 768px) {
+    width: ${({ theme }) => `${theme.s(9)}px`};
+    height: ${({ theme }) => `${theme.s(9)}px`};
+    margin-left: ${({ theme }) => `${theme.s(3)}px`};
+    background-color: rgba(0, 0, 0, 0.1);
+    touch-action: manipulation;
   }
 `;

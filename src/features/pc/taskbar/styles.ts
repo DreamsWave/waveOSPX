@@ -7,8 +7,7 @@ export const StyledTaskbar = styled.nav`
   height: ${({ theme }) => `${theme.s(17)}px`};
   width: 100%;
   background: ${({ theme }) => theme.pc.taskbar.background};
-  border-top: ${({ theme }) =>
-    `${theme.s(theme.pc.taskbar.borderWidth)}px solid ${theme.pc.border}`};
+  border-top: ${({ theme }) => theme.getBorder()};
   display: flex;
   gap: ${({ theme }) => `${theme.s(2)}px`};
   padding: ${({ theme }) => `${theme.s(2)}px`};

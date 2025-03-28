@@ -22,11 +22,13 @@ export interface Process {
 interface ProcessesState {
   processes: Record<string, Process>;
   focusedProcessId: string | null;
+  autoMaximizeInFullscreen: boolean;
 }
 
 const initialState: ProcessesState = {
   processes: {},
   focusedProcessId: null,
+  autoMaximizeInFullscreen: true,
 };
 
 const generatePid = (
@@ -161,6 +163,12 @@ const processSlice = createSlice({
 
       initialPosition = { x: newX, y: newY };
 
+      // Check if we should auto-maximize in fullscreen
+      const shouldMaximize =
+        state.autoMaximizeInFullscreen &&
+        typeof window !== "undefined" &&
+        window.innerWidth === window.screen.width;
+
       state.processes[pid] = {
         id: pid,
         url,
@@ -174,6 +182,7 @@ const processSlice = createSlice({
         allowResizing: definition.allowResizing,
         lockAspectRatio: definition.lockAspectRatio,
         zIndex: 1000,
+        maximized: shouldMaximize,
       };
       state.focusedProcessId = pid;
       // Ensure other processes' zIndex is lower
@@ -242,6 +251,9 @@ const processSlice = createSlice({
         }
       }
     },
+    toggleAutoMaximizeInFullscreen: (state) => {
+      state.autoMaximizeInFullscreen = !state.autoMaximizeInFullscreen;
+    },
   },
 });
 
@@ -253,5 +265,6 @@ export const {
   updateWindowPosition,
   updateWindowSize,
   setFocusedProcess,
+  toggleAutoMaximizeInFullscreen,
 } = processSlice.actions;
 export default processSlice.reducer;

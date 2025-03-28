@@ -2,8 +2,8 @@ import Palette from "@/components/Palette";
 import { memo } from "react";
 import styled from "styled-components";
 
-const StyledPaletteViewer = styled.div`
-  height: 100%;
+const StyledSettings = styled.div`
+  min-height: 100%;
   width: 100%;
   background-color: ${({ theme }) => theme.pc.window.background};
   color: ${({ theme }) => theme.pc.window.text};
@@ -22,21 +22,18 @@ const StyledAppTitle = styled.h2`
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   width: 100%;
-  height: ${({ theme }) => `${theme.s(70)}px`};
 `;
 
-const PaletteViewer = memo(() => {
+const Settings = memo(() => {
   return (
-    <StyledPaletteViewer>
-      <StyledAppTitle>Music Player</StyledAppTitle>
+    <StyledSettings>
+      <StyledAppTitle>Settings</StyledAppTitle>
       <StyledContainer>
         <Palette />
       </StyledContainer>
-    </StyledPaletteViewer>
+    </StyledSettings>
   );
 });
 
-export default PaletteViewer;
+export default Settings;

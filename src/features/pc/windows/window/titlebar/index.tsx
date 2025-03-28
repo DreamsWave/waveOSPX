@@ -35,6 +35,15 @@ const Titlebar = memo(
     isFocused,
     icon,
   }: Props) => {
+    const handleButtonClick = (
+      e: React.MouseEvent | React.TouchEvent,
+      handler: () => void
+    ) => {
+      e.preventDefault();
+      e.stopPropagation();
+      handler();
+    };
+
     return (
       <StyledTitlebar
         className="titlebar"
@@ -54,7 +63,11 @@ const Titlebar = memo(
         )}
         <StyledTitle>{title}</StyledTitle>
         <div>
-          <StyledButton onClick={onMinimize} title="Minimize">
+          <StyledButton
+            onClick={(e) => handleButtonClick(e, onMinimize)}
+            onTouchEnd={(e) => handleButtonClick(e, onMinimize)}
+            title="Minimize"
+          >
             <NinePatch texture={ButtonTextureSVG} patchMargin={1}>
               <PxIcon
                 icon={{
@@ -67,7 +80,8 @@ const Titlebar = memo(
             </NinePatch>
           </StyledButton>
           <StyledButton
-            onClick={onMaximize}
+            onClick={(e) => handleButtonClick(e, onMaximize)}
+            onTouchEnd={(e) => handleButtonClick(e, onMaximize)}
             title={isMaximized ? "Restore" : "Maximize"}
           >
             <NinePatch texture={ButtonTextureSVG} patchMargin={1}>
@@ -85,7 +99,11 @@ const Titlebar = memo(
               />
             </NinePatch>
           </StyledButton>
-          <StyledButton onClick={onClose} title="Close">
+          <StyledButton
+            onClick={(e) => handleButtonClick(e, onClose)}
+            onTouchEnd={(e) => handleButtonClick(e, onClose)}
+            title="Close"
+          >
             <NinePatch texture={ButtonTextureSVG} patchMargin={1}>
               <PxIcon
                 icon={{

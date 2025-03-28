@@ -53,7 +53,6 @@ const baseTheme: Omit<DefaultTheme, "name"> = {
       borderWidth: 1,
       text: getColor("Slate", 7),
     },
-    border: getColor("Slate", 2),
   },
   phone: {
     background: getColor("Slate", 7),
@@ -70,6 +69,11 @@ const baseTheme: Omit<DefaultTheme, "name"> = {
     // Base colors for general use
     background: getColor("Slate", 7),
     text: getColor("Slate", 2),
+    border: {
+      color: getColor("Slate", 2),
+      colorFocused: getColor("SoftBlue", 4),
+      width: 1,
+    },
 
     // System settings
     pixelSize: 3,
@@ -114,6 +118,10 @@ const baseTheme: Omit<DefaultTheme, "name"> = {
 
   // Utility function for scaling pixel values
   s: (size: number) => baseTheme.common.pixelSize * size,
+  getBorder: (
+    width: number = baseTheme.common.border.width,
+    color: string = baseTheme.common.border.color
+  ) => `${baseTheme.s(width)}px solid ${color}`,
 };
 
 export default baseTheme;

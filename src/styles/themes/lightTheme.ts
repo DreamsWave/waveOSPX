@@ -34,6 +34,7 @@ const lightTheme: DefaultTheme = {
   debug: baseTheme.debug,
   formats: baseTheme.formats,
   s: baseTheme.s,
+  getBorder: baseTheme.getBorder,
 };
 
 export default lightTheme;
