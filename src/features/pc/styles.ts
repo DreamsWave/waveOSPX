@@ -17,11 +17,11 @@ export const StyledScreen = styled.main<{ $isFocused: boolean }>`
   ${getScreenMediaQuery()} {
     width: 100vw;
     height: 100vh;
+    height: 100dvh;
     top: 0;
     left: 0;
     scale: 1;
     position: fixed;
-    /* z-index: 1; */
   }
 `;
 

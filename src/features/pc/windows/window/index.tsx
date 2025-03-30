@@ -98,28 +98,48 @@ const Window = ({
     const { x, y } = data;
     if (containerRef.current) {
       const { width, height } = containerRef.current.getBoundingClientRect();
-      const constrainedX = Math.max(
-        0,
-        Math.min(x, width - (size?.width || 500))
-      );
-      const constrainedY = Math.max(
-        0,
-        Math.min(y, height - (size?.height || 400))
-      );
-      // If the window's bottom edge would go below the taskbar, adjust y so that the bottom aligns with the taskbar
+
+      // Get current window size
+      const windowWidth = size?.width || 500;
       const windowHeight = size?.height || 400;
-      if (constrainedY + windowHeight > height - taskbarHeight) {
-        dispatch(
-          updateWindowPosition({
-            id,
-            x: constrainedX,
-            y: height - taskbarHeight - windowHeight,
-          })
+
+      // On mobile, ensure the window stays fully visible by constraining more strictly
+      if (isMobileView) {
+        // Keep at least 80% of the window width visible
+        const minVisibleWidthPercent = 0.8;
+        const maxX = width - windowWidth * minVisibleWidthPercent;
+        const constrainedX = Math.max(
+          -(windowWidth * (1 - minVisibleWidthPercent)),
+          Math.min(x, maxX)
         );
-      } else {
+
+        // Keep title bar always accessible
+        const minVisibleTitleBarHeight = 30; // Approximate title bar height
+        const maxY = height - minVisibleTitleBarHeight;
+        const constrainedY = Math.max(0, Math.min(y, maxY));
+
         dispatch(
           updateWindowPosition({ id, x: constrainedX, y: constrainedY })
         );
+      } else {
+        // Original desktop behavior
+        const constrainedX = Math.max(0, Math.min(x, width - windowWidth));
+        const constrainedY = Math.max(0, Math.min(y, height - windowHeight));
+
+        // If the window's bottom edge would go below the taskbar, adjust y so that the bottom aligns with the taskbar
+        if (constrainedY + windowHeight > height - taskbarHeight) {
+          dispatch(
+            updateWindowPosition({
+              id,
+              x: constrainedX,
+              y: height - taskbarHeight - windowHeight,
+            })
+          );
+        } else {
+          dispatch(
+            updateWindowPosition({ id, x: constrainedX, y: constrainedY })
+          );
+        }
       }
     }
     onFocus(id);
@@ -159,16 +179,23 @@ const Window = ({
   const maximizeProcess = () => {
     // When unmaximizing on mobile, ensure window is placed in a visible area
     if (maximized && isMobileView && containerRef.current) {
-      const containerWidth = containerRef.current.getBoundingClientRect().width;
-      const windowWidth = Math.min(400, containerWidth * 0.9); // Use smaller size on mobile
+      const containerRect = containerRef.current.getBoundingClientRect();
+      const containerWidth = containerRect.width;
+      const containerHeight = containerRect.height;
+
+      // Calculate a better window size for mobile - using percentage of screen
+      const windowWidth = Math.min(500, containerWidth * 0.95);
+      const windowHeight = Math.min(400, containerHeight * 0.6);
 
       // Center the window horizontally
       const newX = Math.max(0, (containerWidth - windowWidth) / 2);
       const newY = 20; // Keep it near the top for easy access to titlebar
 
-      // Update the position and size
+      // Update the position and size with improved constraints
       dispatch(updateWindowPosition({ id, x: newX, y: newY }));
-      dispatch(updateWindowSize({ id, width: windowWidth, height: 300 }));
+      dispatch(
+        updateWindowSize({ id, width: windowWidth, height: windowHeight })
+      );
     }
     onMaximize();
   };
@@ -199,9 +226,25 @@ const Window = ({
   // Adjust size for mobile view to ensure window fits on screen
   let mobileAdjustedSize = size;
   if (isMobileView && containerBounds) {
+    // If the window is larger than the available space or no size is set,
+    // use a percentage of the container width and height instead of the full width
+    const needsWidthAdjustment =
+      !size || !size.width || size.width > containerBounds.width * 0.95;
+    const effectiveWidth = needsWidthAdjustment
+      ? Math.min(containerBounds.width * 0.95, 500) // Use 95% of width but max 500px
+      : size.width;
+
+    const needsHeightAdjustment =
+      !size ||
+      !size.height ||
+      size.height > (containerBounds.height - taskbarHeight) * 0.8;
+    const effectiveHeight = needsHeightAdjustment
+      ? Math.min((containerBounds.height - taskbarHeight) * 0.7, 400) // Use 70% of height but max 400px
+      : size.height;
+
     mobileAdjustedSize = {
-      width: containerBounds.width, // Use exact container width for mobile
-      height: size?.height || 400,
+      width: effectiveWidth,
+      height: effectiveHeight,
     };
   }
 

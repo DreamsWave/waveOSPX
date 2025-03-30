@@ -167,7 +167,11 @@ const processSlice = createSlice({
       const shouldMaximize =
         state.autoMaximizeInFullscreen &&
         typeof window !== "undefined" &&
-        window.innerWidth === window.screen.width;
+        (window.innerWidth === window.screen.width ||
+          (window.innerWidth / window.screen.width > 0.9 &&
+            window.innerWidth < 1024) ||
+          (/Mobi|Android/i.test(navigator.userAgent) &&
+            window.innerWidth === document.documentElement.clientWidth));
 
       state.processes[pid] = {
         id: pid,
