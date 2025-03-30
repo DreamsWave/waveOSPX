@@ -9,7 +9,6 @@ import {
   StyledTitle,
   StyledTitlebar,
 } from "@/features/pc/windows/window/titlebar/styles";
-import NinePatch from "@/shared/components/NinePatch";
 import PxIcon from "@/shared/components/PxIcon";
 import type { Icon } from "@/types/icons";
 import { memo } from "react";
@@ -67,53 +66,51 @@ const Titlebar = memo(
             onClick={(e) => handleButtonClick(e, onMinimize)}
             onTouchEnd={(e) => handleButtonClick(e, onMinimize)}
             title="Minimize"
+            $borderTexture={ButtonTextureSVG}
+            $patchMargin={1}
           >
-            <NinePatch texture={ButtonTextureSVG} patchMargin={1}>
-              <PxIcon
-                icon={{
-                  src: WindowMinimizeIconSVG,
-                  height: 3,
-                  width: 3,
-                  alt: "Window minimize icon",
-                }}
-              />
-            </NinePatch>
+            <PxIcon
+              icon={{
+                src: WindowMinimizeIconSVG,
+                height: 3,
+                width: 3,
+                alt: "Window minimize icon",
+              }}
+            />
           </StyledButton>
           <StyledButton
             onClick={(e) => handleButtonClick(e, onMaximize)}
             onTouchEnd={(e) => handleButtonClick(e, onMaximize)}
             title={isMaximized ? "Restore" : "Maximize"}
+            $borderTexture={ButtonTextureSVG}
+            $patchMargin={1}
           >
-            <NinePatch texture={ButtonTextureSVG} patchMargin={1}>
-              <PxIcon
-                icon={{
-                  src: isMaximized
-                    ? WindowRestoreIconSVG
-                    : WindowMaximizeIconSVG,
-                  height: 3,
-                  width: 3,
-                  alt: isMaximized
-                    ? "Window restore icon"
-                    : "Window maximize icon",
-                }}
-              />
-            </NinePatch>
+            <PxIcon
+              icon={{
+                src: isMaximized ? WindowRestoreIconSVG : WindowMaximizeIconSVG,
+                height: 3,
+                width: 3,
+                alt: isMaximized
+                  ? "Window restore icon"
+                  : "Window maximize icon",
+              }}
+            />
           </StyledButton>
           <StyledButton
             onClick={(e) => handleButtonClick(e, onClose)}
             onTouchEnd={(e) => handleButtonClick(e, onClose)}
             title="Close"
+            $borderTexture={ButtonTextureSVG}
+            $patchMargin={1}
           >
-            <NinePatch texture={ButtonTextureSVG} patchMargin={1}>
-              <PxIcon
-                icon={{
-                  src: WindowCloseIconSVG,
-                  height: 3,
-                  width: 3,
-                  alt: "Window close icon",
-                }}
-              />
-            </NinePatch>
+            <PxIcon
+              icon={{
+                src: WindowCloseIconSVG,
+                height: 3,
+                width: 3,
+                alt: "Window close icon",
+              }}
+            />
           </StyledButton>
         </div>
       </StyledTitlebar>

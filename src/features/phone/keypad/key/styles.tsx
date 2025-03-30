@@ -1,4 +1,6 @@
-import { getFontSize } from "@/utils/functions";
+import ButtonPressedSVG from "@/assets/textures/phone/button/button-pressed.svg";
+import ButtonSVG from "@/assets/textures/phone/button/button.svg";
+import { getBorderImage, getFontSize } from "@/styles/styledUtils";
 import styled, { css } from "styled-components";
 
 export const Chars = styled.span`
@@ -18,7 +20,10 @@ const buttonBaseStyles = css`
   font-size: ${getFontSize("sm")};
 `;
 
-export const KeypadButtonContainer = styled.button<{ $isControl?: boolean }>`
+export const KeypadButtonContainer = styled.button<{
+  $isControl?: boolean;
+  $pressed?: boolean;
+}>`
   ${buttonBaseStyles}
   ${({ $isControl }) =>
     $isControl &&
@@ -26,6 +31,8 @@ export const KeypadButtonContainer = styled.button<{ $isControl?: boolean }>`
       height: ${({ theme }) => `${theme.s(15)}px`};
       width: ${({ theme }) => `${theme.s(20)}px`};
     `}
+  ${({ $pressed }) =>
+    getBorderImage($pressed ? ButtonPressedSVG : ButtonSVG, 4)}
 `;
 
 export const KeypadButtonContent = styled.div<{

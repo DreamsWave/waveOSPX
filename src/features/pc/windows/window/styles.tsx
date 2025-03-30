@@ -11,8 +11,8 @@ export const StyledWindow = styled.section<{
     $isMaximized
       ? "none"
       : $isFocused
-      ? theme.getBorder(1, theme.pc.window.outlineFocused)
-      : theme.getBorder(1, theme.pc.window.outline)};
+      ? theme.getBorder(1, theme.pc.window.outline)
+      : theme.getBorder(1, theme.pc.window.outlineFocused)};
   overflow: hidden;
   width: 100%;
   height: 100%;

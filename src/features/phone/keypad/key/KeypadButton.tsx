@@ -1,10 +1,7 @@
-import ButtonPressedSVG from "@/assets/textures/phone/button/button-pressed.svg";
-import ButtonSVG from "@/assets/textures/phone/button/button.svg";
 import {
   KeypadButtonContainer,
   KeypadButtonContent,
 } from "@/features/phone/keypad/key/styles";
-import NinePatch from "@/shared/components/NinePatch";
 import React from "react";
 
 interface KeypadButtonProps
@@ -23,15 +20,10 @@ export const KeypadButton = React.memo(
     children,
     ...props
   }: KeypadButtonProps) => (
-    <KeypadButtonContainer $isControl={isControl} {...props}>
-      <NinePatch
-        texture={pressed ? ButtonPressedSVG : ButtonSVG}
-        patchMargin={4}
-      >
-        <KeypadButtonContent $noPadding={noPadding} $isControl={isControl}>
-          {children}
-        </KeypadButtonContent>
-      </NinePatch>
+    <KeypadButtonContainer $isControl={isControl} $pressed={pressed} {...props}>
+      <KeypadButtonContent $noPadding={noPadding} $isControl={isControl}>
+        {children}
+      </KeypadButtonContent>
     </KeypadButtonContainer>
   )
 );

@@ -35,6 +35,5 @@ export const StyledTaskbarAppButtons = styled.div`
   display: flex;
   gap: ${({ theme }) => `${theme.s(1)}px`};
   overflow: hidden;
-  overflow-x: auto;
   width: 100%;
 `;

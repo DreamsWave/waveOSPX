@@ -1,5 +1,5 @@
 import TrayTextureSVG from "@/assets/textures/pc/tray.svg";
-import NinePatch from "@/shared/components/NinePatch";
+import { getBorderImage } from "@/styles/styledUtils";
 import { getFormattedTime } from "@/utils/functions";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
@@ -9,6 +9,7 @@ const StyledSystemTray = styled.div`
   display: flex;
   align-items: center;
   gap: ${({ theme }) => theme.s(2)}px;
+  ${getBorderImage(TrayTextureSVG, 1)}
 `;
 
 const StyledTime = styled.span`
@@ -32,9 +33,7 @@ const SystemTray = () => {
 
   return (
     <StyledSystemTray>
-      <NinePatch texture={TrayTextureSVG} patchMargin={1}>
-        <StyledTime>{currentTime}</StyledTime>
-      </NinePatch>
+      <StyledTime>{currentTime}</StyledTime>
     </StyledSystemTray>
   );
 };

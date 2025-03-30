@@ -1,4 +1,4 @@
-import { getScreenMediaQuery } from "@/utils/functions";
+import { getScreenMediaQuery } from "@/styles/styledUtils";
 import { motion } from "motion/react";
 import styled from "styled-components";
 

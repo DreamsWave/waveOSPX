@@ -1,6 +1,5 @@
 import { ICON_SIZE_MAP } from "@/constants/icons";
 import type { IconExtension, IconSize } from "@/types/icons";
-import { type DefaultTheme, type RuleSet, css } from "styled-components";
 
 // Import all icons from src/assets/icons/
 const iconModules = import.meta.glob("/src/assets/icons/**/*.{png,svg}", {
@@ -68,17 +67,6 @@ export const getIconSource = ({
 
   throw new Error(`Default icon not found for size ${size}`);
 };
-
-export const getScreenMediaQuery = (): RuleSet => css`
-  ${({ theme }) =>
-    `@media (max-width: ${theme.pc.screen.resolution.width}px) or (max-height: ${theme.pc.screen.resolution.height}px)`}
-`;
-
-export const getFontSize = (
-  type: keyof DefaultTheme["common"]["fontSizes"] = "base"
-): RuleSet => css`
-  ${({ theme }) => `${theme.common.fontSizes[type] * theme.common.pixelSize}px`}
-`;
 
 export const getFormattedTime = (): string => {
   return new Date().toLocaleTimeString("en-US", {

@@ -1,4 +1,4 @@
-import { getFontSize } from "@/utils/functions";
+import { getFontSize } from "@/styles/styledUtils";
 import styled, { css } from "styled-components";
 
 const textStyles = css`

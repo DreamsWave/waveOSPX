@@ -1,3 +1,4 @@
+import { getBorderImage } from "@/styles/styledUtils";
 import styled from "styled-components";
 
 export const StyledTitlebar = styled.header<{
@@ -34,7 +35,10 @@ export const StyledTitle = styled.span`
   cursor: move;
 `;
 
-export const StyledButton = styled.button`
+export const StyledButton = styled.button<{
+  $borderTexture?: string;
+  $patchMargin?: number;
+}>`
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -48,6 +52,9 @@ export const StyledButton = styled.button`
   z-index: 2;
   position: relative;
   pointer-events: auto;
+
+  ${({ $borderTexture, $patchMargin }) =>
+    $borderTexture && getBorderImage($borderTexture, $patchMargin)}
 
   &:hover {
     background-color: ${({ theme }) =>

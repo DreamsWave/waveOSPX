@@ -1,4 +1,4 @@
-import { getScreenMediaQuery } from "@/utils/functions";
+import { getScreenMediaQuery } from "@/styles/styledUtils";
 import styled from "styled-components";
 
 export const StyledScreen = styled.main<{ $isFocused: boolean }>`

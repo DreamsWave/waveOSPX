@@ -167,11 +167,11 @@ const processSlice = createSlice({
       const shouldMaximize =
         state.autoMaximizeInFullscreen &&
         typeof window !== "undefined" &&
-        (window.innerWidth === window.screen.width ||
-          (window.innerWidth / window.screen.width > 0.9 &&
-            window.innerWidth < 1024) ||
-          (/Mobi|Android/i.test(navigator.userAgent) &&
-            window.innerWidth === document.documentElement.clientWidth));
+        // Only detect fullscreen if in true fullscreen or on mobile
+        (document.fullscreenElement !== null ||
+          /Mobi|Android/i.test(navigator.userAgent) ||
+          // Detect explicit mobile width, avoid ambiguous desktop sizes
+          window.innerWidth < 768);
 
       state.processes[pid] = {
         id: pid,

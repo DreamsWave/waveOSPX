@@ -1,16 +1,13 @@
 import StartMenuButtonActiveIconSVG from "@/assets/icons/single/cute-face-wink.svg";
 import StartMenuButtonIconSVG from "@/assets/icons/single/cute-face.svg";
 import { useStartMenu } from "@/features/pc/startMenu/useStartMenu";
-import TaskbarButton from "@/features/pc/taskbar/taskbarButton";
-import { StyledTaskbarButton } from "@/features/pc/taskbar/taskbarButton/styles";
+import {
+  StyledStartMenuButton,
+  StyledTaskbarButtonTitle,
+} from "@/features/pc/taskbar/taskbarButton/styles";
+import PxIcon from "@/shared/components/PxIcon";
 import type { Icon } from "@/types/icons";
 import { useEffect, useState } from "react";
-import styled from "styled-components";
-
-export const StyledStartMenuButton = styled(StyledTaskbarButton)`
-  background: ${({ theme }) => theme.pc.taskbar.startMenuButton.background};
-  color: ${({ theme }) => theme.pc.taskbar.startMenuButton.text};
-`;
 
 type Props = {
   isActive?: boolean;
@@ -44,15 +41,26 @@ const StartMenuButton = ({
   }, [icon.src, isOpen]);
 
   return (
-    <TaskbarButton
+    <StyledStartMenuButton
       className="start-menu-button"
-      isFocused={isOpen}
-      isMinimized={false}
-      icon={isOpen ? { ...icon, src: iconSrc } : icon}
-      title={title}
+      $isActive={isOpen}
       onClick={toggleMenu}
       {...props}
-    />
+    >
+      {icon && (
+        <PxIcon
+          icon={{
+            name: icon.name,
+            size: icon.size,
+            height: icon.height,
+            width: icon.width,
+            alt: icon.alt || `${title} icon`,
+            src: isOpen ? iconSrc : icon.src,
+          }}
+        />
+      )}
+      {title && <StyledTaskbarButtonTitle>{title}</StyledTaskbarButtonTitle>}
+    </StyledStartMenuButton>
   );
 };
 
