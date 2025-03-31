@@ -20,7 +20,7 @@ type Props = {
 const DEFAULT_ICON: Icon = {
   name: "cute-face",
   src: StartMenuButtonIconSVG,
-  height: 7,
+  height: 6,
   width: 15,
 };
 

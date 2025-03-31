@@ -25,7 +25,7 @@ export const processDirectory: Record<string, ProcessDefinition> = {
       () => import("@/features/pc/applications/musicPlayer/MusicPlayer")
     ),
     backgroundColor: "#000",
-    defaultSize: { width: 500, height: 400 },
+    defaultSize: { width: 800, height: 500 },
     icon: {
       name: "music-player",
     },
@@ -37,7 +37,7 @@ export const processDirectory: Record<string, ProcessDefinition> = {
       () => import("@/features/pc/applications/textEditor/TextEditor")
     ),
     backgroundColor: "#000",
-    defaultSize: { width: 500, height: 400 },
+    defaultSize: { width: 800, height: 500 },
     icon: { name: "text-editor" },
     title: "Text Editor",
   },
@@ -46,7 +46,7 @@ export const processDirectory: Record<string, ProcessDefinition> = {
       () => import("@/features/pc/applications/settings/Settings")
     ),
     backgroundColor: "#000",
-    defaultSize: { width: 500, height: 400 },
+    defaultSize: { width: 800, height: 500 },
     icon: {
       name: "settings",
     },

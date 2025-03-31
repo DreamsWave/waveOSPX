@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 export const StartMenuContainer = styled.nav<{ $isOpen: boolean }>`
   position: absolute;
-  bottom: ${({ theme }) => `${theme.s(theme.pc.taskbar.height - 2)}px`};
-  left: ${({ theme }) => `${theme.s(1)}px`};
+  bottom: ${({ theme }) => `${theme.s(theme.pc.taskbar.height - 1)}px`};
+  left: ${({ theme }) => `${theme.s(-1)}px`};
   background: ${({ theme }) => theme.pc.startMenu.background};
   border: ${({ theme }) =>
     theme.getBorder(

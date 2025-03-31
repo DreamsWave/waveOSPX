@@ -30,6 +30,12 @@ declare module "styled-components" {
         separator: string;
         height: number;
         borderWidth: number;
+        processButton: {
+          border: string;
+          borderActive: string;
+          background: string;
+          backgroundActive: string;
+        };
         startMenuButton: {
           background: string;
           text: string;

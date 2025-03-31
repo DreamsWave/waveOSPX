@@ -24,11 +24,16 @@ const baseTheme: Omit<DefaultTheme, "name"> = {
     taskbar: {
       background: getColor("Gray", 6),
       text: getColor("SoftBlue", 2),
-      separator: getColor("SoftBlue", 4),
-      height: 17,
+      processButton: {
+        border: getColor("Slate", 4),
+        borderActive: getColor("Blue", 4),
+        background: "transparent",
+        backgroundActive: getColor("Gray", 7),
+      },
+      height: 12,
       borderWidth: 1,
       startMenuButton: {
-        background: getColor("SoftBlue", 4),
+        background: getColor("Gray", 7),
         text: getColor("Slate", 7),
       },
       time: {

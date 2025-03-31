@@ -19,6 +19,7 @@ export const getBorderImage = (
   border-color: transparent;
   border-width: ${({ theme }) => theme.s($patchMargin ?? 0)}px;
   border-image: url("${$texture}") ${$patchMargin ?? 0} fill;
+  background-clip: padding-box;
 `;
 
 // Function to encode hash symbols and newlines

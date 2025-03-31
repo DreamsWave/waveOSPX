@@ -5,7 +5,6 @@ import {
 import {
   StyledTaskbar,
   StyledTaskbarAppButtons,
-  StyledTaskbarSeparator,
 } from "@/features/pc/taskbar/styles";
 import SystemTray from "@/features/pc/taskbar/systemTray";
 import TaskbarButton from "@/features/pc/taskbar/taskbarButton";
@@ -41,7 +40,6 @@ const Taskbar = () => {
   return (
     <StyledTaskbar>
       <StartMenuButton />
-      <StyledTaskbarSeparator />
       <StyledTaskbarAppButtons>
         {Object.values(processes).map((process) => (
           <TaskbarButton
@@ -59,7 +57,6 @@ const Taskbar = () => {
           />
         ))}
       </StyledTaskbarAppButtons>
-      <StyledTaskbarSeparator />
       <SystemTray />
     </StyledTaskbar>
   );
