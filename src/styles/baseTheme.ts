@@ -41,9 +41,10 @@ const baseTheme: Omit<DefaultTheme, "name"> = {
       outline: getColor("Slate", 2),
       outlineFocused: getColor("Slate", 3),
       titleBar: {
-        height: 11,
-        background: getColor("Slate", 4),
-        backgroundFocused: getColor("SoftBlue", 4),
+        height: 12,
+        background: getColor("Gray", 6),
+        backgroundAccent: getColor("Blue", 4),
+        backgroundUnfocused: getColor("Slate", 4),
         text: getColor("Slate", 7),
       },
     },

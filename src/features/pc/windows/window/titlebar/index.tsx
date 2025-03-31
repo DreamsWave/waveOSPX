@@ -2,12 +2,14 @@ import WindowCloseIconSVG from "@/assets/icons/single/pc/window-close.svg";
 import WindowMaximizeIconSVG from "@/assets/icons/single/pc/window-maximize.svg";
 import WindowMinimizeIconSVG from "@/assets/icons/single/pc/window-minimize.svg";
 import WindowRestoreIconSVG from "@/assets/icons/single/pc/window-restore.svg";
-import ButtonTextureSVG from "@/assets/textures/pc/button.svg";
+import WindowTitlebarButtonTextureSVG from "@/assets/textures/pc/window-titlebar-button.svg";
 import { WINDOW_APP_ICON_SIZE } from "@/features/pc/windows/constants";
 import {
   StyledButton,
+  StyledButtonsContainer,
   StyledTitle,
   StyledTitlebar,
+  StyledTitlebarContainer,
 } from "@/features/pc/windows/window/titlebar/styles";
 import PxIcon from "@/shared/components/PxIcon";
 import type { Icon } from "@/types/icons";
@@ -44,36 +46,38 @@ const Titlebar = memo(
     };
 
     return (
-      <StyledTitlebar
+      <StyledTitlebarContainer
         className="titlebar"
         $isFocused={isFocused}
         $isMaximized={isMaximized}
       >
-        {icon && (
-          <PxIcon
-            icon={{
-              name: icon.name,
-              size: WINDOW_APP_ICON_SIZE,
-              height: icon.height,
-              width: icon.width,
-              alt: icon.alt || `${title} app icon`,
-            }}
-          />
-        )}
-        <StyledTitle>{title}</StyledTitle>
-        <div>
+        <StyledTitlebar $isFocused={isFocused}>
+          {icon && (
+            <PxIcon
+              icon={{
+                name: icon.name,
+                size: WINDOW_APP_ICON_SIZE,
+                height: icon.height,
+                width: icon.width,
+                alt: icon.alt || `${title} app icon`,
+              }}
+            />
+          )}
+          <StyledTitle>{title}</StyledTitle>
+        </StyledTitlebar>
+        <StyledButtonsContainer>
           <StyledButton
             onClick={(e) => handleButtonClick(e, onMinimize)}
             onTouchEnd={(e) => handleButtonClick(e, onMinimize)}
             title="Minimize"
-            $borderTexture={ButtonTextureSVG}
-            $patchMargin={1}
+            $borderTexture={WindowTitlebarButtonTextureSVG}
+            $patchMargin={2}
           >
             <PxIcon
               icon={{
                 src: WindowMinimizeIconSVG,
-                height: 3,
-                width: 3,
+                height: 5,
+                width: 5,
                 alt: "Window minimize icon",
               }}
             />
@@ -82,14 +86,14 @@ const Titlebar = memo(
             onClick={(e) => handleButtonClick(e, onMaximize)}
             onTouchEnd={(e) => handleButtonClick(e, onMaximize)}
             title={isMaximized ? "Restore" : "Maximize"}
-            $borderTexture={ButtonTextureSVG}
-            $patchMargin={1}
+            $borderTexture={WindowTitlebarButtonTextureSVG}
+            $patchMargin={2}
           >
             <PxIcon
               icon={{
                 src: isMaximized ? WindowRestoreIconSVG : WindowMaximizeIconSVG,
-                height: 3,
-                width: 3,
+                height: 5,
+                width: 5,
                 alt: isMaximized
                   ? "Window restore icon"
                   : "Window maximize icon",
@@ -100,20 +104,20 @@ const Titlebar = memo(
             onClick={(e) => handleButtonClick(e, onClose)}
             onTouchEnd={(e) => handleButtonClick(e, onClose)}
             title="Close"
-            $borderTexture={ButtonTextureSVG}
-            $patchMargin={1}
+            $borderTexture={WindowTitlebarButtonTextureSVG}
+            $patchMargin={2}
           >
             <PxIcon
               icon={{
                 src: WindowCloseIconSVG,
-                height: 3,
-                width: 3,
+                height: 5,
+                width: 5,
                 alt: "Window close icon",
               }}
             />
           </StyledButton>
-        </div>
-      </StyledTitlebar>
+        </StyledButtonsContainer>
+      </StyledTitlebarContainer>
     );
   }
 );

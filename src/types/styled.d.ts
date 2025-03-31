@@ -46,7 +46,8 @@ declare module "styled-components" {
         titleBar: {
           height: number;
           background: string;
-          backgroundFocused: string;
+          backgroundAccent: string;
+          backgroundUnfocused: string;
           text: string;
         };
       };

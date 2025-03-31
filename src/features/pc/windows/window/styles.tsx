@@ -1,3 +1,5 @@
+import ElevatedTextureSVG from "@/assets/textures/pc/elevated.svg";
+import { createBorderSvg, getBorderImage } from "@/styles/styledUtils";
 import styled from "styled-components";
 
 export const StyledWindow = styled.section<{
@@ -7,21 +9,18 @@ export const StyledWindow = styled.section<{
 }>`
   position: absolute;
   background-color: ${({ theme }) => theme.pc.window.background};
-  border: ${({ theme, $isFocused, $isMaximized }) =>
-    $isMaximized
-      ? "none"
-      : $isFocused
-      ? theme.getBorder(1, theme.pc.window.outline)
-      : theme.getBorder(1, theme.pc.window.outlineFocused)};
   overflow: hidden;
   width: 100%;
   height: 100%;
   max-width: 100vw;
   box-sizing: border-box;
 
-  &.window {
-    // This class is used for click detection
-  }
+  ${({ theme, $isFocused, $isMaximized }) =>
+    $isMaximized
+      ? "none"
+      : $isFocused
+      ? createBorderSvg(theme.pc.window.outline)
+      : createBorderSvg(theme.pc.window.outlineFocused)};
 `;
 
 export const StyledWindowContent = styled.div`
@@ -30,4 +29,6 @@ export const StyledWindowContent = styled.div`
   );
   width: 100%;
   overflow: auto;
+
+  ${getBorderImage(ElevatedTextureSVG, 1)};
 `;
