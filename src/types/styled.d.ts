@@ -14,7 +14,14 @@ declare module "styled-components" {
         background: string;
         text: string;
         shortcut: {
-          text: string;
+          text: {
+            light: string;
+            dark: string;
+          };
+          textShadow: {
+            light: string;
+            dark: string;
+          };
           iconSize: number;
           fontSize: number;
         };

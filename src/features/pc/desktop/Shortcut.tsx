@@ -1,5 +1,6 @@
 import { SHORTCUT_SIZE } from "@/features/pc/desktop/constants";
 import PxIcon from "@/shared/components/PxIcon";
+import { getTextColor } from "@/styles/colorUtils";
 import type { Icon } from "@/types/icons";
 import styled from "styled-components";
 
@@ -28,15 +29,27 @@ const StyledFigurePicture = styled.picture`
 `;
 
 const StyledFigCaption = styled.figcaption`
-  color: rgb(255, 255, 255);
-  font-size: ${({ theme }) => `${theme.s(4)}px`};
+  color: ${({ theme }) =>
+    getTextColor(
+      theme.pc.desktop.background,
+      theme.pc.desktop.shortcut.text.dark,
+      theme.pc.desktop.shortcut.text.light
+    )};
+  font-size: ${({ theme }) =>
+    `${theme.s(theme.pc.desktop.shortcut.fontSize)}px`};
   line-height: 1.2;
   margin: ${({ theme }) => `${theme.s(1)}px 0px`};
   overflow-wrap: anywhere;
   padding: ${({ theme }) => `${theme.s(1)}px 0px`};
-  text-shadow: rgba(0, 0, 0, 0.4) 0px 0px 1px, rgba(0, 0, 0, 0.3) 0px 0px 1px,
-    rgba(0, 0, 0, 0.4) 0px 1px 1px, rgba(0, 0, 0, 0.3) 0px 1px 1px,
-    rgba(0, 0, 0, 0.4) 0px 1px 1px, rgba(0, 0, 0, 0.3) 0px 1px 1px;
+  text-shadow: ${({ theme }) => {
+    const shadow = getTextColor(
+      theme.pc.desktop.background,
+      theme.pc.desktop.shortcut.textShadow.light,
+      theme.pc.desktop.shortcut.textShadow.dark
+    );
+    return `0px -1px 0px ${shadow}, 1px 0px 0px ${shadow}, 0px 1px 0px ${shadow},
+      -1px 0px 0px ${shadow}, -1px 0px 0px ${shadow}`;
+  }};
 `;
 
 type Props = {

@@ -1,3 +1,4 @@
+import { getColor } from "@/styles/colorUtils";
 import type { Icon } from "@/types/icons";
 import { lazy } from "react";
 
@@ -24,7 +25,7 @@ export const processDirectory: Record<string, ProcessDefinition> = {
     Component: lazy(
       () => import("@/features/pc/applications/musicPlayer/MusicPlayer")
     ),
-    backgroundColor: "#000",
+    backgroundColor: getColor("Gray", 6),
     defaultSize: { width: 800, height: 500 },
     icon: {
       name: "music-player",
@@ -36,7 +37,7 @@ export const processDirectory: Record<string, ProcessDefinition> = {
     Component: lazy(
       () => import("@/features/pc/applications/textEditor/TextEditor")
     ),
-    backgroundColor: "#000",
+    backgroundColor: getColor("Gray", 6),
     defaultSize: { width: 800, height: 500 },
     icon: { name: "text-editor" },
     title: "Text Editor",
@@ -45,7 +46,7 @@ export const processDirectory: Record<string, ProcessDefinition> = {
     Component: lazy(
       () => import("@/features/pc/applications/settings/Settings")
     ),
-    backgroundColor: "#000",
+    backgroundColor: getColor("Gray", 6),
     defaultSize: { width: 800, height: 500 },
     icon: {
       name: "settings",

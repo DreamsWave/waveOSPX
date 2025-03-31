@@ -277,7 +277,7 @@ const Window = ({
       <StyledWindow
         $isFocused={isFocused}
         $isMaximized={maximized || false}
-        $isMinimized={false} // Always false here since we return null when minimized
+        $isMinimized={false}
         style={{ backgroundColor }}
         className="window"
         onClick={() => onFocus(id)}

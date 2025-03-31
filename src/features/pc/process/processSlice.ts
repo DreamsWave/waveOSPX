@@ -77,7 +77,7 @@ const processSlice = createSlice({
       const pid = generatePid(id, url, state.processes);
 
       // Calculate initial position based on last focused window or find a free spot
-      let initialPosition = { x: 100, y: 100 }; // Default position
+      let initialPosition = { x: 50, y: 50 }; // Default position
       const offset = 30; // Offset in pixels
       const windowWidth = definition.defaultSize?.width || 500;
       const windowHeight = definition.defaultSize?.height || 400;

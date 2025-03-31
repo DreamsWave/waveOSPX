@@ -8,12 +8,19 @@ const baseTheme: Omit<DefaultTheme, "name"> = {
       position: { x: 180, y: 65 },
     },
     desktop: {
-      background: getColor("Gray", 5),
+      background: getColor("Gray", 6),
       text: getColor("SoftBlue", 1),
       shortcut: {
-        text: getColor("SoftBlue", 1),
+        text: {
+          light: getColor("Slate", 7),
+          dark: getColor("Slate", 2),
+        },
+        textShadow: {
+          light: getColor("Slate", 7),
+          dark: getColor("Slate", 2),
+        },
         iconSize: 32,
-        fontSize: 14,
+        fontSize: 5,
       },
       grid: {
         gapX: 2,

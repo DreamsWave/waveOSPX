@@ -1,3 +1,4 @@
+import { getColor } from "@/styles/colorUtils";
 import styled from "styled-components";
 
 export const StyledDesktopWrapper = styled.div`
@@ -7,7 +8,16 @@ export const StyledDesktopWrapper = styled.div`
 `;
 
 export const StyledDesktop = styled.ol`
-  background: ${({ theme }) => theme.pc.desktop.background};
+  background-color: ${({ theme }) => theme.pc.desktop.background};
+  background-image: ${({ theme }) =>
+    `linear-gradient(${getColor("Slate", 6)} ${theme.s(
+      1
+    )}px, transparent ${theme.s(1)}px), linear-gradient(to right, ${getColor(
+      "Slate",
+      6
+    )} ${theme.s(1)}px, transparent ${theme.s(1)}px)`};
+  background-size: ${({ theme }) => `${theme.s(16)}px ${theme.s(16)}px`};
+
   height: ${({ theme }) =>
     `calc(100% - ${theme.s(theme.pc.taskbar.height)}px)`};
   width: 100%;
