@@ -1,7 +1,7 @@
 import { getScreenMediaQuery } from "@/styles/styledUtils";
 import styled from "styled-components";
 
-export const StyledScreen = styled.main<{ $isFocused: boolean }>`
+export const StyledPC = styled.main<{ $isFocused: boolean }>`
   position: absolute;
   top: ${({ theme }) => theme.s(theme.pc.screen.position.y)}px;
   left: ${({ theme }) => theme.s(theme.pc.screen.position.x)}px;

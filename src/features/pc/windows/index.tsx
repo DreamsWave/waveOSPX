@@ -3,7 +3,7 @@ import {
   maximizeProcess,
   minimizeProcess,
   setFocusedProcess,
-} from "@/features/pc/process/processSlice";
+} from "@/features/pc/process/slice";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../../../store";
@@ -16,10 +16,10 @@ type Props = {
 const Windows = ({ containerRef }: Props) => {
   const dispatch = useDispatch();
   const processes = useSelector(
-    (state: RootState) => state.processes.processes
+    (state: RootState) => state.pc.processes.processes
   );
   const focusedProcessId = useSelector(
-    (state: RootState) => state.processes.focusedProcessId
+    (state: RootState) => state.pc.processes.focusedProcessId
   );
 
   const handleWindowFocus = (id: string) => {

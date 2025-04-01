@@ -1,6 +1,6 @@
 import ErrorBoundary from "@/ErrorBoundary";
-import { BackgroundContextProvider } from "@/features/background/backgroundContext";
-import ThemeProvider from "@/features/theme/ThemeProvider";
+import { BackgroundContextProvider } from "@/features/background/context";
+import ThemeProvider from "@/features/theme/provider";
 import { store } from "@/store";
 import { HelmetProvider } from "react-helmet-async";
 import { Provider } from "react-redux";

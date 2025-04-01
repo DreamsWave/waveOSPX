@@ -1,12 +1,12 @@
-import KeypadActions from "@/features/phone/keypad/KeypadActions";
+import KeypadActions from "@/features/phone/keypad/components/KeypadActions";
+import DPad from "@/features/phone/keypad/components/dpad";
+import Key from "@/features/phone/keypad/components/key";
 import {
   KEYPAD_LAYOUT,
   type T9Key,
   T9_KEY_LABELS,
   T9_KEY_MAP,
 } from "@/features/phone/keypad/constants";
-import DPad from "@/features/phone/keypad/dpad";
-import Key from "@/features/phone/keypad/key";
 import {
   ActionRow,
   KeypadContainer,

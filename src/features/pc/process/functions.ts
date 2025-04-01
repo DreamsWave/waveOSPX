@@ -1,4 +1,4 @@
-import { openProcess } from "@/features/pc/process/processSlice";
+import { openProcess } from "@/features/pc/process/slice";
 import type { AppDispatch } from "@/store";
 
 export const launchApplication =

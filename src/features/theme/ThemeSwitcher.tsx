@@ -1,4 +1,4 @@
-import { switchToNextTheme } from "@/features/theme/themeSlice";
+import { switchToNextTheme } from "@/features/theme/slice";
 import type { RootState } from "@/store";
 import { useSelector } from "react-redux";
 
