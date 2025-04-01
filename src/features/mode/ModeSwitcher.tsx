@@ -1,4 +1,4 @@
-import { toggleMode } from "@/features/mode/modeSlice";
+import { toggleMode } from "@/features/mode/slice";
 import type { RootState } from "@/store";
 import { useSelector } from "react-redux";
 

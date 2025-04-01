@@ -1,9 +1,9 @@
 import { processDirectory } from "@/features/pc/process/directory";
 import {
-  type Process,
   updateWindowPosition,
   updateWindowSize,
-} from "@/features/pc/process/processSlice";
+} from "@/features/pc/process/slice";
+import type { Process } from "@/features/pc/process/types";
 import { Suspense, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Rnd, type RndDragEvent, type RndResizeCallback } from "react-rnd";

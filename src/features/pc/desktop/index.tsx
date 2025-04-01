@@ -1,4 +1,4 @@
-import Shortcut from "@/features/pc/desktop/Shortcut";
+import Shortcut from "@/features/pc/desktop/components/Shortcut";
 import { StyledDesktop, StyledDesktopItem } from "@/features/pc/desktop/styles";
 import { processDirectory } from "@/features/pc/process/directory";
 import { launchApplication } from "@/features/pc/process/functions";

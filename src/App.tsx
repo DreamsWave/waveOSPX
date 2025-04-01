@@ -1,12 +1,12 @@
 import Providers from "@/Providers";
-import Background from "@/features/background/Background";
-import Camera from "@/features/camera/Camera";
+import Metadata from "@/components/Metadata";
+import Background from "@/features/background";
+import Camera from "@/features/camera";
 import Debug from "@/features/debug";
-import PixelGridCanvas from "@/features/debug/pixelGrid/PixelGridCanvas";
-import Screen from "@/features/pc/Screen";
-import HotkeyManager from "@/features/pc/hotkeys/HotkeyManager";
-import Phone from "@/features/phone/Phone";
-import Metadata from "@/shared/components/Metadata";
+import PixelGridCanvas from "@/features/debug/components/pixel-grid";
+import PC from "@/features/pc";
+import HotkeyManager from "@/features/pc/hotkeys";
+import Phone from "@/features/phone";
 import { memo } from "react";
 
 const App = memo(() => {
@@ -16,7 +16,7 @@ const App = memo(() => {
       <HotkeyManager />
       <Camera />
       <Background>
-        <Screen />
+        <PC />
       </Background>
       <Phone />
       <PixelGridCanvas />

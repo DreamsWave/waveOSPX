@@ -1,24 +1,24 @@
 import {
   minimizeProcess,
   setFocusedProcess,
-} from "@/features/pc/process/processSlice";
+} from "@/features/pc/process/slice";
+import StartMenuButton from "@/features/pc/taskbar/components/StartMenuButton";
+import SystemTray from "@/features/pc/taskbar/components/system-tray";
+import TaskbarButton from "@/features/pc/taskbar/components/taskbar-button";
 import {
   StyledTaskbar,
   StyledTaskbarAppButtons,
 } from "@/features/pc/taskbar/styles";
-import SystemTray from "@/features/pc/taskbar/systemTray";
-import TaskbarButton from "@/features/pc/taskbar/taskbarButton";
-import StartMenuButton from "@/features/pc/taskbar/taskbarButton/StartMenuButton";
 import type { RootState } from "@/store";
 import { useDispatch, useSelector } from "react-redux";
 
 const Taskbar = () => {
   const dispatch = useDispatch();
   const processes = useSelector(
-    (state: RootState) => state.processes.processes
+    (state: RootState) => state.pc.processes.processes
   );
   const focusedProcessId = useSelector(
-    (state: RootState) => state.processes.focusedProcessId
+    (state: RootState) => state.pc.processes.focusedProcessId
   );
 
   const handleTaskbarClick = (id: string) => {

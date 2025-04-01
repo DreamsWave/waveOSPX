@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-interface TaskbarState {
+export interface TaskbarState {
   startMenu: {
     isOpen: boolean;
   };

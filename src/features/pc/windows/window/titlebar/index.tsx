@@ -3,6 +3,7 @@ import WindowMaximizeIconSVG from "@/assets/icons/single/pc/window-maximize.svg"
 import WindowMinimizeIconSVG from "@/assets/icons/single/pc/window-minimize.svg";
 import WindowRestoreIconSVG from "@/assets/icons/single/pc/window-restore.svg";
 import WindowTitlebarButtonTextureSVG from "@/assets/textures/pc/window-titlebar-button.svg";
+import PxIcon from "@/components/PxIcon";
 import { WINDOW_APP_ICON_SIZE } from "@/features/pc/windows/constants";
 import {
   StyledButton,
@@ -11,7 +12,6 @@ import {
   StyledTitlebar,
   StyledTitlebarContainer,
 } from "@/features/pc/windows/window/titlebar/styles";
-import PxIcon from "@/shared/components/PxIcon";
 import type { Icon } from "@/types/icons";
 import { memo } from "react";
 

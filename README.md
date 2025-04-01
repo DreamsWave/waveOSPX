@@ -1,54 +1,82 @@
-# React + TypeScript + Vite
+# waveOSPX
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A retro-styled web application that simulates multiple device interfaces including a phone and PC environment.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Phone Interface** - T9 keypad input and retro phone UI
+- **PC Interface** - Windowed interface with taskbar and applications
+- **Theme System** - Multiple visual themes
+- **Responsive Design** - Adapts to different screen sizes
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Prerequisites
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- Node.js 16+
+- npm or yarn
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/waveOSPX.git
+cd waveOSPX
+
+# Install dependencies
+bun install
+# or
+npm install
+# or
+yarn install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Development
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```bash
+# Start the development server
+bun run dev
+# or
+npm run dev
+# or
+yarn dev
 ```
+
+### Building for Production
+
+```bash
+# Build the app
+bun run build
+# or
+npm run build
+# or
+yarn build
+```
+
+## Project Structure
+
+The project follows a feature-based architecture. See [ARCHITECTURE.md](./docs/ARCHITECTURE.md) for more details.
+
+## Documentation
+
+- [Project Architecture](./docs/ARCHITECTURE.md)
+- [State Management Strategy](./docs/STATE_MANAGEMENT.md)
+- [Styling and Theming Guide](./docs/STYLING.md)
+- [Component Development Guidelines](./docs/COMPONENTS.md)
+
+## Tech Stack
+
+- **Frontend Framework**: React
+- **State Management**: Redux Toolkit
+- **Styling**: Styled Components
+- **Animations**: Framer Motion
+- **Build Tool**: Vite
+- **Language**: TypeScript
+
+## Contributing
+
+Contributions are welcome! Please read our contributing guidelines before getting started.
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
