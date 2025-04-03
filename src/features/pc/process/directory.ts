@@ -48,4 +48,14 @@ export const processDirectory: Record<string, ProcessDefinition> = {
     singleton: true,
     title: "Settings",
   },
+  todo: {
+    Component: lazy(() => import("@/features/pc/applications/todo")),
+    backgroundColor: getColor("Gray", 6),
+    defaultSize: { width: 800, height: 500 },
+    icon: {
+      name: "settings",
+    },
+    singleton: true,
+    title: "TODO",
+  },
 };

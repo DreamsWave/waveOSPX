@@ -31,6 +31,7 @@ export const StyledDesktop = styled.ol`
     )}px`};
   padding: ${({ theme }) => theme.s(theme.pc.desktop.grid.padding)}px;
   place-content: flex-start;
+  margin: 0;
 
   @media (max-width: 600px) {
     grid-template-columns: repeat(4, 1fr);
@@ -46,4 +47,5 @@ export const StyledDesktopItem = styled.li`
   height: min-content;
   outline-offset: ${({ theme }) => `${theme.s(-1)}px`};
   padding: ${({ theme }) => `${theme.s(1)}px`};
+  margin: 0;
 `;

@@ -70,8 +70,6 @@ const Titlebar = memo(
             onClick={(e) => handleButtonClick(e, onMinimize)}
             onTouchEnd={(e) => handleButtonClick(e, onMinimize)}
             title="Minimize"
-            $borderTexture={WindowTitlebarButtonTextureSVG}
-            $patchMargin={2}
           >
             <PxIcon
               icon={{

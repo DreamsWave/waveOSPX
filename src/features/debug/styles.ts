@@ -21,6 +21,8 @@ export const StyledDebugButton = styled.button`
   background: ${({ theme }) => theme.debug.background};
   color: ${({ theme }) => theme.debug.text};
   cursor: pointer;
+  border: none;
+  font-size: ${({ theme }) => theme.getFontSize("xs")};
 
   &:hover {
     background: ${({ theme }) => theme.debug.backgroundHover};
@@ -34,17 +36,19 @@ export const StyledDebugMenu = styled.ul`
   gap: ${({ theme }) => `${theme.s(2)}px`};
   background: ${({ theme }) => theme.debug.background};
   padding: ${({ theme }) => `${theme.s(2)}px`};
-  width: ${({ theme }) => theme.debug.menuWidth}px;
+  list-style: none;
 `;
 
 export const StyledDebugMenuItem = styled.li`
   width: 100%;
+  margin: 0;
 `;
 
 export const StyledDebugMenuButton = styled(StyledDebugButton)`
   width: 100%;
   justify-content: start;
   background: transparent;
+  padding: ${({ theme }) => `${theme.s(3)}px ${theme.s(4)}px`};
 
   &:hover {
     background: ${({ theme }) => theme.debug.background};

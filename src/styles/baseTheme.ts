@@ -32,15 +32,24 @@ const baseTheme: Omit<DefaultTheme, "name"> = {
       background: getColor("Gray", 6),
       text: getColor("SoftBlue", 2),
       processButton: {
-        border: getColor("Slate", 4),
-        borderActive: getColor("Blue", 4),
-        background: "transparent",
-        backgroundActive: getColor("Gray", 7),
+        border: {
+          default: getColor("Slate", 4),
+          hover: getColor("Slate", 7),
+          active: getColor("Blue", 4),
+        },
+        background: {
+          default: "transparent",
+          hover: getColor("Slate", 7),
+          active: getColor("Gray", 7),
+        },
       },
       height: 12,
       borderWidth: 1,
       startMenuButton: {
-        background: getColor("Gray", 7),
+        background: {
+          default: getColor("Gray", 7),
+          hover: getColor("Slate", 7),
+        },
         text: getColor("Slate", 7),
       },
       time: {
@@ -54,10 +63,19 @@ const baseTheme: Omit<DefaultTheme, "name"> = {
       outlineFocused: getColor("Slate", 3),
       titleBar: {
         height: 12,
-        background: getColor("Gray", 6),
-        backgroundAccent: getColor("Blue", 4),
-        backgroundUnfocused: getColor("Slate", 4),
+        background: {
+          default: getColor("Gray", 6),
+          accent: getColor("Blue", 4),
+          unfocused: getColor("Slate", 4),
+        },
         text: getColor("Slate", 7),
+        button: {
+          background: {
+            default: getColor("Gray", 6),
+            hover: getColor("Gray", 7),
+          },
+          text: getColor("Slate", 7),
+        },
       },
     },
     startMenu: {
@@ -80,8 +98,26 @@ const baseTheme: Omit<DefaultTheme, "name"> = {
   // Common utilities and design tokens
   common: {
     // Base colors for general use
-    background: getColor("Slate", 7),
-    text: getColor("Slate", 2),
+    background: {
+      primary: getColor("Slate", 7),
+      secondary: getColor("SoftBlue", 4),
+      accent: getColor("Blue", 4),
+      muted: getColor("Slate", 4),
+      white: getColor("Slate", 7),
+      black: getColor("Slate", 0),
+    },
+    text: {
+      primary: getColor("Slate", 2),
+      secondary: getColor("SoftBlue", 4),
+      accent: getColor("Blue", 4),
+      muted: getColor("Slate", 4),
+      white: getColor("Slate", 7),
+      black: getColor("Slate", 0),
+    },
+    link: {
+      color: getColor("Blue", 4),
+      hover: getColor("Blue", 2),
+    },
     border: {
       color: getColor("Slate", 2),
       colorFocused: getColor("SoftBlue", 4),
@@ -135,6 +171,8 @@ const baseTheme: Omit<DefaultTheme, "name"> = {
     width: number = baseTheme.common.border.width,
     color: string = baseTheme.common.border.color
   ) => `${baseTheme.s(width)}px solid ${color}`,
+  getFontSize: (type: keyof DefaultTheme["common"]["fontSizes"] = "base") =>
+    `${baseTheme.common.fontSizes[type] * baseTheme.common.pixelSize}px`,
 };
 
 export default baseTheme;

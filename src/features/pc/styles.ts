@@ -5,8 +5,8 @@ export const StyledPC = styled.main<{ $isFocused: boolean }>`
   position: absolute;
   top: ${({ theme }) => theme.s(theme.pc.screen.position.y)}px;
   left: ${({ theme }) => theme.s(theme.pc.screen.position.x)}px;
-  background: ${({ theme }) => theme.common.background};
-  color: ${({ theme }) => theme.common.text};
+  background: ${({ theme }) => theme.common.background.primary};
+  color: ${({ theme }) => theme.common.text.primary};
   width: ${({ theme }) => theme.pc.screen.resolution.width}px;
   height: ${({ theme }) => theme.pc.screen.resolution.height}px;
   transition: filter 0.5s ease, scale 0.5s ease-in-out;

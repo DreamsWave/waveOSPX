@@ -43,6 +43,7 @@ const darkTheme: DefaultTheme = {
   formats: baseTheme.formats,
   s: baseTheme.s,
   getBorder: baseTheme.getBorder,
+  getFontSize: baseTheme.getFontSize,
 };
 
 export default darkTheme;

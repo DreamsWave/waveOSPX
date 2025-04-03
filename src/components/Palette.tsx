@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 const Container = styled.div`
   padding: ${({ theme }) => theme.s(4)}px;
-  color: ${({ theme }) => theme.common.text};
+  color: ${({ theme }) => theme.common.text.primary};
   min-height: 100vh;
 `;
 

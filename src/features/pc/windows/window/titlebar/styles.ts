@@ -1,3 +1,4 @@
+import WindowTitlebarButtonTextureSVG from "@/assets/textures/pc/window-titlebar-button.svg";
 import { getBorderImage } from "@/styles/styledUtils";
 import styled from "styled-components";
 
@@ -33,8 +34,8 @@ export const StyledTitlebar = styled.div<{ $isFocused: boolean }>`
   width: 100%;
   background-color: ${({ theme, $isFocused }) =>
     $isFocused
-      ? theme.pc.window.titleBar.backgroundAccent
-      : theme.pc.window.titleBar.backgroundUnfocused};
+      ? theme.pc.window.titleBar.background.accent
+      : theme.pc.window.titleBar.background.unfocused};
 `;
 
 export const StyledTitle = styled.span`
@@ -42,7 +43,7 @@ export const StyledTitle = styled.span`
   text-align: left;
   padding-top: ${({ theme }) => `${theme.s(1)}px`};
   padding-left: ${({ theme }) => `${theme.s(2)}px`};
-  color: ${({ theme }) => theme.pc.window.titleBar.text || "#000"};
+  color: ${({ theme }) => theme.pc.window.titleBar.text};
   font-size: ${({ theme }) => `${theme.s(6)}px`};
   cursor: move;
 `;
@@ -66,17 +67,17 @@ export const StyledButton = styled.button<{
   background: none;
   border: none;
   cursor: pointer;
-  color: ${({ theme }) => theme.pc.window.titleBar.text || "#fff"};
+  color: ${({ theme }) => theme.pc.window.titleBar.button.text};
   z-index: 2;
   position: relative;
   pointer-events: auto;
+  padding: 0;
 
-  ${({ $borderTexture, $patchMargin }) =>
-    $borderTexture && getBorderImage($borderTexture, $patchMargin)}
+  ${getBorderImage(WindowTitlebarButtonTextureSVG, 2)}
 
   &:hover {
     background-color: ${({ theme }) =>
-      theme.pc.window.titleBar.background || "#ddd"};
+      theme.pc.window.titleBar.button.background.hover};
   }
 
   @media (max-width: 768px) {
