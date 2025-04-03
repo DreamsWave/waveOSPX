@@ -5,22 +5,26 @@ import styled from "styled-components";
 export const StyledTaskbarButton = styled.button<{
   $isActive?: boolean;
 }>`
+  border: none;
+  padding: 0;
   font-family: ${({ theme }) => theme.formats.systemFont};
   font-size: ${({ theme }) => `${theme.s(5)}px`};
   cursor: pointer;
   background: ${({ theme, $isActive }) =>
     $isActive
-      ? theme.pc.taskbar.processButton.backgroundActive
-      : theme.pc.taskbar.processButton.background};
+      ? theme.pc.taskbar.processButton.background.active
+      : theme.pc.taskbar.processButton.background.default};
   color: ${({ theme }) => theme.pc.taskbar.text};
   overflow: hidden;
   border-bottom: ${({ $isActive, theme }) =>
-    theme.getBorder(
-      1,
-      $isActive
-        ? theme.pc.taskbar.processButton.borderActive
-        : theme.pc.taskbar.processButton.border
-    )};
+    $isActive
+      ? theme.getBorder(1, theme.pc.taskbar.processButton.border.active)
+      : theme.getBorder(1, theme.pc.taskbar.processButton.border.default)};
+  &:hover {
+    background: ${({ theme }) =>
+      theme.pc.taskbar.processButton.background.hover};
+    background-clip: padding-box;
+  }
 `;
 
 export const StyledTaskbarButtonContent = styled.div`
@@ -43,9 +47,20 @@ export const StyledTaskbarButtonTitle = styled.span`
 `;
 
 export const StyledStartMenuButton = styled(StyledTaskbarButton)`
-  background: ${({ theme }) => theme.pc.taskbar.startMenuButton.background};
+  background: ${({ theme }) =>
+    theme.pc.taskbar.startMenuButton.background.default};
   color: ${({ theme }) => theme.pc.taskbar.startMenuButton.text};
   padding: ${({ theme }) => `${theme.s(1)}px`};
   overflow: visible;
   ${getBorderImage(ElevatedRoundedTextureSVG, 1)}
+  &:hover {
+    background: ${({ theme }) =>
+      theme.pc.taskbar.startMenuButton.background.hover};
+    background-clip: padding-box;
+  }
+  &:focus {
+    background: ${({ theme }) =>
+      theme.pc.taskbar.startMenuButton.background.hover};
+    background-clip: padding-box;
+  }
 `;

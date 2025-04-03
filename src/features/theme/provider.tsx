@@ -1,5 +1,5 @@
 import type { RootState } from "@/store";
-import GlobalStyle from "@/styles/globalStyle";
+import GlobalStyle from "@/styles/GlobalStyle";
 import themes from "@/styles/themes";
 import { useSelector } from "react-redux";
 import { ThemeProvider as StyledThemeProvider } from "styled-components";

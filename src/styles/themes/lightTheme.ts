@@ -35,6 +35,7 @@ const lightTheme: DefaultTheme = {
   formats: baseTheme.formats,
   s: baseTheme.s,
   getBorder: baseTheme.getBorder,
+  getFontSize: baseTheme.getFontSize,
 };
 
 export default lightTheme;

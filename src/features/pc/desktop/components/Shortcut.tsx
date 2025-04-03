@@ -8,6 +8,13 @@ const StyledShortcutButton = styled.button`
   background-color: transparent;
   font-family: inherit;
   width: 100%;
+  border: none;
+  &:hover {
+    background-color: transparent;
+  }
+  &:focus {
+    background-color: transparent;
+  }
 `;
 
 const StyledFigure = styled.figure`
