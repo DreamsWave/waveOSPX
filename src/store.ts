@@ -8,20 +8,16 @@ import phoneTextInputReducer from "@/features/phone/text-input/slice";
 import type { PhoneState } from "@/features/phone/types";
 import settingsReducer from "@/features/settings/slice";
 import themeReducer from "@/features/theme/slice";
-import {
-  type Reducer,
-  combineReducers,
-  configureStore,
-} from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 
 const phoneReducer = combineReducers<PhoneState>({
-  applications: combineReducers({}) as Reducer<Record<string, unknown>>,
+  applications: (state = {}) => state,
   textInput: phoneTextInputReducer,
 });
 
 const pcReducer = combineReducers<PCState>({
-  applications: combineReducers({}) as Reducer<Record<string, unknown>>,
+  applications: (state = {}) => state,
   processes: processReducer,
   taskbar: taskbarReducer,
 });
@@ -44,4 +40,4 @@ export type RootState = ReturnType<typeof store.getState>;
 
 export type AppDispatch = typeof store.dispatch;
 
-export const useAppDispatch: () => AppDispatch = useDispatch;
+export const useAppDispatch = () => useDispatch<AppDispatch>();

@@ -38,13 +38,22 @@ declare module "styled-components" {
         height: number;
         borderWidth: number;
         processButton: {
-          border: string;
-          borderActive: string;
-          background: string;
-          backgroundActive: string;
+          border: {
+            default: string;
+            hover: string;
+            active: string;
+          };
+          background: {
+            default: string;
+            hover: string;
+            active: string;
+          };
         };
         startMenuButton: {
-          background: string;
+          background: {
+            default: string;
+            hover: string;
+          };
           text: string;
         };
         time: {
@@ -58,10 +67,19 @@ declare module "styled-components" {
         outlineFocused: string;
         titleBar: {
           height: number;
-          background: string;
-          backgroundAccent: string;
-          backgroundUnfocused: string;
+          background: {
+            default: string;
+            accent: string;
+            unfocused: string;
+          };
           text: string;
+          button: {
+            background: {
+              default: string;
+              hover: string;
+            };
+            text: string;
+          };
         };
       };
       startMenu: {
@@ -85,8 +103,26 @@ declare module "styled-components" {
 
     // Common utilities and tokens
     common: {
-      background: string;
-      text: string;
+      background: {
+        primary: string;
+        secondary: string;
+        accent: string;
+        muted: string;
+        white: string;
+        black: string;
+      };
+      text: {
+        primary: string;
+        secondary: string;
+        accent: string;
+        muted: string;
+        white: string;
+        black: string;
+      };
+      link: {
+        color: string;
+        hover: string;
+      };
       border: {
         color: string;
         colorFocused: string;
@@ -132,6 +168,9 @@ declare module "styled-components" {
     // Utility function for scaling pixel values
     s: (size: number) => number;
     getBorder: (width?: number, color?: string) => string;
+    getFontSize: (
+      type: keyof DefaultTheme["common"]["fontSizes"] = "base"
+    ) => string;
   }
 
   export function useTheme(): DefaultTheme;
