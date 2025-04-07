@@ -123,6 +123,13 @@ const baseTheme: Omit<DefaultTheme, "name"> = {
       colorFocused: getColor("SoftBlue", 4),
       width: 1,
     },
+    scrollbar: {
+      background: getColor("Gray", 6),
+      hover: getColor("Gray", 7),
+      active: getColor("Gray", 8),
+      disabled: getColor("Gray", 5),
+      secondaryBackground: getColor("Gray", 3),
+    },
 
     // System settings
     pixelSize: 3,

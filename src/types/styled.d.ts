@@ -128,6 +128,13 @@ declare module "styled-components" {
         colorFocused: string;
         width: number;
       };
+      scrollbar: {
+        background: string;
+        hover: string;
+        active: string;
+        disabled: string;
+        secondaryBackground: string;
+      };
 
       pixelSize: number;
       fontSizes: {

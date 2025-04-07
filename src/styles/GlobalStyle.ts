@@ -1,6 +1,7 @@
 import Monocraft from "@/assets/fonts/Monocraft/Monocraft.otf";
 import { createBorderSvg } from "@/styles/styledUtils";
 import * as styled from "styled-components";
+import { customScrollbarStyles } from "./ScrollbarStyles";
 
 const GlobalStyle = styled.createGlobalStyle`
   @font-face {
@@ -9,6 +10,20 @@ const GlobalStyle = styled.createGlobalStyle`
     font-style: normal;
     font-display: swap; /* Fallback to system font while loading */
     src: url(${Monocraft}) format("opentype"); /* Correct format for .otf */
+  }
+
+  /* WebKit scrollbar styles */
+  @supports selector(::-webkit-scrollbar) {
+    ${customScrollbarStyles}
+  }
+
+  /* Firefox scrollbar styles */
+  @supports not selector(::-webkit-scrollbar) {
+    * {
+      scrollbar-width: auto;
+      scrollbar-color: ${({ theme }) =>
+        `${theme.common.scrollbar.secondaryBackground} ${theme.common.scrollbar.hover}`};
+    }
   }
 
   *,
