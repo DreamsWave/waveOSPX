@@ -29,9 +29,16 @@ const Settings = () => {
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
+      // Check if the click was on a navigation button
+      const target = event.target as HTMLElement;
+      const isNavigationButton =
+        target.closest('[aria-label*="Switch to"]') ||
+        target.closest('[aria-label*="Open settings"]');
+
       if (
         settingsRef.current &&
-        !settingsRef.current.contains(event.target as Node)
+        !settingsRef.current.contains(target) &&
+        !isNavigationButton
       ) {
         hideSettings();
       }

@@ -1,3 +1,4 @@
+import { toggleMode } from "@/features/mode/slice";
 import {
   hideSettings,
   showSettings,
@@ -14,6 +15,16 @@ export const useSettings = () => {
     (state: RootState) => state.settings
   );
   const { currentTheme } = useSelector((state: RootState) => state.theme);
+  const currentMode = useSelector((state: RootState) => state.mode.currentMode);
+
+  const toggleSettings = () => {
+    // If in phone mode, switch to PC mode first
+    if (currentMode === "phone") {
+      dispatch(toggleMode());
+    }
+    // Then toggle settings
+    dispatch(visible ? hideSettings() : showSettings());
+  };
 
   return {
     reducedMotion,
@@ -23,6 +34,6 @@ export const useSettings = () => {
     isSettingsVisible: visible,
     showSettings: () => dispatch(showSettings()),
     hideSettings: () => dispatch(hideSettings()),
-    toggleSettings: () => dispatch(visible ? hideSettings() : showSettings()),
+    toggleSettings,
   };
 };
