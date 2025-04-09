@@ -7,9 +7,11 @@ import {
   StyledNavigation,
   StyledNavigationButton,
 } from "@/features/navigation/styles";
+import { useSettings } from "@/features/settings/hooks";
 
 const Navigation = () => {
   const { isPhoneMode, toggleMode } = useMode();
+  const { toggleSettings } = useSettings();
 
   return (
     <StyledNavigation>
@@ -26,7 +28,7 @@ const Navigation = () => {
       </StyledNavigationButton>
       <StyledNavigationButton
         type="button"
-        onClick={() => console.log("Toggle settings")}
+        onClick={toggleSettings}
         aria-label="Open settings"
       >
         <PxIcon icon={{ src: SettingsIconSVG, width: 34, height: 34 }} />

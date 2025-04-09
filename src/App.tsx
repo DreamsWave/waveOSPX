@@ -8,6 +8,7 @@ import Navigation from "@/features/navigation";
 import PC from "@/features/pc";
 import HotkeyManager from "@/features/pc/hotkeys";
 import Phone from "@/features/phone";
+import Settings from "@/features/settings";
 import { memo } from "react";
 
 const App = memo(() => {
@@ -21,6 +22,7 @@ const App = memo(() => {
       </Background>
       <Phone />
       <Navigation />
+      <Settings />
       <PixelGridCanvas />
       <Debug />
     </Providers>

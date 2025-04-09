@@ -15,10 +15,12 @@ const getInitialReducedMotion = (): boolean => {
 
 export interface SettingsState {
   reducedMotion: boolean;
+  visible: boolean;
 }
 
 const initialState: SettingsState = {
   reducedMotion: getInitialReducedMotion(),
+  visible: false,
 };
 
 const settingsSlice = createSlice({
@@ -32,8 +34,15 @@ const settingsSlice = createSlice({
         state.reducedMotion.toString()
       );
     },
+    showSettings: (state) => {
+      state.visible = true;
+    },
+    hideSettings: (state) => {
+      state.visible = false;
+    },
   },
 });
 
-export const { toggleReducedMotion } = settingsSlice.actions;
+export const { toggleReducedMotion, showSettings, hideSettings } =
+  settingsSlice.actions;
 export default settingsSlice.reducer;

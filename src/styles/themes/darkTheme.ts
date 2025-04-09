@@ -1,4 +1,5 @@
 import baseTheme from "@/styles/baseTheme";
+import { getColor } from "@/styles/colorUtils";
 import type { DefaultTheme } from "styled-components";
 
 const darkTheme: DefaultTheme = {
@@ -8,7 +9,25 @@ const darkTheme: DefaultTheme = {
   // Override common settings
   common: {
     ...baseTheme.common,
-    // background: getColor("Slate", 1), // Dark background
+    background: {
+      ...baseTheme.common.background,
+      primary: getColor("Slate", 2),
+      secondary: getColor("Slate", 1),
+      accent: getColor("Blue", 4),
+      muted: getColor("Slate", 4),
+    },
+    text: {
+      ...baseTheme.common.text,
+      primary: getColor("Slate", 7),
+      secondary: getColor("Slate", 6),
+      accent: getColor("Blue", 7),
+      muted: getColor("Slate", 4),
+      link: getColor("SoftBlue", 6),
+    },
+    border: {
+      ...baseTheme.common.border,
+      color: getColor("Slate", 7),
+    },
     // text: getColor("Slate", 7), // Light text
   },
 

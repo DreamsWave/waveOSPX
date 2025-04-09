@@ -189,7 +189,7 @@ declare module "styled-components" {
 
     // Utility function for scaling pixel values
     s: (size: number) => number;
-    getBorder: (width?: number, color?: string) => string;
+    getBorder: (this: DefaultTheme, width?: number, color?: string) => string;
     getFontSize: (
       type: keyof DefaultTheme["common"]["fontSizes"] = "base"
     ) => string;

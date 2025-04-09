@@ -187,10 +187,15 @@ const baseTheme: Omit<DefaultTheme, "name"> = {
 
   // Utility function for scaling pixel values
   s: (size: number) => baseTheme.common.pixelSize * size,
-  getBorder: (
-    width: number = baseTheme.common.border.width,
-    color: string = baseTheme.common.border.color
-  ) => `${baseTheme.s(width)}px solid ${color}`,
+  getBorder: function (
+    this: DefaultTheme,
+    width?: number,
+    color?: string
+  ): string {
+    const borderWidth = width ?? this.common.border.width;
+    const borderColor = color ?? this.common.border.color;
+    return `${this.s(borderWidth)}px solid ${borderColor}`;
+  },
   getFontSize: (type: keyof DefaultTheme["common"]["fontSizes"] = "base") =>
     `${baseTheme.common.fontSizes[type] * baseTheme.common.pixelSize}px`,
 };
