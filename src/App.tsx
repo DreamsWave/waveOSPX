@@ -4,6 +4,7 @@ import Background from "@/features/background";
 import Camera from "@/features/camera";
 import Debug from "@/features/debug";
 import PixelGridCanvas from "@/features/debug/components/pixel-grid";
+import Navigation from "@/features/navigation";
 import PC from "@/features/pc";
 import HotkeyManager from "@/features/pc/hotkeys";
 import Phone from "@/features/phone";
@@ -19,6 +20,7 @@ const App = memo(() => {
         <PC />
       </Background>
       <Phone />
+      <Navigation />
       <PixelGridCanvas />
       <Debug />
     </Providers>

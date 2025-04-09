@@ -1,12 +1,10 @@
-import { toggleMode } from "@/features/mode/slice";
-import type { RootState } from "@/store";
-import { useSelector } from "react-redux";
+import { useMode } from "@/features/mode/hooks";
 
 const ModeSwitcher = () => {
-  const currentMode = useSelector((state: RootState) => state.mode.currentMode);
+  const { mode, toggleMode } = useMode();
 
   // biome-ignore lint/a11y/useButtonType: <explanation>
-  return <button onClick={() => toggleMode()}>{currentMode}</button>;
+  return <button onClick={() => toggleMode()}>{mode}</button>;
 };
 
 export default ModeSwitcher;
