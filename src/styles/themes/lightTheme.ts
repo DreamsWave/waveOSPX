@@ -31,6 +31,7 @@ const lightTheme: DefaultTheme = {
 
   // Include other required properties to satisfy DefaultTheme
   phone: baseTheme.phone,
+  apps: baseTheme.apps,
   debug: baseTheme.debug,
   formats: baseTheme.formats,
   s: baseTheme.s,

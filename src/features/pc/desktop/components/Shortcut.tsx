@@ -46,7 +46,6 @@ const StyledFigCaption = styled.figcaption`
     `${theme.s(theme.pc.desktop.shortcut.fontSize)}px`};
   line-height: 1.2;
   margin: ${({ theme }) => `${theme.s(1)}px 0px`};
-  overflow-wrap: anywhere;
   padding: ${({ theme }) => `${theme.s(1)}px 0px`};
   text-shadow: ${({ theme }) => {
     const shadow = getTextColor(

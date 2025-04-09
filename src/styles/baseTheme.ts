@@ -95,6 +95,11 @@ const baseTheme: Omit<DefaultTheme, "name"> = {
     },
   },
 
+  apps: {
+    pc: {},
+    phone: {},
+  },
+
   // Common utilities and design tokens
   common: {
     // Base colors for general use
@@ -129,6 +134,13 @@ const baseTheme: Omit<DefaultTheme, "name"> = {
       active: getColor("Gray", 8),
       disabled: getColor("Gray", 5),
       secondaryBackground: getColor("Gray", 3),
+    },
+
+    // Info display component styling
+    infoDisplay: {
+      background: getColor("Gray", 7),
+      margin: 2, // Default margin similar to the original Changelog component
+      padding: 3, // Add some padding for better readability
     },
 
     // System settings

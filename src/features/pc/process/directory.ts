@@ -58,4 +58,12 @@ export const processDirectory: Record<string, ProcessDefinition> = {
     singleton: true,
     title: "TODO",
   },
+  changelog: {
+    Component: lazy(() => import("@/features/pc/applications/Changelog")),
+    backgroundColor: getColor("Gray", 6),
+    defaultSize: { width: 800, height: 500 },
+    icon: { name: "changelog" },
+    singleton: true,
+    title: "Changelog",
+  },
 };

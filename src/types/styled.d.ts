@@ -101,6 +101,13 @@ declare module "styled-components" {
       };
     };
 
+    apps: {
+      // biome-ignore lint/complexity/noBannedTypes: <explanation>
+      pc: {};
+      // biome-ignore lint/complexity/noBannedTypes: <explanation>
+      phone: {};
+    };
+
     // Common utilities and tokens
     common: {
       background: {
@@ -134,6 +141,13 @@ declare module "styled-components" {
         active: string;
         disabled: string;
         secondaryBackground: string;
+      };
+
+      // Info display component styling for system information areas
+      infoDisplay: {
+        background: string;
+        margin: number;
+        padding: number;
       };
 
       pixelSize: number;
