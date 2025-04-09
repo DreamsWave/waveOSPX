@@ -4,7 +4,7 @@ A retro-styled web application that simulates multiple device interfaces includi
 
 ## Features
 
-- **Phone Interface** - T9 keypad input and retro phone UI
+- **Phone Interface** - Phone UI with keypad and display
 - **PC Interface** - Windowed interface with taskbar and applications
 - **Theme System** - Multiple visual themes
 - **Responsive Design** - Adapts to different screen sizes
@@ -75,8 +75,8 @@ The project follows a feature-based architecture. See [ARCHITECTURE.md](./docs/A
 
 ## Contributing
 
-Contributions are welcome! Please read our contributing guidelines before getting started.
+Contributions are welcome!
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
