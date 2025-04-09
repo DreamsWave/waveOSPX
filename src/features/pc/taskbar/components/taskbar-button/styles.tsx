@@ -25,6 +25,12 @@ export const StyledTaskbarButton = styled.button<{
       theme.pc.taskbar.processButton.background.hover};
     background-clip: padding-box;
   }
+  &:focus {
+    border-bottom: ${({ $isActive, theme }) =>
+      $isActive
+        ? theme.getBorder(1, theme.pc.taskbar.processButton.border.active)
+        : theme.getBorder(1, theme.pc.taskbar.processButton.border.default)};
+  }
 `;
 
 export const StyledTaskbarButtonContent = styled.div`
