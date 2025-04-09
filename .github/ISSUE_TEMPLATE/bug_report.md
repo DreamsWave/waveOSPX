@@ -4,14 +4,10 @@ about: Create a report to help us improve
 title: "[Bug]"
 labels: bug
 assignees: DreamsWave
-
 ---
 
-**What's Wrong**
-<!-- Quick description of the bug -->
+### What's Wrong
 
-**Fix Looks Like**
-<!-- What should happen instead -->
+### Fix Looks Like
 
-**Notes**
-<!-- Optional -->
+### Notes
