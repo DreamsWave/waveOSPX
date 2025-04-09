@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.5](https://github.com/DreamsWave/waveOSPX/compare/v0.0.4...v0.0.5) (2025-04-09)
+
+
+### Features
+
+* add settings component with theme and accessibility options; integrate with navigation and state management (closes [#3](https://github.com/DreamsWave/waveOSPX/issues/3)) ([56aaf9e](https://github.com/DreamsWave/waveOSPX/commit/56aaf9ee54cd2cdabaaf3e8a7aba42d21863aed3))
+* enhance mode and settings interaction; close settings when toggling mode and vice versa; unmounting when clicking outside (closes [#8](https://github.com/DreamsWave/waveOSPX/issues/8)) ([e104505](https://github.com/DreamsWave/waveOSPX/commit/e104505f9bac1ac7beb6af9b99331b9151d19566))
+* implement navigation component and mode switching functionality; add new icons and styles(closes [#7](https://github.com/DreamsWave/waveOSPX/issues/7)) ([8049730](https://github.com/DreamsWave/waveOSPX/commit/8049730ef9c359a8902854fce1a3e4585b02372a))
+
+
+### Bug Fixes
+
+* adjust display control colors for phone(closes [#6](https://github.com/DreamsWave/waveOSPX/issues/6)) ([c665554](https://github.com/DreamsWave/waveOSPX/commit/c6655541e128e7ca9b0bc273f84efaf1abac6078))
+
 ### [0.0.4](https://github.com/DreamsWave/waveOSPX/compare/v0.0.2...v0.0.4) (2025-04-09)
 
 
