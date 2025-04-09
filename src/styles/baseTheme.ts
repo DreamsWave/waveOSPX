@@ -87,12 +87,13 @@ const baseTheme: Omit<DefaultTheme, "name"> = {
   },
   phone: {
     background: getColor("Slate", 7),
-    text: getColor("SoftBlue", 1),
+    text: getColor("SoftBlue", 2),
     border: getColor("Slate", 2),
     displayControls: {
-      background: getColor("SoftBlue", 4),
+      background: getColor("Blue", 4),
       text: getColor("Slate", 7),
     },
+    cursorColor: getColor("Blue", 4),
   },
 
   apps: {

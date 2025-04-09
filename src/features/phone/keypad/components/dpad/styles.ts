@@ -56,4 +56,9 @@ export const DPadButton = styled.button<{
       top: ${({ theme }) => theme.s(10)}px;
       left: 0;
     `}
+
+  &:hover,
+  &:focus {
+    background: transparent;
+  }
 `;

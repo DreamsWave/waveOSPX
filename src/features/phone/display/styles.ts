@@ -81,7 +81,7 @@ export const StyledCursor = styled.span`
     width: ${({ theme }) => `${theme.s(1)}px`};
     top: 0;
     right: ${({ theme }) => `${theme.s(-1)}px`};
-    background-color: lightblue;
+    background-color: ${({ theme }) => theme.phone.cursorColor};
     animation: blink 1.5s step-end infinite;
     @keyframes blink {
       50% {
@@ -108,4 +108,9 @@ export const StyledDisplayControlIndicator = styled.button`
   border: none;
   outline: none;
   cursor: pointer;
+
+  &:hover,
+  &:focus {
+    background: transparent;
+  }
 `;
