@@ -1,5 +1,9 @@
 import type { ThemeName } from "@/styles/themes";
 
+export const APP_NAME = "waveOSPX";
+export const APP_DESCRIPTION =
+  "A retro-styled web application that simulates multiple device interfaces including a phone and PC environment.";
+
 export const DEFAULT_THEME: ThemeName = "darkTheme";
 export const THEMES = {
   DARK: "darkTheme" as ThemeName,

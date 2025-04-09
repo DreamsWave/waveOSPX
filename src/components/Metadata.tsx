@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet-async";
+import { APP_DESCRIPTION, APP_NAME } from "@/utils/constants";
 
 type Props = {
   title?: string;
@@ -7,9 +7,14 @@ type Props = {
   url?: string;
 };
 
-const Metadata = ({ title, description = "waveOSPX", image, url }: Props) => (
-  <Helmet>
-    <title>{title ? `${title} ▪ ` : ""}waveOSPX</title>
+const Metadata = ({
+  title,
+  description = APP_DESCRIPTION,
+  image,
+  url,
+}: Props) => (
+  <>
+    <title>{title ? `${title} ▪ ${APP_NAME}` : APP_NAME}</title>
     <meta
       content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"
       name="viewport"
@@ -17,7 +22,7 @@ const Metadata = ({ title, description = "waveOSPX", image, url }: Props) => (
     {description && <meta content={description} name="description" />}
     {image && <meta content={image} property="og:image" />}
     {url && <meta content={url} property="og:url" />}
-  </Helmet>
+  </>
 );
 
 export default Metadata;

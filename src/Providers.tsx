@@ -3,7 +3,6 @@ import { BackgroundContextProvider } from "@/features/background/context";
 import ThemeProvider from "@/features/theme/provider";
 import { ReactQueryProvider } from "@/libs/react-query";
 import { store } from "@/store";
-import { HelmetProvider } from "react-helmet-async";
 import { Provider } from "react-redux";
 import { StyleSheetManager } from "styled-components";
 
@@ -17,11 +16,9 @@ const Providers = ({ children }: Props) => {
       <Provider store={store}>
         <ReactQueryProvider>
           <BackgroundContextProvider>
-            <HelmetProvider>
-              <StyleSheetManager enableVendorPrefixes>
-                <ThemeProvider>{children}</ThemeProvider>
-              </StyleSheetManager>
-            </HelmetProvider>
+            <StyleSheetManager enableVendorPrefixes>
+              <ThemeProvider>{children}</ThemeProvider>
+            </StyleSheetManager>
           </BackgroundContextProvider>
         </ReactQueryProvider>
       </Provider>
