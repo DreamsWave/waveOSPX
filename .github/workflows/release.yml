@@ -14,15 +14,15 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          fetch-depth: 0 # Needed for commit history
+          fetch-depth: 0
 
-      - uses: actions/setup-node@v3
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
         with:
-          node-version: "16"
-          cache: "npm"
+          bun-version: latest
 
       - name: Install dependencies
-        run: npm install
+        run: bun install
 
       - name: Configure Git identity
         run: |
@@ -30,7 +30,7 @@ jobs:
           git config --global user.email "dreamswave.dev@gmail.com"
 
       - name: Run standard-version
-        run: npx standard-version
+        run: bunx standard-version # Use bunx instead of npx
 
       - name: Push changes
         run: |
