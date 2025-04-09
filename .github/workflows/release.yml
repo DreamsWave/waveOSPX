@@ -1,0 +1,33 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Needed for commit history
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "16" # Matches your log
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm install --legacy-peer-deps # Use this if sticking with React 19
+
+      - name: Run standard-version
+        run: npx standard-version
+
+      - name: Push changes
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+          git push --follow-tags
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
