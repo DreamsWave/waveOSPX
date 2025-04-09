@@ -30,7 +30,7 @@ jobs:
           git config --global user.email "dreamswave.dev@gmail.com"
 
       - name: Run standard-version
-        run: bunx standard-version # Use bunx instead of npx
+        run: bunx standard-version --infile docs/CHANGELOG.md
 
       - name: Push changes
         run: |
