@@ -22,7 +22,7 @@ export type ProcessDefinition = {
 
 export const processDirectory: Record<string, ProcessDefinition> = {
   musicPlayer: {
-    Component: lazy(() => import("@/features/pc/applications/music-player")),
+    Component: lazy(() => import("@/features/pc/applications/MusicPlayer")),
     backgroundColor: getColor("Gray", 6),
     defaultSize: { width: 800, height: 500 },
     icon: {
@@ -32,14 +32,14 @@ export const processDirectory: Record<string, ProcessDefinition> = {
     title: "Music Player",
   },
   textEditor: {
-    Component: lazy(() => import("@/features/pc/applications/text-editor")),
+    Component: lazy(() => import("@/features/pc/applications/TextEditor")),
     backgroundColor: getColor("Gray", 6),
     defaultSize: { width: 800, height: 500 },
     icon: { name: "text-editor" },
     title: "Text Editor",
   },
   settings: {
-    Component: lazy(() => import("@/features/pc/applications/settings")),
+    Component: lazy(() => import("@/features/pc/applications/Settings")),
     backgroundColor: getColor("Gray", 6),
     defaultSize: { width: 800, height: 500 },
     icon: {
