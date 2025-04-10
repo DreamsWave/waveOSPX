@@ -157,6 +157,34 @@ const baseTheme: Omit<DefaultTheme, "name"> = {
       },
     },
 
+    select: {
+      background: {
+        default: getColor("Gray", 7),
+        disabled: getColor("Gray", 6),
+      },
+      text: {
+        default: getColor("Slate", 3),
+        disabled: getColor("Slate", 4),
+      },
+      border: getColor("Slate", 2),
+      borderFocused: getColor("SoftBlue", 4),
+    },
+
+    menuItem: {
+      background: {
+        default: getColor("Gray", 7),
+        disabled: getColor("Gray", 6),
+        hover: getColor("Gray", 8),
+        active: getColor("Blue", 4),
+      },
+      text: {
+        default: getColor("Slate", 3),
+        disabled: getColor("Slate", 4),
+        hover: getColor("Slate", 7),
+        active: getColor("Slate", 7),
+      },
+    },
+
     // System settings
     pixelSize: 3,
     fontSizes: {

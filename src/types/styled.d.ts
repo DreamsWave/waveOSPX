@@ -163,6 +163,34 @@ declare module "styled-components" {
         };
       };
 
+      select: {
+        background: {
+          default: string;
+          disabled: string;
+        };
+        text: {
+          default: string;
+          disabled: string;
+        };
+        border: string;
+        borderFocused: string;
+      };
+
+      menuItem: {
+        background: {
+          default: string;
+          disabled: string;
+          hover: string;
+          active: string;
+        };
+        text: {
+          default: string;
+          disabled: string;
+          hover: string;
+          active: string;
+        };
+      };
+
       pixelSize: number;
       fontSizes: {
         xs: number;

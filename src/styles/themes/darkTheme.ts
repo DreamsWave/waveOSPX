@@ -28,7 +28,36 @@ const darkTheme: DefaultTheme = {
       ...baseTheme.common.border,
       color: getColor("Slate", 7),
     },
-    // text: getColor("Slate", 7), // Light text
+    select: {
+      ...baseTheme.common.select,
+      background: {
+        ...baseTheme.common.select.background,
+        default: getColor("Slate", 2),
+        disabled: getColor("Slate", 6),
+      },
+      text: {
+        ...baseTheme.common.select.text,
+        default: getColor("Slate", 7),
+        disabled: getColor("Slate", 4),
+      },
+    },
+    menuItem: {
+      ...baseTheme.common.menuItem,
+      background: {
+        ...baseTheme.common.menuItem.background,
+        default: getColor("Slate", 2),
+        disabled: getColor("Slate", 6),
+        hover: getColor("Gray", 2),
+        active: getColor("Blue", 4),
+      },
+      text: {
+        ...baseTheme.common.menuItem.text,
+        default: getColor("Slate", 7),
+        disabled: getColor("Slate", 4),
+        hover: getColor("Slate", 7),
+        active: getColor("Slate", 7),
+      },
+    },
   },
 
   // Override PC components

@@ -41,7 +41,7 @@ export const processDirectory: Record<string, ProcessDefinition> = {
   settings: {
     Component: lazy(() => import("@/features/pc/applications/Settings")),
     backgroundColor: getColor("Gray", 6),
-    defaultSize: { width: 600, height: 500 },
+    defaultSize: { width: 500, height: 500 },
     icon: {
       name: "settings",
     },
