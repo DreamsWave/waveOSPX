@@ -1,5 +1,4 @@
 import Monocraft from "@/assets/fonts/Monocraft/Monocraft.otf";
-import { createBorderSvg } from "@/styles/styledUtils";
 import * as styled from "styled-components";
 import { customScrollbarStyles } from "./ScrollbarStyles";
 
@@ -8,8 +7,8 @@ const GlobalStyle = styled.createGlobalStyle`
     font-family: "Monocraft";
     font-weight: normal;
     font-style: normal;
-    font-display: swap; /* Fallback to system font while loading */
-    src: url(${Monocraft}) format("opentype"); /* Correct format for .otf */
+    font-display: swap;
+    src: url(${Monocraft}) format("opentype");
   }
 
   /* WebKit scrollbar styles */
@@ -31,7 +30,6 @@ const GlobalStyle = styled.createGlobalStyle`
   *::after {
     border: 0;
     box-sizing: border-box;
-    /* cursor: default; */
     font-variant-numeric: tabular-nums;
     margin: 0;
     outline: 0;
@@ -60,10 +58,8 @@ const GlobalStyle = styled.createGlobalStyle`
 
   html {
     background-color: ${({ theme }) => theme.background};
-    /* stylelint-disable value-no-vendor-prefix */
     height: -webkit-fill-available;
     height: -moz-available;
-    /* stylelint-enable value-no-vendor-prefix */
 
     &::before,
     &::after {
@@ -88,41 +84,6 @@ const GlobalStyle = styled.createGlobalStyle`
     }
   }
 
-  input::selection,
-  textarea::selection {
-    background-color: rgb(0, 120, 215);
-    color: #fff;
-  }
-
-  input,
-  textarea {
-    cursor: text;
-    user-select: text;
-    background: ${({ theme }) => theme.common.background.secondary};
-    color: ${({ theme }) => theme.common.text.primary};
-    padding: ${({ theme }) => theme.s(2)}px ${({ theme }) => theme.s(3)}px;
-    font-family: ${({ theme }) => theme.formats.systemFont};
-    font-size: ${({ theme }) => theme.getFontSize("base")};
-    border: ${({ theme }) => theme.getBorder(1, theme.common.border.color)};
-    border-radius: ${({ theme }) => theme.s(1)}px;
-    ${createBorderSvg()}
-
-    &:focus {
-      border-color: ${({ theme }) => theme.common.border.colorFocused};
-    }
-  }
-
-  select {
-    background: ${({ theme }) => theme.common.background.secondary};
-    color: ${({ theme }) => theme.common.text.primary};
-    padding: ${({ theme }) => theme.s(1)}px ${({ theme }) => theme.s(3)}px;
-    font-family: ${({ theme }) => theme.formats.systemFont};
-    font-size: ${({ theme }) => theme.getFontSize("base")};
-    border: ${({ theme }) => theme.getBorder(1, theme.common.border.color)};
-    cursor: pointer;
-    ${createBorderSvg()}
-  }
-
   picture > img {
     display: block;
   }
@@ -133,7 +94,7 @@ const GlobalStyle = styled.createGlobalStyle`
     display: block;
   }
 
-  /* Base typography styles for markdown and general content */
+  /* Base typography styles */
   h1 {
     font-size: ${({ theme }) => theme.getFontSize("xl")};
     margin-bottom: ${({ theme }) => theme.s(5)}px;
@@ -249,57 +210,25 @@ const GlobalStyle = styled.createGlobalStyle`
     margin: ${({ theme }) => theme.s(6)}px 0;
   }
 
-  button {
-    background: ${({ theme }) => theme.common.background.secondary};
-    color: ${({ theme }) => theme.common.text.white};
-    padding: ${({ theme }) => theme.s(1)}px ${({ theme }) => theme.s(2)}px;
+  /* Base input styles */
+  input,
+  textarea {
     font-family: ${({ theme }) => theme.formats.systemFont};
     font-size: ${({ theme }) => theme.getFontSize("base")};
+    color: ${({ theme }) => theme.common.text.primary};
+    background: ${({ theme }) => theme.common.background.secondary};
     border: ${({ theme }) => theme.getBorder(1, theme.common.border.color)};
-    cursor: pointer;
-    ${createBorderSvg()}
-
-    &:hover {
-      background: ${({ theme }) => theme.common.background.muted};
-      background-clip: padding-box;
-    }
+    border-radius: ${({ theme }) => theme.s(1)}px;
+    padding: ${({ theme }) => theme.s(2)}px ${({ theme }) => theme.s(3)}px;
+    outline: none;
+    transition: border-color 0.2s ease;
 
     &:focus {
       border-color: ${({ theme }) => theme.common.border.colorFocused};
-      outline: none;
     }
 
-    &:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
-  }
-
-  input[type="checkbox"] {
-    appearance: none;
-    -webkit-appearance: none;
-    width: ${({ theme }) => theme.s(7)}px;
-    height: ${({ theme }) => theme.s(7)}px;
-    border: ${({ theme }) => theme.getBorder(1, theme.common.border.color)};
-    background: ${({ theme }) => theme.common.background.secondary};
-    ${createBorderSvg()}
-    position: relative;
-    vertical-align: middle;
-    cursor: pointer;
-    padding: 0;
-
-    &:checked {
-      background: ${({ theme }) => theme.common.text.accent};
-      background-clip: padding-box;
-      &:after {
-        content: "✓";
-        color: ${({ theme }) => theme.common.text.white};
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        font-size: ${({ theme }) => theme.s(3)}px;
-      }
+    &::placeholder {
+      color: ${({ theme }) => theme.common.text.muted};
     }
   }
 

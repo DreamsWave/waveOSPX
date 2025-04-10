@@ -90,7 +90,6 @@ declare module "styled-components" {
       };
     };
 
-    // Phone Component theming
     phone: {
       background: string;
       text: string;
@@ -144,11 +143,24 @@ declare module "styled-components" {
         secondaryBackground: string;
       };
 
-      // Info display component styling for system information areas
       infoDisplay: {
         background: string;
         margin: number;
         padding: number;
+      };
+
+      checkbox: {
+        size: number;
+        color: {
+          default: string;
+          disabled: string;
+          checked: string;
+        };
+        background: {
+          default: string;
+          disabled: string;
+          checked: string;
+        };
       };
 
       pixelSize: number;

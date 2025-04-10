@@ -137,11 +137,24 @@ const baseTheme: Omit<DefaultTheme, "name"> = {
       secondaryBackground: getColor("Gray", 3),
     },
 
-    // Info display component styling
     infoDisplay: {
       background: getColor("Gray", 7),
-      margin: 2, // Default margin similar to the original Changelog component
-      padding: 3, // Add some padding for better readability
+      margin: 2,
+      padding: 3,
+    },
+
+    checkbox: {
+      size: 10,
+      background: {
+        default: getColor("Gray", 7),
+        checked: getColor("Blue", 4),
+        disabled: getColor("Gray", 6),
+      },
+      color: {
+        default: getColor("Slate", 3),
+        checked: getColor("Slate", 7),
+        disabled: getColor("Slate", 4),
+      },
     },
 
     // System settings

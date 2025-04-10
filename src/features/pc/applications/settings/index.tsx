@@ -1,10 +1,11 @@
 import WindowSection from "@/components/WindowSection";
+import Checkbox from "@/components/common/Checkbox";
+import FormControlLabel from "@/components/common/FormControlLabel";
 import {
   SettingItem,
   SettingLabel,
   StyledSelect,
   StyledSettings,
-  ToggleSwitch,
 } from "@/features/pc/applications/Settings/styles";
 import { useSettings } from "@/features/settings/hooks";
 import type { ThemeName } from "@/styles/themes";
@@ -33,17 +34,12 @@ const Settings = () => {
         </SettingItem>
       </WindowSection>
       <WindowSection title="Accessibility">
-        <SettingItem>
-          <SettingLabel>Reduce Motion</SettingLabel>
-          <ToggleSwitch>
-            <input
-              type="checkbox"
-              checked={reducedMotion}
-              onChange={toggleReducedMotion}
-            />
-            <span />
-          </ToggleSwitch>
-        </SettingItem>
+        <FormControlLabel
+          control={
+            <Checkbox checked={reducedMotion} onChange={toggleReducedMotion} />
+          }
+          label="Reduce Motion"
+        />
       </WindowSection>
     </StyledSettings>
   );

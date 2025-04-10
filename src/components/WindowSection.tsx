@@ -9,7 +9,7 @@ export const StyledWindowSection = styled.div`
   flex-direction: column;
   gap: ${({ theme }) => theme.s(4)}px;
   position: relative;
-  padding: ${({ theme }) => `${theme.s(3)}px ${theme.s(5)}px`};
+  padding: ${({ theme }) => theme.s(3)}px;
 
   ${getBorderImage(WindowSectionBorderImageSVG, 2)}
 `;

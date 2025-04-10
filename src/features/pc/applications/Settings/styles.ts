@@ -17,8 +17,8 @@ export const SettingsSectionTitle = styled.h3`
 
 export const SettingItem = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  align-items: end;
+  gap: ${({ theme }) => theme.s(4)}px;
   padding: ${({ theme }) => theme.s(2)}px 0;
 `;
 
