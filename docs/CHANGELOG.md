@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.6](https://github.com/DreamsWave/waveOSPX/compare/v0.0.5...v0.0.6) (2025-04-10)
+
+
+### Features
+
+* add basic settings for pc ([ceb0111](https://github.com/DreamsWave/waveOSPX/commit/ceb01113c879947f8d14e670b882043c3b59c377))
+* add Checkbox and FormControlLabel components; integrate Checkbox into Settings for improved accessibility options ([53aa274](https://github.com/DreamsWave/waveOSPX/commit/53aa2740cf429176be3b09e12db04f970e93fb4d))
+* add Radio and RadioGroup components with styled elements and textures for improved UI interaction ([57e78d1](https://github.com/DreamsWave/waveOSPX/commit/57e78d1fcf0f2fd71bb4bf99ed0d030a2494872b))
+* add WindowSection component for bordering section and integrate into Settings; update styles and adjust default size ([52baf7d](https://github.com/DreamsWave/waveOSPX/commit/52baf7d5d7aacf049e644d863200cc4b22d7607e))
+* introduce FormControl, FormLabel, MenuItem, and Select components for enhanced form handling and UI consistency in Settings ([36ea228](https://github.com/DreamsWave/waveOSPX/commit/36ea228da01e3ff442e88bc8f5740b893a3fd5b6))
+
 ### [0.0.5](https://github.com/DreamsWave/waveOSPX/compare/v0.0.4...v0.0.5) (2025-04-09)
 
 
