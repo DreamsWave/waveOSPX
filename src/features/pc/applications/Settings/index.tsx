@@ -1,8 +1,7 @@
+import WindowSection from "@/components/WindowSection";
 import {
   SettingItem,
   SettingLabel,
-  SettingsSection,
-  SettingsSectionTitle,
   StyledSelect,
   StyledSettings,
   ToggleSwitch,
@@ -16,8 +15,7 @@ const Settings = () => {
 
   return (
     <StyledSettings>
-      <SettingsSection>
-        <SettingsSectionTitle>Appearance</SettingsSectionTitle>
+      <WindowSection title="Appearance">
         <SettingItem>
           <SettingLabel>Theme</SettingLabel>
           <StyledSelect
@@ -33,10 +31,8 @@ const Settings = () => {
             ))}
           </StyledSelect>
         </SettingItem>
-      </SettingsSection>
-
-      <SettingsSection>
-        <SettingsSectionTitle>Accessibility</SettingsSectionTitle>
+      </WindowSection>
+      <WindowSection title="Accessibility">
         <SettingItem>
           <SettingLabel>Reduce Motion</SettingLabel>
           <ToggleSwitch>
@@ -48,7 +44,7 @@ const Settings = () => {
             <span />
           </ToggleSwitch>
         </SettingItem>
-      </SettingsSection>
+      </WindowSection>
     </StyledSettings>
   );
 };

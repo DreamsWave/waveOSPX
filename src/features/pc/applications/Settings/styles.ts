@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 export const StyledSettings = styled.div`
   color: ${({ theme }) => theme.common.text.primary};
-  padding: ${({ theme }) => theme.s(4)}px;
+  padding: ${({ theme }) => theme.s(6)}px;
+  padding-top: ${({ theme }) => theme.s(2)}px;
 `;
 
 export const SettingsSection = styled.div`
