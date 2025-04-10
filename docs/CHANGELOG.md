@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.7](https://github.com/DreamsWave/waveOSPX/compare/v0.0.6...v0.0.7) (2025-04-10)
+
+
+### Bug Fixes
+
+* remove duplicate files with incorrect casing ([e9ce292](https://github.com/DreamsWave/waveOSPX/commit/e9ce29298ae2b55c0b39a2cb90a4db79ba37a0eb))
+
 ### [0.0.6](https://github.com/DreamsWave/waveOSPX/compare/v0.0.5...v0.0.6) (2025-04-10)
 
 
