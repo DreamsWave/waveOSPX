@@ -1,39 +1,56 @@
-import Palette from "@/components/Palette";
-import { memo } from "react";
-import styled from "styled-components";
+import {
+  SettingItem,
+  SettingLabel,
+  SettingsSection,
+  SettingsSectionTitle,
+  StyledSelect,
+  StyledSettings,
+  ToggleSwitch,
+} from "@/features/pc/applications/Settings/styles";
+import { useSettings } from "@/features/settings/hooks";
+import type { ThemeName } from "@/styles/themes";
+import themes from "@/styles/themes";
 
-const StyledSettings = styled.div`
-  min-height: 100%;
-  width: 100%;
-  background-color: ${({ theme }) => theme.pc.window.background};
-  color: ${({ theme }) => theme.pc.window.text};
-`;
+const Settings = () => {
+  const { reducedMotion, toggleReducedMotion, setTheme, theme } = useSettings();
 
-const StyledAppTitle = styled.h2`
-  font-size: ${({ theme }) => `${theme.s(theme.common.fontSizes.lg)}px`};
-  font-weight: 600;
-  padding: 0;
-  text-align: center;
-  text-transform: uppercase;
-  padding-top: ${({ theme }) => `${theme.s(3)}px`};
-  padding-bottom: ${({ theme }) => `${theme.s(3)}px`};
-`;
-
-const StyledContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-`;
-
-const Settings = memo(() => {
   return (
     <StyledSettings>
-      <StyledAppTitle>Settings</StyledAppTitle>
-      <StyledContainer>
-        <Palette />
-      </StyledContainer>
+      <SettingsSection>
+        <SettingsSectionTitle>Appearance</SettingsSectionTitle>
+        <SettingItem>
+          <SettingLabel>Theme</SettingLabel>
+          <StyledSelect
+            value={theme}
+            onChange={(e) => setTheme(e.target.value as ThemeName)}
+          >
+            {Object.keys(themes).map((themeName) => (
+              <option key={themeName} value={themeName}>
+                {themeName
+                  .replace(/([A-Z])/g, " $1")
+                  .replace(/^./, (str) => str.toUpperCase())}
+              </option>
+            ))}
+          </StyledSelect>
+        </SettingItem>
+      </SettingsSection>
+
+      <SettingsSection>
+        <SettingsSectionTitle>Accessibility</SettingsSectionTitle>
+        <SettingItem>
+          <SettingLabel>Reduce Motion</SettingLabel>
+          <ToggleSwitch>
+            <input
+              type="checkbox"
+              checked={reducedMotion}
+              onChange={toggleReducedMotion}
+            />
+            <span />
+          </ToggleSwitch>
+        </SettingItem>
+      </SettingsSection>
     </StyledSettings>
   );
-});
+};
 
 export default Settings;
